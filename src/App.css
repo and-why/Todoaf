@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  /* background-color: #222; */
+  background-color: #1294ca;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.Container {
+  max-width: 30em;
+  width: 90%;
+  min-width: 20em;
+  margin: auto;
+}
+
+.WidgetHeader {
+  /* background: #979797; */
+  background: #0c5f83;
+  color:white;
+  padding: 0.5em 0;
+  font-size: 1em;
+  margin: 1em 0;
+}
+
+input {
+  padding:8px;
+  margin-right:8px;
+  width:100%;
+}
+
+.button {
+  border: none;
+  background: #2fb82f;
+  color: white;
+  padding: 1em 2em;
+  font-size: 1em;
+  width: 100%;
+  border-bottom: 5px solid #208120;
+}
+
+.button:hover {
+  opacity: .9;  
+  cursor: pointer;
+}
+
+.button:active {
+  border-bottom: none;
+  border-top: 5px solid #fff;
+}
+
+.button:focus {
+  outline: none;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+  
+}
+
+/* ITEMS */
+.AddItem {
+  display:flex;
+}
+.Item_wrapper {
+  display:flex;
+}
