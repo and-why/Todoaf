@@ -8,21 +8,23 @@ class Body extends Component {
     selectedItem: undefined
   };
   
+
   handleAddItem = (item) => {
-    const prevState = [...this.state.items]
-    const newItemState =  prevState.concat((item))    
-    this.setState({
-      prevState,
-      item
-    });
-    console.log(this.state);
+    if (item === "") {
+      // do nothing
+    } else {
+      this.setState((prevState) => ({
+        items: prevState.items.concat(item),
+      }));
+    }
   };
-  handleRemoveItem = (itemToRemove) => {
-    console.log(itemToRemove)
-  }
+  // handleRemoveItem = (itemToRemove) => {
+  //   prevState.filter(itemToRemove => )
+  // }
   render() {
     return (
       <div className="Container">
+      {console.log(this.state)}
       <div className="WidgetHeader">
         <h3 className="WidgetHeader__title">{this.props.title}</h3>
       </div>
