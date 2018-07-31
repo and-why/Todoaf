@@ -20,7 +20,10 @@ render() {
       {this.state.error && <p>{this.state.error}</p>}
       <form className="AddItem" onSubmit={this.handleAddItem}>
         <input type="text" className="ItemToAdd" name="item" placeholder="Bench Press"/>
-        <button className="button">
+        <select name="priority" id="priority">
+          <option value="1">1</option>
+        </select>
+        <button className="btn btn-success">
           Add Item
         </button>
       </form>

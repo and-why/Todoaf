@@ -48,14 +48,18 @@ input {
   width:100%;
 }
 
-.button {
+.btn {
   border: none;
-  background: #2fb82f;
+  
   color: white;
   padding: 1em 2em;
   font-size: 1em;
   width: 100%;
   border-bottom: 5px solid #208120;
+}
+
+.btn-success {
+  background: #2fb82f;
 }
 
 .button:hover {
@@ -88,4 +92,20 @@ input {
 }
 .Item_wrapper {
   display:flex;
+  width:100%;
+  justify-content: space-between;
+  padding:20px;
+  background:whitesmoke;
+  margin:10px 0;
+}
+
+.Item_name {
+  flex:8;
+  text-align: left;
+}
+.Item_weighting {
+  flex:1;
+}
+.Item_remove {
+  flex:1;
 }
