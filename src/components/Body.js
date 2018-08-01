@@ -25,7 +25,20 @@ class Body extends Component {
       items: prevState.items.filter(item => itemToRemove.id !== item.id)
     }))
   }
+  handleEditItem = (itemToEdit) => {
+    console.log(itemToEdit.id);
+    let obj = this.state.items.find((obj) => obj.id === itemToEdit.id)
+    
+    if(obj.priority === 3) {
+      obj.priority = 1;
+    } else {
+      obj.priority ++;
+    }
 
+    this.setState(prevState => ({
+      items: prevState.items.filter(() => obj)
+    }))
+  }
   componentDidMount() {
     try {
       const json = localStorage.getItem('Storage')
@@ -56,7 +69,12 @@ class Body extends Component {
           <h3 className="WidgetHeader__title">{this.props.title}</h3>
         </div>
         <div className="Items">
-        <ItemsAll handleAddItem={this.handleAddItem} items={this.state.items} handleRemoveItem={this.handleRemoveItem} />
+        <ItemsAll 
+          handleAddItem={this.handleAddItem} 
+          items={this.state.items} 
+          handleRemoveItem={this.handleRemoveItem}
+          handleEditItem={this.handleEditItem}
+           />
         </div>
           {/* <AddItem handleAddItem={this.handleAddItem}/>
           <Items items={this.state.items} handleRemoveItem={this.handleRemoveItem}/> */}
