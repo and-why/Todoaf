@@ -24,7 +24,7 @@ render() {
       <form className="form-additem" onSubmit={this.handleAddItem}>
         <div className="form-additem__text">
           <label htmlFor="itemText">Task name:</label>
-          <input type="text" name="itemText" placeholder="SEO Audit"/>
+          <input type="text" name="itemText" placeholder="Type in a task"/>
         </div>
         <div className="form-additem__priority">
           <label htmlFor="itemPriority">Priority</label>
