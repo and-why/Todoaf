@@ -29,9 +29,9 @@ render() {
         <div className="form-additem__priority">
           <label htmlFor="itemPriority">Priority</label>
           <select name="itemPriority" id="priority">
-            <option value="1">1 - low</option>
+            <option value="1">1 - high</option>
             <option value="2">2</option>
-            <option value="3">3 - high</option>
+            <option value="3">3 - low</option>
           </select>
         </div>
         <button className="btn btn-success form-additem__btn">
