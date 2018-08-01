@@ -3,9 +3,12 @@ import Item from './Item';
 
 
 const Items = (props) => (
-      <div>
+      <div className="items-list">
         {props.items.length === 0 && <p>Add an item to start</p> }
-        {props.items.map((item) => (
+        
+        {props.items.sort(function (a, b) {
+            return b.priority - a.priority;
+          }).map((item) => (
           <Item
             key={item.id}
             itemText={item.text}

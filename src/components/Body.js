@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import Items from './Items';
-import AddItem from './AddItem';
+import ItemsAll from './ItemsAll';
 
 class Body extends Component {
   state = {
     items: []
   };
   
-  handleAddItem = (item) => {
+  handleAddItem = (item, itemPriority) => {
     const newItem = {
       text: item,
-      id: 1 + Math.random()
+      id: 1 + Math.random(),
+      priority: itemPriority
     }
     if (item === "") {
       // do nothing
@@ -56,9 +56,10 @@ class Body extends Component {
           <h3 className="WidgetHeader__title">{this.props.title}</h3>
         </div>
         <div className="Items">
-        <AddItem handleAddItem={this.handleAddItem}/>
-        <Items items={this.state.items} handleRemoveItem={this.handleRemoveItem}/>
+        <ItemsAll handleAddItem={this.handleAddItem} items={this.state.items} handleRemoveItem={this.handleRemoveItem} />
         </div>
+          {/* <AddItem handleAddItem={this.handleAddItem}/>
+          <Items items={this.state.items} handleRemoveItem={this.handleRemoveItem}/> */}
       </div>
     )
   }

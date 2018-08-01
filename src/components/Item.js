@@ -1,12 +1,13 @@
 import React from 'react';
-import Body from './Body';
+
 
 const Item = (props) => (
   <div>
-    <div className="Item_wrapper">
-      <div className="Item_name">{props.itemText}</div>
-      <div className="Item_weighting">{props.priority}</div>
-      <button className="btn btn-remove Item_remove" onClick={(e) => {props.handleRemoveItem(props)}}>Delete</button>
+    <div className="item__wrapper">
+      <div className="item__name">{props.itemText}</div>
+      <div className={`item__priority item__priority--${props.priority}`}>{props.priority}</div>
+      <button className="btn btn-red item__remove" onClick={(e) => {props.handleRemoveItem(props)}}>Delete</button>
+
     </div>
   </div>
 );

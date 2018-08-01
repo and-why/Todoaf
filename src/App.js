@@ -9,14 +9,11 @@ class App extends Component {
     return (
       <div className="App">
         <Header 
-          // title={'Priorities'} 
-          title={'Exercise Diary'} 
-          //subtitle={'A to do list based on priorities & deadlines'} 
-          subtitle={'A simple exercise diary'} 
+          title={'Priorities'} 
+          subtitle={'A to do list based on priority weighting'} 
         />
         <Body 
-          // title={'To Do'} 
-          title={'Exercises'} 
+          title={'To Do'} 
         />
       </div>
     );
