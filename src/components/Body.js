@@ -51,10 +51,10 @@ class Body extends Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.items.length !== this.state.items.length) {
+    
       const json = JSON.stringify(this.state.items);
       localStorage.setItem('Storage', json)
-    }
+    
   }
   componentWillUnmount() {
     console.log('componentWillUnmount');
