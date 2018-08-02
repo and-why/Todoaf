@@ -11,7 +11,7 @@ const Items = (props) => (
           }).map((item) => (
           <Item
             key={item.id}
-            itemText={item.text}
+            text={item.text}
             priority={item.priority}
             id={item.id}
             handleRemoveItem={props.handleRemoveItem}
