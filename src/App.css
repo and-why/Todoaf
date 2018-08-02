@@ -131,6 +131,7 @@ text-align: center;
 }
 .item__wrapper > * {
   margin:0 0.4rem;
+  transition:
 }
 
 .item__name {
@@ -151,7 +152,7 @@ text-align: center;
  background: #38a138; 
 }
 .item__priority--2 {
- background: #d88a24; 
+ background: #ffbf00; 
 }
 .item__priority--1 {
  background: #e65151; 
