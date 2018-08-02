@@ -15,6 +15,7 @@ const Items = (props) => (
             priority={item.priority}
             id={item.id}
             handleRemoveItem={props.handleRemoveItem}
+            handleEditItem={props.handleEditItem}
           />
           
         ))}

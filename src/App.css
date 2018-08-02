@@ -53,6 +53,7 @@ input, select {
   margin-right:8px;
   width:100%;
   flex:1;
+  -webkit-appearance: none;
 }
 label {
   font-size: 10px;
@@ -61,9 +62,8 @@ label {
 .btn {
   border: none;
   color: white;
-  padding: 1em 2em;
+  padding: 1em;
   font-size: 1em;
-  width: 100%;
 }
 
 .btn-success {
@@ -82,7 +82,7 @@ label {
 
 .btn:active {
   border-bottom: none;
-  border-top: 5px solid #fff;
+  border-top: 5px solid rgba(0,0,0,0);
 }
 
 .btn:focus {
@@ -147,15 +147,18 @@ text-align: center;
   height:100%;
   padding: 1em 0;
 }
-.item__priority-1 {
- background: green; 
+.item__priority--3  {
+ background: #38a138; 
 }
-.item__priority-2 {
- background: orange; 
+.item__priority--2 {
+ background: #d88a24; 
 }
-.item__priority-3 {
- background: red; 
+.item__priority--1 {
+ background: #e92e2e; 
 }
 .item__remove {
+  flex:1;
+}
+.item__edit {
   flex:1;
 }
