@@ -19,13 +19,14 @@ const Items = (props) => (
             handleEditItem={props.handleEditItem}
           />
         ))}
-        {props.items.find(item => item.priority === 10) && <h4 className="items__complete">COMPLETED</h4>}
-        {props.items.filter(item => item.priority === 10).map((item) => (
+        {props.items.find(item => item.priority >= 10) && <h4 className="items__complete">COMPLETED</h4>}
+        {props.items.filter(item => item.priority >= 10).map((item) => (
           <Item
             key={item.id}
             text={item.text}
             priority={item.priority}
             id={item.id}
+            handleUndoItem={props.handleUndoItem}
             handleRemoveItem={props.handleRemoveItem}
           />
         ))}
