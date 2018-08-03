@@ -122,6 +122,9 @@ label {
 .form-additem__btn {
   flex:3;
 }
+.form-additem__btn {
+  flex:3;
+}
 .form-additem {
   display:flex;
 }
@@ -176,6 +179,9 @@ text-align: center;
 .item__remove {
   flex:1;
 }
+.item__complete {
+  flex:1;
+}
 .item__edit {
   flex:1;
 }
@@ -185,4 +191,7 @@ text-align: center;
   border-top: 2px dashed #7c7c7c;
   padding-top:16px;
   margin-top:16px;
+}
+.item__priority--10 .item__remove {
+  flex:0.79;
 }
