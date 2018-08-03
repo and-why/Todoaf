@@ -6,7 +6,7 @@ import Items from './Items';
 const ItemsAll = (props) => (
   <div className="items">
     <AddItem handleAddItem={props.handleAddItem}/>
-    <Items items={props.items} handleRemoveItem={props.handleRemoveItem} handleEditItem={props.handleEditItem}/>
+    <Items items={props.items} handleRemoveItem={props.handleRemoveItem} handleCompleteItem={props.handleCompleteItem} handleEditItem={props.handleEditItem}/>
   </div>
 )
 

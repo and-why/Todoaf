@@ -8,7 +8,7 @@ state = {
     e.preventDefault();
     
     const item = e.target.itemText.value.trim();
-    const itemPriority = parseInt(e.target.itemPriority.value);
+    const itemPriority = parseInt(e.target.itemPriority.value, 10);
 
     const error = this.props.handleAddItem(item, itemPriority);
 

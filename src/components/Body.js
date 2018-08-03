@@ -39,6 +39,16 @@ class Body extends Component {
       items: prevState.items.filter(() => obj)
     }))
   }
+  handleCompleteItem = (itemToEdit) => {
+    console.log("complete passed up");
+    let obj = this.state.items.find((obj) => obj.id === itemToEdit.id)
+    
+      obj.priority = 10;
+
+    this.setState(prevState => ({
+      items: prevState.items.filter(() => obj)
+    }))
+  }
   componentDidMount() {
     try {
       const json = localStorage.getItem('Storage')
@@ -73,6 +83,7 @@ class Body extends Component {
           handleAddItem={this.handleAddItem} 
           items={this.state.items} 
           handleRemoveItem={this.handleRemoveItem}
+          handleCompleteItem={this.handleCompleteItem}
           handleEditItem={this.handleEditItem}
            />
         </div>

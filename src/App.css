@@ -165,9 +165,24 @@ text-align: center;
 .item__priority--1 {
  background: #e54b4b; 
 }
+.item__priority--10 {
+  opacity:0.5;
+  position:relative;
+ }
+
+.item__priority--1button.btn.btn-success.item__complete {
+  display: none;
+}
 .item__remove {
   flex:1;
 }
 .item__edit {
   flex:1;
+}
+.items__complete {
+  color:#7c7c7c;
+  text-align: center;
+  border-top: 2px dashed #7c7c7c;
+  padding-top:16px;
+  margin-top:16px;
 }
