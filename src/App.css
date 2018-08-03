@@ -104,6 +104,11 @@ label {
 
 /* ITEMS */
 /* FORM */
+
+.form-additem {
+  margin-top:36px;
+}
+
 .form-additem > * {
   margin:0 .4rem;
   position: relative;
