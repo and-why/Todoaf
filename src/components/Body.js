@@ -28,12 +28,30 @@ class Body extends Component {
   handleEditItem = (itemToEdit) => {
     console.log(itemToEdit.id);
     let obj = this.state.items.find((obj) => obj.id === itemToEdit.id)
-    
     if(obj.priority === 3) {
       obj.priority = 1;
     } else {
       obj.priority ++;
     }
+    this.setState(prevState => ({
+      items: prevState.items.filter(() => obj)
+    }))
+  }
+  handleUndoItem = (itemToEdit) => {
+    console.log(itemToEdit.id);
+    let obj = this.state.items.find((obj) => obj.id === itemToEdit.id)
+    
+    obj.priority = obj.priority - 10;
+
+    this.setState(prevState => ({
+      items: prevState.items.filter(() => obj)
+    }))
+  }
+  handleCompleteItem = (itemToEdit) => {
+    console.log("complete passed up");
+    let obj = this.state.items.find((obj) => obj.id === itemToEdit.id)
+    
+      obj.priority = obj.priority + 10;
 
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj)
@@ -73,7 +91,9 @@ class Body extends Component {
           handleAddItem={this.handleAddItem} 
           items={this.state.items} 
           handleRemoveItem={this.handleRemoveItem}
+          handleCompleteItem={this.handleCompleteItem}
           handleEditItem={this.handleEditItem}
+          handleUndoItem={this.handleUndoItem}
            />
         </div>
           {/* <AddItem handleAddItem={this.handleAddItem}/>
