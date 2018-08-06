@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class EditItem extends Component {
   state = { 
-    error:undefined;
+    error:undefined
   };
 
   handleEditItemReturn = e => {
@@ -34,6 +34,3 @@ class EditItem extends Component {
       )
     }
   }
-
-
-}
