@@ -1,13 +1,14 @@
 import React from 'react';
+import AddItem from './AddItem';
 
 const Item = props => (
   <div
     className={`item__wrapper item__priority--${props.priority}`}
     onDoubleClick={e => {
-      props.handleEditItem && props.handleEditItem(props);
+      props.handleEditItem(props);
     }}
   >
-    <div className="item__name">{props.text}</div>
+    <div className="item__name">{props.editable ? <AddItem /> : props.text}</div>
     {/* <div className="item__priority">{props.priority}</div> */}
     {/* <button className="btn item__edit" >Edit</button> */}
 

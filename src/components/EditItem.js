@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 
-class AddItem extends Component {
-  state = {
-    error: undefined,
+class EditItem extends Component {
+  state = { 
+    error:undefined;
   };
-  handleAddItem = e => {
+
+  handleEditItemReturn = e => {
     e.preventDefault();
 
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
     const error = this.props.handleAddItem(item, itemPriority);
-    
-    if (!error) {
-      e.target.itemText.value = '';
-      e.target.itemPriority.value = 2;
-    } 
-  };
-  render() {
-    return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form className="form-additem" onSubmit={this.handleAddItem}>
+  }
+    render() {
+      return (
+        <div>
+          <form className="form-additem" onSubmit={this.handleAddItem}>
           <div className="form-additem__text">
             <label htmlFor="itemText">Task name:</label>
             <input type="text" name="itemText" placeholder="Insert task here" />
@@ -33,11 +28,12 @@ class AddItem extends Component {
               <option value="3">Low</option>
             </select>
           </div>
-          <button className="btn btn-success form-additem__btn">Add</button>
+          <button className="btn btn-success form-additem__btn">Edit</button>
         </form>
-      </div>
-    );
+        </div>
+      )
+    }
   }
-}
 
-export default AddItem;
+
+}

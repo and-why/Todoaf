@@ -12,6 +12,7 @@ const Items = (props) => (
           <Item
             key={item.id}
             text={item.text}
+            editable={item.editable}
             priority={item.priority}
             id={item.id}
             handleRemoveItem={props.handleRemoveItem}

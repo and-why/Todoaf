@@ -25,18 +25,31 @@ class Body extends Component {
       items: prevState.items.filter(item => itemToRemove.id !== item.id),
     }));
   };
-  handleEditItem = itemToEdit => {
+  // handleEditItem = itemToEdit => {
+  //   console.log(itemToEdit.id);
+  //   let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
+  //   if (obj.priority === 3) {
+  //     obj.priority = 1;
+  //   } else {
+  //     obj.priority++;
+  //   }
+  //   this.setState(prevState => ({
+  //     items: prevState.items.filter(() => obj),
+  //   }));
+  // };
+
+    handleEditItem = itemToEdit => {
     console.log(itemToEdit.id);
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
-    if (obj.priority === 3) {
-      obj.priority = 1;
-    } else {
-      obj.priority++;
-    }
+   
+    obj.editable = true;
+    
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj),
     }));
   };
+
+
   handleUndoItem = itemToEdit => {
     console.log(itemToEdit.id);
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
