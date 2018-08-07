@@ -14,6 +14,8 @@ class Body extends Component {
     };
     if (item === '') {
       // do nothing
+    // } else if (item.id === ) {
+
     } else {
       this.setState(prevState => ({
         items: prevState.items.concat(newItem),
@@ -42,13 +44,20 @@ class Body extends Component {
     console.log(itemToEdit.id);
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
    
-    obj.editable = true;
+    obj.editable = !obj.editable;
     
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj),
     }));
   };
-
+  handleEditItemReturn = itemToEdit => {
+    console.log(itemToEdit)
+    let obj = this.state.items.find(obj => obj.id === itemToEdit.id)
+    
+    this.setState(prevState => ({
+      items: prevState.items.filter(() => obj),
+    }));
+  }
 
   handleUndoItem = itemToEdit => {
     console.log(itemToEdit.id);
@@ -92,7 +101,7 @@ class Body extends Component {
   render() {
     return (
       <div className="Container">
-        {console.log(this.state)}
+        <input type=""/>
         <div className="WidgetHeader">
           <h3 className="WidgetHeader__title">{this.props.title}</h3>
         </div>
@@ -103,9 +112,11 @@ class Body extends Component {
             handleRemoveItem={this.handleRemoveItem}
             handleCompleteItem={this.handleCompleteItem}
             handleEditItem={this.handleEditItem}
+            handleEditItemReturn={this.handleEditItemReturn}
             handleUndoItem={this.handleUndoItem}
           />
         </div>
+        {console.log(this.state)}
       </div>
     );
   }

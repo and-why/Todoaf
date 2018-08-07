@@ -1,14 +1,14 @@
 import React from 'react';
-import AddItem from './AddItem';
+import EditItem from './EditItem';
 
 const Item = props => (
   <div
     className={`item__wrapper item__priority--${props.priority}`}
     onDoubleClick={e => {
-      props.handleEditItem(props);
+      props.priority < 9 && props.handleEditItem(props);
     }}
   >
-    <div className="item__name">{props.editable ? <AddItem /> : props.text}</div>
+    <div className="item__name">{props.editable ? <EditItem {...props} handleEditItemReturn={props.handleEditItemReturn} /> : props.text}</div>
     {/* <div className="item__priority">{props.priority}</div> */}
     {/* <button className="btn item__edit" >Edit</button> */}
 
@@ -22,7 +22,8 @@ const Item = props => (
         {'\u21ba'}
       </button>
     )}
-    {props.handleCompleteItem && (
+
+    {!props.editable && (props.handleCompleteItem && (
       <button
         className="btn btn-success item__complete"
         onClick={e => {
@@ -31,15 +32,16 @@ const Item = props => (
       >
         {'\u2714'}
       </button>
-    )}
-    <button
+    ))}
+
+   {!props.editable && <button
       className="btn btn-red item__remove"
       onClick={e => {
         props.handleRemoveItem(props);
       }}
     >
       {'\u2718'}
-    </button>
+    </button>}
   </div>
 );
 

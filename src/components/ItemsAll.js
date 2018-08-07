@@ -12,6 +12,7 @@ const ItemsAll = (props) => (
       handleRemoveItem={props.handleRemoveItem} 
       handleCompleteItem={props.handleCompleteItem} 
       handleEditItem={props.handleEditItem}
+      handleEditItemReturn={props.handleEditItemReturn}
     />
   </div>
 )
