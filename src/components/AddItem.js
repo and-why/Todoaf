@@ -10,11 +10,11 @@ class AddItem extends Component {
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
     const error = this.props.handleAddItem(item, itemPriority);
-    
+
     if (!error) {
       e.target.itemText.value = '';
       e.target.itemPriority.value = 2;
-    } 
+    }
   };
   render() {
     return (
@@ -27,9 +27,9 @@ class AddItem extends Component {
           </div>
           <div className="form-additem__priority">
             <label htmlFor="itemPriority">Priority</label>
-            <select name="itemPriority" id="priority">
+            <select name="itemPriority" id="priority" defaultValue="2">
               <option value="1">High</option>
-              <option value="2" defaultValue>Medium</option>
+              <option value="2">Medium</option>
               <option value="3">Low</option>
             </select>
           </div>

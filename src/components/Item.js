@@ -1,16 +1,20 @@
 import React from 'react';
-import AddItem from './AddItem';
+import EditItem from './EditItem';
 
 const Item = props => (
-  <div
-    className={`item__wrapper item__priority--${props.priority}`}
-    onDoubleClick={e => {
-      props.handleEditItem(props);
-    }}
-  >
-    <div className="item__name">{props.editable ? <AddItem /> : props.text}</div>
-    {/* <div className="item__priority">{props.priority}</div> */}
-    {/* <button className="btn item__edit" >Edit</button> */}
+  <div className={`item__wrapper item__priority--${props.priority}`}>
+    <div className="item__name">
+      {props.editable ? (
+        <EditItem
+          id={props.id}
+          text={props.text}
+          priority={props.priority}
+          handleEditItemReturn={props.handleEditItemReturn}
+        />
+      ) : (
+        props.text
+      )}
+    </div>
 
     {props.handleUndoItem && (
       <button
@@ -22,24 +26,42 @@ const Item = props => (
         {'\u21ba'}
       </button>
     )}
-    {props.handleCompleteItem && (
+
+    {props.priority < 9 &&
+      (!props.editable &&
+        (props.handleEditItem && (
+          <button
+            className="btn btn-blue item__complete"
+            onClick={e => {
+              props.handleEditItem(props);
+            }}
+          >
+            {'\u270E'}
+          </button>
+        )))}
+
+    {!props.editable &&
+      (props.handleCompleteItem && (
+        <button
+          className="btn btn-success item__complete"
+          onClick={e => {
+            props.handleCompleteItem(props);
+          }}
+        >
+          {'\u2714'}
+        </button>
+      ))}
+
+    {!props.editable && (
       <button
-        className="btn btn-success item__complete"
+        className="btn btn-red item__remove"
         onClick={e => {
-          props.handleCompleteItem(props);
+          props.handleRemoveItem(props);
         }}
       >
-        {'\u2714'}
+        {'\u2718'}
       </button>
     )}
-    <button
-      className="btn btn-red item__remove"
-      onClick={e => {
-        props.handleRemoveItem(props);
-      }}
-    >
-      {'\u2718'}
-    </button>
   </div>
 );
 

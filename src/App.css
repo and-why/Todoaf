@@ -127,9 +127,18 @@ label {
 
 /* FORM */
 
+.form-additem, .form-edititem {
+  display: flex;
+}
 .form-additem {
   margin-top: 36px;
   flex: 8;
+}
+.form-edititem {
+  flex: 8;
+}
+.formedit_id {
+  display:none;
 }
 
 .form-additem>* {
@@ -147,10 +156,6 @@ label {
 
 .form-additem__btn {
   flex: 2;
-}
-
-.form-additem {
-  display: flex;
 }
 
 .items-list p {
