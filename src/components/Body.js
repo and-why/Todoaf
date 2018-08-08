@@ -4,7 +4,7 @@ import ItemsAll from './ItemsAll';
 class Body extends Component {
   state = {
     items: [],
-    editable: false
+    editable: false,
   };
 
   handleAddItem = (item, itemPriority) => {
@@ -15,10 +15,8 @@ class Body extends Component {
     };
     if (item === '') {
       // do nothing
-    // } else if (item.id === ) {
-
     } else {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         items: prevState.items.concat(newItem),
       }));
     }
@@ -28,41 +26,29 @@ class Body extends Component {
       items: prevState.items.filter(item => itemToRemove.id !== item.id),
     }));
   };
-  // handleEditItem = itemToEdit => {
-  //   console.log(itemToEdit.id);
-  //   let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
-  //   if (obj.priority === 3) {
-  //     obj.priority = 1;
-  //   } else {
-  //     obj.priority++;
-  //   }
-  //   this.setState(prevState => ({
-  //     items: prevState.items.filter(() => obj),
-  //   }));
-  // };
 
-    handleEditItem = itemToEdit => {
-    console.log(itemToEdit.id);
+  handleEditItem = itemToEdit => {
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
-   
+
     obj.editable = !obj.editable;
-    
+
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj),
     }));
   };
-  handleEditItemReturn = itemToEdit => {
-    console.log(itemToEdit.id)
-    let obj = this.state.items.find(obj => obj.id === itemToEdit.id)
-    
-  
-    this.setState(prevState => ({
-      items: prevState.items.filter(() => obj),
-    }));
-  }
+  handleEditItemReturn = (item, itemPriority, id) => {
+    let obj = { text: item, priority: itemPriority, id, editable: false };
+
+    let newArray = this.state.items.filter(item => item.id !== id).concat(obj);
+
+    obj.editable = false;
+
+    this.setState({
+      items: newArray,
+    });
+  };
 
   handleUndoItem = itemToUndo => {
-    console.log(itemToUndo.id);
     let obj = this.state.items.find(obj => obj.id === itemToUndo.id);
 
     obj.priority = obj.priority - 10;
@@ -73,7 +59,6 @@ class Body extends Component {
   };
 
   handleCompleteItem = itemToEdit => {
-    console.log('complete passed up');
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
 
     obj.priority = obj.priority + 10;
@@ -104,7 +89,6 @@ class Body extends Component {
   render() {
     return (
       <div className="Container">
-        <input type=""/>
         <div className="WidgetHeader">
           <h3 className="WidgetHeader__title">{this.props.title}</h3>
         </div>
@@ -119,7 +103,7 @@ class Body extends Component {
             handleUndoItem={this.handleUndoItem}
           />
         </div>
-        {console.log(this.state)}
+        {console.log('total state: ', this.state)}
       </div>
     );
   }
