@@ -25,21 +25,30 @@ class Body extends Component {
       items: prevState.items.filter(item => itemToRemove.id !== item.id),
     }));
   };
+
   handleEditItem = itemToEdit => {
-    console.log(itemToEdit.id);
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
-    if (obj.priority === 3) {
-      obj.priority = 1;
-    } else {
-      obj.priority++;
-    }
+
+    obj.editable = !obj.editable;
+
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj),
     }));
   };
-  handleUndoItem = itemToEdit => {
-    console.log(itemToEdit.id);
-    let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
+  handleEditItemReturn = (item, itemPriority, id) => {
+    let obj = { text: item, priority: itemPriority, id, editable: false };
+
+    let newArray = this.state.items.filter(item => item.id !== id).concat(obj);
+
+    obj.editable = false;
+
+    this.setState({
+      items: newArray,
+    });
+  };
+
+  handleUndoItem = itemToUndo => {
+    let obj = this.state.items.find(obj => obj.id === itemToUndo.id);
 
     obj.priority = obj.priority - 10;
 
@@ -47,8 +56,8 @@ class Body extends Component {
       items: prevState.items.filter(() => obj),
     }));
   };
+
   handleCompleteItem = itemToEdit => {
-    console.log('complete passed up');
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
 
     obj.priority = obj.priority + 10;
@@ -79,7 +88,6 @@ class Body extends Component {
   render() {
     return (
       <div className="Container">
-        {console.log(this.state)}
         <div className="WidgetHeader">
           <h3 className="WidgetHeader__title">{this.props.title}</h3>
         </div>
@@ -90,9 +98,11 @@ class Body extends Component {
             handleRemoveItem={this.handleRemoveItem}
             handleCompleteItem={this.handleCompleteItem}
             handleEditItem={this.handleEditItem}
+            handleEditItemReturn={this.handleEditItemReturn}
             handleUndoItem={this.handleUndoItem}
           />
         </div>
+        {console.log('total state: ', this.state)}
       </div>
     );
   }

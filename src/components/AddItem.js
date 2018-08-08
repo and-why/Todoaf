@@ -9,7 +9,6 @@ class AddItem extends Component {
 
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
-
     const error = this.props.handleAddItem(item, itemPriority);
 
     if (!error) {
@@ -24,11 +23,11 @@ class AddItem extends Component {
         <form className="form-additem" onSubmit={this.handleAddItem}>
           <div className="form-additem__text">
             <label htmlFor="itemText">Task name:</label>
-            <input type="text" name="itemText" placeholder="<insert task here>" />
+            <input type="text" name="itemText" placeholder="Insert task here" />
           </div>
           <div className="form-additem__priority">
             <label htmlFor="itemPriority">Priority</label>
-            <select name="itemPriority" id="priority">
+            <select name="itemPriority" id="priority" defaultValue="2">
               <option value="1">High</option>
               <option value="2">Medium</option>
               <option value="3">Low</option>
