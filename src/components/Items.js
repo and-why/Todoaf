@@ -12,11 +12,13 @@ const Items = (props) => (
           <Item
             key={item.id}
             text={item.text}
+            editable={item.editable}
             priority={item.priority}
             id={item.id}
             handleRemoveItem={props.handleRemoveItem}
             handleCompleteItem={props.handleCompleteItem}
             handleEditItem={props.handleEditItem}
+            handleEditItemReturn={props.handleEditItemReturn}
           />
         ))}
         {props.items.find(item => item.priority >= 10) && <h4 className="items__complete">COMPLETED</h4>}
@@ -27,7 +29,9 @@ const Items = (props) => (
             priority={item.priority}
             id={item.id}
             handleUndoItem={props.handleUndoItem}
+            handleEditItemReturn={props.handleEditItemReturn}
             handleRemoveItem={props.handleRemoveItem}
+            
           />
         ))}
 
