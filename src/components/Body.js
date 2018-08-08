@@ -4,7 +4,7 @@ import ItemsAll from './ItemsAll';
 class Body extends Component {
   state = {
     items: [],
-    editable: false,
+    name: undefined,
   };
 
   handleAddItem = (item, itemPriority) => {
