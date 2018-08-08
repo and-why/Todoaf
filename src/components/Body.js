@@ -4,6 +4,7 @@ import ItemsAll from './ItemsAll';
 class Body extends Component {
   state = {
     items: [],
+    editable: false
   };
 
   handleAddItem = (item, itemPriority) => {
@@ -17,7 +18,7 @@ class Body extends Component {
     // } else if (item.id === ) {
 
     } else {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         items: prevState.items.concat(newItem),
       }));
     }
@@ -51,17 +52,18 @@ class Body extends Component {
     }));
   };
   handleEditItemReturn = itemToEdit => {
-    console.log(itemToEdit)
+    console.log(itemToEdit.id)
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id)
     
+  
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj),
     }));
   }
 
-  handleUndoItem = itemToEdit => {
-    console.log(itemToEdit.id);
-    let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
+  handleUndoItem = itemToUndo => {
+    console.log(itemToUndo.id);
+    let obj = this.state.items.find(obj => obj.id === itemToUndo.id);
 
     obj.priority = obj.priority - 10;
 
@@ -69,6 +71,7 @@ class Body extends Component {
       items: prevState.items.filter(() => obj),
     }));
   };
+
   handleCompleteItem = itemToEdit => {
     console.log('complete passed up');
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);

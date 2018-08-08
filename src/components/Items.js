@@ -31,6 +31,7 @@ const Items = (props) => (
             handleUndoItem={props.handleUndoItem}
             handleEditItemReturn={props.handleEditItemReturn}
             handleRemoveItem={props.handleRemoveItem}
+            
           />
         ))}
 

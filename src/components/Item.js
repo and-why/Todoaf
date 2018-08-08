@@ -8,9 +8,16 @@ const Item = props => (
       props.priority < 9 && props.handleEditItem(props);
     }}
   >
-    <div className="item__name">{props.editable ? <EditItem {...props} handleEditItemReturn={props.handleEditItemReturn} /> : props.text}</div>
-    {/* <div className="item__priority">{props.priority}</div> */}
-    {/* <button className="btn item__edit" >Edit</button> */}
+    <div className="item__name">{props.editable ? 
+      <EditItem 
+        id={props.id} 
+        text={props.text} 
+        priority={props.priority}
+        handleEditItemReturn={props.handleEditItemReturn} 
+      /> 
+      : props.text}
+    </div>
+
 
     {props.handleUndoItem && (
       <button

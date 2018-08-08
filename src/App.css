@@ -137,6 +137,9 @@ label {
 .form-edititem {
   flex: 8;
 }
+.formedit_id {
+  display:none;
+}
 
 .form-additem>* {
   margin: 0 .4rem;
