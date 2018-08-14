@@ -36,12 +36,14 @@ ol {
 .app-header__title {
   font-size: 2.4rem;
   text-align: center;
+  margin:10px 0;
 }
 
 .app-header__subtitle {
   font-size: 1.6rem;
   text-align: center;
   color: #868686;
+  margin:0;
 }
 
 .Container {
@@ -83,31 +85,35 @@ label {
   color: white;
   padding: 1em 0;
   font-size: 1em;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button svg {
+  height:16px;
+  width:16px;
 }
 
 .btn-success {
-  background: hsl(120, 59%, 45%);
-  border-bottom: 5px solid hsl(120, 59%, calc(45% - 20%));
+  background: #2fb62f;
 }
 
 .btn-red {
-  background: hsl(0, 68%, 48%);
-  border-bottom: 5px solid hsl(0, 68%, calc(48% - 20%));
+  background: #cd2727;
 }
 
 .btn-blue {
-  background: hsl(214, 83%, 43%);
-  border-bottom: 5px solid hsl(214, 83%, calc(43% - 20%));
+  background: #1261c8;
 }
 
 .btn:hover {
-  opacity: .9;
+  opacity: .8;
   cursor: pointer;
 }
 
 .btn:active {
   border-bottom: none;
-  border-top: 5px solid rgba(0, 0, 0, 0);
 }
 
 .btn:focus {
@@ -142,8 +148,12 @@ label {
 }
 
 .form-additem>* {
-  margin: 0 .4rem;
+  margin-right: 5px;
   position: relative;
+}
+
+.form-additem>*:last-child {
+  margin-right: 0;
 }
 
 .form-additem__text {
@@ -157,7 +167,16 @@ label {
 .form-additem__btn {
   flex: 2;
 }
+.form-edititem>* {
+  margin-right: 5px;
+}
+.form-edititem>*:last-child {
+  margin-right: 0;
+}
 
+.items-list {
+  margin:10px 0;
+}
 .items-list p {
   text-align: center;
 }
@@ -166,18 +185,22 @@ label {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 20px;
+  align-items: center;
+  padding: 10px;
   background: whitesmoke;
-  margin: 10px 0;
+  border-bottom: 3px solid rgba(0,0,0,0.25);
 }
 
 .item__wrapper>* {
-  margin: 0 0.4rem;
+  margin-right: 5px;
+}
+.item__wrapper>*:last-child {
+  margin-right: 0;
 }
 
 .item__wrapper .btn {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   padding: 0;
 }
 
@@ -187,7 +210,6 @@ label {
   align-self: center;
   width: 65%;
   height: 100%;
-  padding: 1em 0;
   overflow-wrap: break-word;
 }
 
