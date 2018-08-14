@@ -6,11 +6,12 @@ class Body extends Component {
     items: [],
   };
 
-  handleAddItem = (item, itemPriority) => {
+  handleAddItem = (item, itemPriority, itemDate) => {
     const newItem = {
       text: item,
       id: 1 + Math.random(),
       priority: itemPriority,
+      createDate: itemDate
     };
     if (item === '') {
       // do nothing
@@ -35,8 +36,8 @@ class Body extends Component {
       items: prevState.items.filter(() => obj),
     }));
   };
-  handleEditItemReturn = (item, itemPriority, id) => {
-    let obj = { text: item, priority: itemPriority, id, editable: false };
+  handleEditItemReturn = (item, itemPriority, id, date) => {
+    let obj = { text: item, priority: itemPriority, id, createDate: date, editable: false };
 
     let newArray = this.state.items.filter(item => item.id !== id).concat(obj);
 
@@ -88,9 +89,6 @@ class Body extends Component {
   render() {
     return (
       <div className="Container">
-        <div className="WidgetHeader">
-          <h3 className="WidgetHeader__title">{this.props.title}</h3>
-        </div>
         <div className="Items">
           <ItemsAll
             handleAddItem={this.handleAddItem}

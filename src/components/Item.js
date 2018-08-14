@@ -9,6 +9,7 @@ const Item = props => (
           id={props.id}
           text={props.text}
           priority={props.priority}
+          createDate={props.createDate}
           handleEditItemReturn={props.handleEditItemReturn}
         />
       ) : (

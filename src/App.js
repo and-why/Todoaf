@@ -12,9 +12,7 @@ class App extends Component {
           title={'Priorities'} 
           subtitle={'A to do list based on priority weighting'} 
         />
-        <Body 
-          title={'To Do'} 
-        />
+        <Body />
       </div>
     );
   }

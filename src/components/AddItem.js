@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class AddItem extends Component {
   state = {
     error: undefined,
@@ -9,8 +10,8 @@ class AddItem extends Component {
 
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
-    const error = this.props.handleAddItem(item, itemPriority);
-
+    const createDate = Date.now();
+    const error = this.props.handleAddItem(item, itemPriority, createDate);
     if (!error) {
       e.target.itemText.value = '';
       e.target.itemPriority.value = 2;
