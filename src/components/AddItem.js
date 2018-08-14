@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class AddItem extends Component {
   state = {
     error: undefined,
