@@ -36,12 +36,14 @@ ol {
 .app-header__title {
   font-size: 2.4rem;
   text-align: center;
+  margin:10px 0;
 }
 
 .app-header__subtitle {
   font-size: 1.6rem;
   text-align: center;
   color: #868686;
+  margin:0;
 }
 
 .Container {
@@ -95,27 +97,23 @@ button svg {
 
 .btn-success {
   background: #2fb62f;
-  border-bottom: 3px solid rgba(0,0,0,0.25);
 }
 
 .btn-red {
   background: #cd2727;
-  border-bottom: 3px solid rgba(0,0,0,0.25);
 }
 
 .btn-blue {
   background: #1261c8;
-  border-bottom: 3px solid rgba(0,0,0,0.25);
 }
 
 .btn:hover {
-  opacity: .9;
+  opacity: .8;
   cursor: pointer;
 }
 
 .btn:active {
   border-bottom: none;
-  border-top: 5px solid rgba(0, 0, 0, 0);
 }
 
 .btn:focus {
@@ -175,6 +173,10 @@ button svg {
 .form-edititem>*:last-child {
   margin-right: 0;
 }
+
+.items-list {
+  margin:10px 0;
+}
 .items-list p {
   text-align: center;
 }
@@ -186,7 +188,6 @@ button svg {
   align-items: center;
   padding: 10px;
   background: whitesmoke;
-  margin: 10px 0;
   border-bottom: 3px solid rgba(0,0,0,0.25);
 }
 
@@ -198,8 +199,8 @@ button svg {
 }
 
 .item__wrapper .btn {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   padding: 0;
 }
 

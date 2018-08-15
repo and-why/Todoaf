@@ -15,14 +15,15 @@ class EditItem extends Component {
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
     const id = parseFloat(e.target.itemid.value);
-    const error = this.props.handleEditItemReturn(item, itemPriority, id);
+    const date = parseFloat(e.target.itemdate.value);
+    const error = this.props.handleEditItemReturn(item, itemPriority, id, date);
   };
   render() {
     return (
       <div>
         <form className="form-edititem" onSubmit={this.handleEditItemReturn}>
           <div className="form-edititem__text">
-            <label htmlFor="itemText">Task name:</label>
+            
             <input
               type="text"
               name="itemText"
@@ -32,7 +33,7 @@ class EditItem extends Component {
             />
           </div>
           <div className="form-edititem__priority">
-            <label htmlFor="itemPriority">Priority</label>
+            
             <select name="itemPriority" id="priority" defaultValue={this.props.priority}>
               <option value="1">High</option>
               <option value="2">Medium</option>
@@ -41,6 +42,7 @@ class EditItem extends Component {
           </div>
           <div className="formedit_id">
             <input type="text" name="itemid" defaultValue={this.props.id} />
+            <input type="text" name="itemdate" defaultValue={this.props.createDate} />
           </div>
           <button className="btn btn-success form-additem__btn">Save</button>
         </form>
