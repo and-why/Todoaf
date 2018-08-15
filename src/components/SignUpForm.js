@@ -60,6 +60,7 @@ class SignUpButton extends Component {
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
+          ariaHideApp={false}
         >
           <SignUpForm />
         </Modal>
@@ -72,6 +73,11 @@ class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
+  }
+
+
+  onRequestClose = () => {
+    console.log("clicked")
   }
 
   onSubmit = e => {

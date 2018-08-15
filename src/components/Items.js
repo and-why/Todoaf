@@ -29,7 +29,7 @@ const Items = (props) => (
         ))}
         {props.items.find(item => item.priority >= 10) && <h4 className="items__complete">COMPLETED</h4>}
         {props.items.sort(function (a, b) {
-            return a.createDate - b.createDate;
+            return b.createDate - a.createDate;
           }).filter(item => item.priority >= 10).map((item) => (
           <Item
             key={item.id}

@@ -83,8 +83,8 @@ label {
 .btn {
   border: none;
   color: white;
-  padding: 1em 0;
   font-size: 1em;
+  padding: 10px;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -95,20 +95,51 @@ button svg {
   width:16px;
 }
 
-.btn-success {
-  background: #2fb62f;
+.btn-add {
+  background: #32b67a;
+  border: 2px solid #32b67a;
+}
+.btn-add:hover {
+  background: white;
+  border: 2px solid #32b67a;
+  color:#333; 
+}
+
+.btn-circle {
+  border-radius:50%;
+  background:white;
+  color: #333;
+  padding: 10px;
+  margin-right: 5px;
+}
+.btn-circle:hover {
+  color:white;
+}
+.btn-green {
+  border: 2px solid #32b67a;
 }
 
 .btn-red {
-  background: #cd2727;
+  border: 2px solid #e54b4b;
 }
 
 .btn-blue {
+  border: 2px solid #1261c8;
+}
+
+.btn-green:hover {
+  background: #32b67a;
+}
+
+.btn-red:hover {
+  background: #e54b4b;
+}
+
+.btn-blue:hover {
   background: #1261c8;
 }
 
 .btn:hover {
-  opacity: .8;
   cursor: pointer;
 }
 
@@ -165,7 +196,7 @@ button svg {
 }
 
 .form-additem__btn {
-  flex: 2;
+  flex: 1;
 }
 .form-edititem>* {
   margin-right: 5px;
@@ -186,22 +217,10 @@ button svg {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background: whitesmoke;
-  border-bottom: 3px solid rgba(0,0,0,0.25);
-}
-
-.item__wrapper>* {
-  margin-right: 5px;
-}
-.item__wrapper>*:last-child {
-  margin-right: 0;
-}
-
-.item__wrapper .btn {
-  width: 30px;
-  height: 30px;
-  padding: 0;
+  margin-bottom:10px;
+  padding:10px;
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  border-radius:5px;
 }
 
 .item__name {
@@ -221,16 +240,16 @@ button svg {
   padding: 1em 0;
 }
 
-.item__priority--3 {
-  background: #32b67a;
+.item__priority--3, .item__priority--13 {
+  border-left: 10px solid #32b67a;
 }
 
-.item__priority--2 {
-  background: #ffbf00;
+.item__priority--2, .item__priority--12 {
+  border-left: 10px solid #ffbf00;
 }
 
-.item__priority--1 {
-  background: #e54b4b;
+.item__priority--1, .item__priority--11 {
+  border-left: 10px solid #e54b4b
 }
 
 .item__priority--11,

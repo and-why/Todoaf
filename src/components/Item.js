@@ -19,7 +19,7 @@ const Item = props => (
 
     {props.handleUndoItem && (
       <button
-        className="btn btn-blue item__undo"
+        className="btn btn-blue btn-circle item__undo"
         onClick={e => {
           props.handleUndoItem(props);
         }}
@@ -32,7 +32,7 @@ const Item = props => (
       (!props.editable &&
         (props.handleEditItem && (
           <button
-            className="btn btn-blue item__complete"
+            className="btn btn-circle btn-blue item__complete"
             onClick={e => {
               props.handleEditItem(props);
             }}
@@ -44,7 +44,7 @@ const Item = props => (
     {!props.editable &&
       (props.handleCompleteItem && (
         <button
-          className="btn btn-success item__complete"
+          className="btn btn-circle btn-green item__complete"
           onClick={e => {
             props.handleCompleteItem(props);
           }}
@@ -55,7 +55,7 @@ const Item = props => (
 
     {!props.editable && (
       <button
-        className="btn btn-red item__remove"
+        className="btn btn-circle btn-red item__remove"
         onClick={e => {
           props.handleRemoveItem(props);
         }}
