@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
-  erro: null,
+  error: null,
 };
 
 const customStyles = {
@@ -52,8 +52,8 @@ class SignUpButton extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.openModal}>Sign Up</button>
+      <div className="auth">
+        <button className="auth__button" onClick={this.openModal}>Sign Up</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -104,6 +104,7 @@ class SignUpForm extends Component {
 
     return (
       <div>
+          <p>Press esc to exit</p>
         <form onSubmit={this.onSubmit}>
           <h2>Sign Up For An Account</h2>
           <input
@@ -135,7 +136,6 @@ class SignUpForm extends Component {
           </button>
           {error && <p>{error.message}</p>}
         </form>
-        <button onClick={this.onRequestClose}>Close</button>
       </div>
     );
   }

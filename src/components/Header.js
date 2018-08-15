@@ -5,7 +5,7 @@ import { SignUpButton, SignUpForm } from './SignUpForm';
 
 const Header = props => (
   <header className="app-header">
-    <SignUpButton />
+      <SignUpButton />
 
     <img src={logo} className="app-logo" alt="logo" />
     <h1 className="app-header__title">{props.title}</h1>

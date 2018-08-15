@@ -25,6 +25,8 @@ ol {
   z-index: 10;
 }
 
+/* HEADER */
+
 .app-header {
   background-color: #222;
   /* background-color: #1294ca; */
@@ -46,20 +48,28 @@ ol {
   margin:0;
 }
 
+.auth {
+  position: absolute;
+  right:20px;
+}
+.auth__button {
+  border:2px solid #868686;
+  text-transform: uppercase;
+  text-align: center;
+  height:70px;
+  width:70px;
+  background:none;
+  color:#868686;
+  border-radius: 50%;
+}
+
+/* MAIN */
+
 .Container {
   max-width: 30em;
   width: 90%;
   min-width: 20em;
   margin: auto;
-}
-
-.WidgetHeader {
-  background: #333;
-  color: white;
-  padding: 0.5em 0;
-  font-size: 1em;
-  margin: 1em 0;
-  text-align: center;
 }
 
 input,
