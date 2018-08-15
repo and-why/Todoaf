@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
 import { auth } from '../firebase';
 
 const INITIAL_STATE = {
@@ -10,74 +9,14 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const customStyles = {
-  content: {
-    width: '50%',
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
-
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
-
-class SignUpButton extends Component {
-  constructor() {
-    super();
-    this.state = {
-      modalIsOpen: false,
-    };
-    this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  openModal() {
-    this.setState({ modalIsOpen: true });
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
-  }
-
-  closeModal() {
-    this.setState({ modalIsOpen: false });
-  }
-
-  render() {
-    return (
-      <div className="auth">
-        <button className="auth__button" onClick={this.openModal}>Sign Up</button>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-          ariaHideApp={false}
-        >
-          <SignUpForm />
-        </Modal>
-      </div>
-    );
-  }
-}
 
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
-  }
-
-
-  onRequestClose = () => {
-    console.log("clicked")
   }
 
   onSubmit = e => {
@@ -89,7 +28,7 @@ class SignUpForm extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.onRequestClose;
+        this.props.onRequestClose();
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
@@ -104,7 +43,7 @@ class SignUpForm extends Component {
 
     return (
       <div>
-          <p>Press esc to exit</p>
+        <button onClick={this.props.onRequestClose}>Exit</button>
         <form onSubmit={this.onSubmit}>
           <h2>Sign Up For An Account</h2>
           <input
@@ -131,7 +70,7 @@ class SignUpForm extends Component {
             type="password"
             placeholder="Confirm Password"
           />
-          <button disables={isInvalid} type="submit">
+          <button disabled={isInvalid} type="submit">
             Submit
           </button>
           {error && <p>{error.message}</p>}
@@ -140,5 +79,11 @@ class SignUpForm extends Component {
     );
   }
 }
+
+const SignUpButton = props => (
+  <button className="auth__button" onClick={props.openModalSignUp}>
+    Sign Up
+  </button>
+);
 
 export { SignUpForm, SignUpButton };

@@ -23,7 +23,6 @@ class EditItem extends Component {
       <div>
         <form className="form-edititem" onSubmit={this.handleEditItemReturn}>
           <div className="form-edititem__text">
-            
             <input
               type="text"
               name="itemText"
@@ -33,8 +32,7 @@ class EditItem extends Component {
             />
           </div>
           <div className="form-edititem__priority">
-            
-            <select name="itemPriority" id="priority" defaultValue={this.props.priority}>
+            <select name="itemPriority" id="priorityEdit" defaultValue={this.props.priority}>
               <option value="1">High</option>
               <option value="2">Medium</option>
               <option value="3">Low</option>
@@ -44,7 +42,7 @@ class EditItem extends Component {
             <input type="text" name="itemid" defaultValue={this.props.id} />
             <input type="text" name="itemdate" defaultValue={this.props.createDate} />
           </div>
-          <button className="btn btn-success form-additem__btn">Save</button>
+          <button className="btn btn-add form-additem__btn">Save</button>
         </form>
       </div>
     );
