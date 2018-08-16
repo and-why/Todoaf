@@ -14,9 +14,9 @@ class EditItem extends Component {
 
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
-    const id = parseFloat(e.target.itemid.value);
+    const id = e.target.itemid.value;
     const date = parseFloat(e.target.itemdate.value);
-    const error = this.props.handleEditItemReturn(item, itemPriority, id, date);
+    this.props.handleEditItemReturn(item, itemPriority, id, date);
   };
   render() {
     return (

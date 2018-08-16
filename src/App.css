@@ -51,7 +51,7 @@ ol {
 .auth {
   position: absolute;
   right: 20px;
-  display:flex;
+  display: flex;
 }
 
 .auth__button {
@@ -156,10 +156,6 @@ button svg {
 
 .btn:hover {
   cursor: pointer;
-}
-
-.btn:active {
-  border-bottom: none;
 }
 
 .btn:focus {

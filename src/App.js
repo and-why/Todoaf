@@ -9,13 +9,15 @@ class App extends Component {
   state = {
     items: [],
     authUser: null,
-    storage: []
+    storage: [],
   };
 
   handleAddItem = (item, itemPriority, itemDate) => {
+    const uid = firebase.auth.currentUser.uid;
+    const itemsRef = firebase.database.ref(`users/${uid}`);
+
     const newItem = {
       text: item,
-      id: 1 + Math.random(),
       priority: itemPriority,
       createDate: itemDate,
     };
@@ -25,12 +27,18 @@ class App extends Component {
       this.setState(prevState => ({
         items: prevState.items.concat(newItem),
       }));
+      console.log(newItem);
+      itemsRef.push(newItem);
     }
   };
   handleRemoveItem = itemToRemove => {
+    const uid = firebase.auth.currentUser.uid;
+    const itemToRemoveRef = firebase.database.ref(`users/${uid}/${itemToRemove.id}`);
     this.setState(prevState => ({
       items: prevState.items.filter(item => itemToRemove.id !== item.id),
     }));
+
+    itemToRemoveRef.remove();
   };
 
   handleEditItem = itemToEdit => {
@@ -42,16 +50,24 @@ class App extends Component {
       items: prevState.items.filter(() => obj),
     }));
   };
-  handleEditItemReturn = (item, itemPriority, id, date) => {
-    let obj = { text: item, priority: itemPriority, id, createDate: date, editable: false };
 
-    let newArray = this.state.items.filter(item => item.id !== id).concat(obj);
-
-    obj.editable = false;
-
-    this.setState({
-      items: newArray,
-    });
+  handleEditItemReturn = (item, itemPriority, itemId, itemDate) => {
+    const uid = firebase.auth.currentUser.uid;
+    const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
+    const newItem = {
+      id: itemId,
+      text: item,
+      priority: itemPriority,
+      createDate: itemDate,
+    };
+    if (item === '') {
+      // do nothing
+    } else {
+      this.setState(prevState => ({
+        items: prevState.items.concat(newItem),
+      }));
+      itemsToUpdate.update(newItem);
+    }
   };
 
   handleUndoItem = itemToUndo => {
@@ -75,24 +91,32 @@ class App extends Component {
   };
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
-      authUser ? this.setState({ authUser }) : this.setState({ authUser: null });
-    });
-    const userId = firebase.auth.uid;
-    firebase.database.ref('users/' + userId).set(this.state)
-    try {
-      const json = localStorage.getItem('Storage');
-      const items = JSON.parse(json);
-      if (items) {
-        this.setState(() => ({ items }));
+      if (authUser) {
+        this.setState({ authUser });
+        const uid = firebase.auth.currentUser.uid;
+        const itemsRef = firebase.database.ref(`users/${uid}`);
+        itemsRef.on('value', snapshot => {
+          let items = snapshot.val();
+          let newState = [];
+          for (let item in items) {
+            newState.push({
+              id: item,
+              text: items[item].text,
+              createDate: items[item].createDate,
+              priority: items[item].priority,
+            });
+            this.setState({
+              items: newState,
+            });
+          }
+        });
+      } else {
+        this.setState({ authUser: null });
       }
-    } catch (e) {
-      // do nothing
-    }
+    });
   }
-  componentDidUpdate(prevProps, prevState) {
-    const json = JSON.stringify(this.state.items);
-    localStorage.setItem('Storage', json);
-  }
+  componentDidUpdate(prevProps, prevState) {}
+
   componentWillUnmount() {
     console.log('componentWillUnmount');
   }
@@ -106,6 +130,7 @@ class App extends Component {
           authUser={this.state.authUser}
         />
         <Body
+          authUser={this.state.authUser}
           handleAddItem={this.handleAddItem}
           items={this.state.items}
           handleRemoveItem={this.handleRemoveItem}
@@ -114,7 +139,7 @@ class App extends Component {
           handleEditItemReturn={this.handleEditItemReturn}
           handleUndoItem={this.handleUndoItem}
         />
-        {console.log(firebase.database)}
+        {console.log(this.state)}
       </div>
     );
   }
