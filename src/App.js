@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     items: [],
     authUser: null,
+    storage: []
   };
 
   handleAddItem = (item, itemPriority, itemDate) => {
@@ -76,6 +77,8 @@ class App extends Component {
     firebase.auth.onAuthStateChanged(authUser => {
       authUser ? this.setState({ authUser }) : this.setState({ authUser: null });
     });
+    const userId = firebase.auth.uid;
+    firebase.database.ref('users/' + userId).set(this.state)
     try {
       const json = localStorage.getItem('Storage');
       const items = JSON.parse(json);
@@ -111,7 +114,7 @@ class App extends Component {
           handleEditItemReturn={this.handleEditItemReturn}
           handleUndoItem={this.handleUndoItem}
         />
-        {console.log('total state: ', this.state)}
+        {console.log(firebase.database)}
       </div>
     );
   }
