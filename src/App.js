@@ -22,7 +22,7 @@ class App extends Component {
       priority: itemPriority,
       createDate: itemDate,
       completed: false,
-      editable:false
+      editable: false,
     };
     if (item === '') {
       // do nothing
@@ -62,16 +62,15 @@ class App extends Component {
       text: item,
       priority: itemPriority,
       createDate: itemDate,
-      editable: false
+      editable: false,
     };
-   
-      this.setState(prevState => ({
-        items: prevState.items.filter((obj) => obj.id !== editedItem.id).concat(editedItem)
-      }));
-      itemsToUpdate.update(editedItem);
-    
+
+    this.setState(prevState => ({
+      items: prevState.items.filter(obj => obj.id !== editedItem.id).concat(editedItem),
+    }));
+    itemsToUpdate.update(editedItem);
   };
-  
+
   handleCompleteItem = itemToComplete => {
     const uid = firebase.auth.currentUser.uid;
     const itemId = itemToComplete.id;
@@ -84,24 +83,30 @@ class App extends Component {
       createDate: itemToComplete.createDate,
       editable: false,
       completed: true,
-      completeDate: Date.now()
-    }
+      completeDate: Date.now(),
+    };
     this.setState(prevState => ({
-      items: prevState.items.filter((obj) => obj.id !== completedItem.id).concat(completedItem)
+      items: prevState.items.filter(obj => obj.id !== completedItem.id).concat(completedItem),
     }));
 
-    console.log(completedItem)
+    console.log(completedItem);
     itemsToUpdate.update(completedItem);
   };
 
   handleUndoItem = itemToUndo => {
+    const uid = firebase.auth.currentUser.uid;
+    const itemId = itemToUndo.id;
+    const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
+
     let obj = this.state.items.find(obj => obj.id === itemToUndo.id);
 
-    obj.priority = obj.priority - 10;
+    obj.completed = false;
 
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj),
     }));
+
+    itemsToUpdate.update(obj);
   };
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
@@ -119,7 +124,7 @@ class App extends Component {
               createDate: items[item].createDate,
               priority: items[item].priority,
               completed: items[item].completed,
-              editable:items[item].editable
+              editable: items[item].editable,
             });
             this.setState({
               items: newState,
