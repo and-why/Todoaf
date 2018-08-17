@@ -4,6 +4,7 @@ import Body from './components/Body';
 import './App.css';
 
 import { firebase } from './firebase';
+import { now } from '../node_modules/moment';
 
 class App extends Component {
   state = {
@@ -54,36 +55,43 @@ class App extends Component {
   handleEditItemReturn = (item, itemPriority, itemId, itemDate) => {
     const uid = firebase.auth.currentUser.uid;
     const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
-    const newItem = {
+    const editedItem = {
       id: itemId,
       text: item,
       priority: itemPriority,
       createDate: itemDate,
+      editable: false
     };
-    if (item === '') {
-      // do nothing
-    } else {
+   
       this.setState(prevState => ({
-        items: prevState.items.concat(newItem),
+        items: prevState.items.filter((obj) => obj.id !== editedItem.id).concat(editedItem)
       }));
-      itemsToUpdate.update(newItem);
+      itemsToUpdate.update(editedItem);
+    
+  };
+  
+  handleCompleteItem = itemToComplete => {
+    console.log(itemToComplete)
+    const uid = firebase.auth.currentUser.uid;
+    const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemToComplete.id}`);
+    const completeDate = Date.now();
+    const completedItem = {
+      ...itemToComplete,
+      completeDate: completeDate
     }
+
+    this.setState(prevState => ({
+      ...prevState,
+      completedItem,
+    }));
+
+
   };
 
   handleUndoItem = itemToUndo => {
     let obj = this.state.items.find(obj => obj.id === itemToUndo.id);
 
     obj.priority = obj.priority - 10;
-
-    this.setState(prevState => ({
-      items: prevState.items.filter(() => obj),
-    }));
-  };
-
-  handleCompleteItem = itemToEdit => {
-    let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
-
-    obj.priority = obj.priority + 10;
 
     this.setState(prevState => ({
       items: prevState.items.filter(() => obj),

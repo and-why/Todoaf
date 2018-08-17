@@ -6,12 +6,10 @@ class EditItem extends Component {
     error: undefined,
   };
 
-  handleItemTextEdit = e => {
-    let itemText = e.target.itemText;
-  };
+
   handleEditItemReturn = e => {
     e.preventDefault();
-
+    console.log('click')
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
     const id = e.target.itemid.value;
@@ -28,7 +26,6 @@ class EditItem extends Component {
               name="itemText"
               placeholder="Insert task here"
               defaultValue={this.props.text}
-              onChange={this.handleItemTextEdit}
             />
           </div>
           <div className="form-edititem__priority">
