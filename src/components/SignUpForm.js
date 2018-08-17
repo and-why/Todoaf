@@ -43,37 +43,38 @@ class SignUpForm extends Component {
 
     return (
       <div>
-        <button onClick={this.props.onRequestClose}>Exit</button>
         <form onSubmit={this.onSubmit}>
-          <h2>Sign Up For An Account</h2>
-          <input
-            value={username}
-            onChange={e => this.setState(byPropKey('username', e.target.value))}
-            type="text"
-            placeholder="Full Name"
-          />
-          <input
-            value={email}
-            type="text"
-            onChange={e => this.setState(byPropKey('email', e.target.value))}
-            placeholder="Email Address"
-          />
-          <input
-            value={passwordOne}
-            onChange={e => this.setState(byPropKey('passwordOne', e.target.value))}
-            type="password"
-            placeholder="Choose Password"
-          />
-          <input
-            value={passwordTwo}
-            onChange={e => this.setState(byPropKey('passwordTwo', e.target.value))}
-            type="password"
-            placeholder="Confirm Password"
-          />
-          <button disabled={isInvalid} type="submit">
+          <div className="modal__form--inputs">
+            <h2>Sign Up For An Account</h2>
+            <input
+              value={username}
+              onChange={e => this.setState(byPropKey('username', e.target.value))}
+              type="text"
+              placeholder="Full Name"
+            />
+            <input
+              value={email}
+              type="text"
+              onChange={e => this.setState(byPropKey('email', e.target.value))}
+              placeholder="Email Address"
+            />
+            <input
+              value={passwordOne}
+              onChange={e => this.setState(byPropKey('passwordOne', e.target.value))}
+              type="password"
+              placeholder="Choose Password"
+            />
+            <input
+              value={passwordTwo}
+              onChange={e => this.setState(byPropKey('passwordTwo', e.target.value))}
+              type="password"
+              placeholder="Confirm Password"
+            />
+            {error && <p>{error.message}</p>}
+          </div>
+          <button disabled={isInvalid} type="submit" className="btn modal__button--accept">
             Submit
           </button>
-          {error && <p>{error.message}</p>}
         </form>
       </div>
     );

@@ -9,6 +9,9 @@ import { SignInForm, SignInButton } from './SignInForm';
 import { SignUpForm, SignUpButton } from './SignUpForm';
 
 const customStyles = {
+  overlay: {
+    background: 'rgba(255, 255, 255, 0.75)',
+  },
   content: {
     width: '50%',
     top: '50%',
@@ -17,6 +20,11 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    border: 0,
+    borderRadius: '5px',
+    padding: '0',
+    background: '#333',
+    boxShadow: '0 0 15px 4px rgba(0,0,0,.3)',
   },
 };
 
@@ -69,6 +77,9 @@ class Header extends Component {
           contentLabel="Example Modal"
           ariaHideApp={false}
         >
+          <button onClick={this.closeModal} className="modal__button-exit">
+            x
+          </button>
           {this.state.signUp ? (
             <SignUpForm onRequestClose={this.closeModal} />
           ) : (

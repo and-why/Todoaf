@@ -1,6 +1,11 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans'), url('./fonts/OpenSans-Light.ttf') format('ttf');
+}
+
 html {
   box-sizing: border-box;
-  font-size: 67.5%
+  font-size: 67.5%;
 }
 
 *,
@@ -11,6 +16,21 @@ html {
 
 body {
   font-size: 1.6em;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
 }
 
 ul,
@@ -28,7 +48,7 @@ ol {
 /* HEADER */
 
 .app-header {
-  background-color: #222;
+  background-color: #333;
   /* background-color: #1294ca; */
   padding: 20px;
   color: white;
@@ -63,6 +83,12 @@ ol {
   background: none;
   color: #868686;
   border-radius: 50%;
+  margin-left: 2px;
+}
+
+.auth__button--login {
+  color: white;
+  background: #868686;
 }
 
 /* MAIN */
@@ -225,6 +251,10 @@ button svg {
   margin-right: 0;
 }
 
+.Items p {
+  text-align: center;
+}
+
 .items-list {
   margin: 10px 0;
 }
@@ -345,4 +375,54 @@ button svg {
   to {
     opacity: 1;
   }
+}
+
+/* MODAL */
+
+.modal__button-exit {
+  background: #e54b4b;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: 300;
+  color: white;
+  border-radius: 0 0 0 5px;
+}
+
+.modal__button--accept {
+  width: 100%;
+  background: #32b67a;
+  padding: 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+.ReactModal__Content input {
+  border: #868686 2px solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #333;
+  color: white;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+:focus {
+  outline: none;
+}
+
+.ReactModal__Content h2 {
+  color: white;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+.ReactModal__Content p {
+  color: white;
+}
+
+.modal__form--inputs {
+  text-align: center;
+  padding: 20px;
 }

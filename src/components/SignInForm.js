@@ -40,24 +40,26 @@ class SignInForm extends Component {
 
     return (
       <div>
-        <button onClick={this.props.onRequestClose}>Exit</button>
         <form onSubmit={this.onSubmit}>
-          <input
-            value={email}
-            type="text"
-            onChange={e => this.setState(byPropKey('email', e.target.value))}
-            placeholder="Email Address"
-          />
-          <input
-            value={password}
-            type="password"
-            onChange={e => this.setState(byPropKey('password', e.target.value))}
-            placeholder="Password"
-          />
-          <button disabled={isInvalid} type="submit">
+          <div className="modal__form--inputs">
+            <h2>Sign In To Your Account</h2>
+            <input
+              value={email}
+              type="text"
+              onChange={e => this.setState(byPropKey('email', e.target.value))}
+              placeholder="Email Address"
+            />
+            <input
+              value={password}
+              type="password"
+              onChange={e => this.setState(byPropKey('password', e.target.value))}
+              placeholder="Password"
+            />
+          </div>
+          {error && <p>{error.message}</p>}
+          <button disabled={isInvalid} type="submit" className="btn modal__button--accept">
             Log In
           </button>
-          {error && <p>{error.message}</p>}
         </form>
       </div>
     );
@@ -65,7 +67,7 @@ class SignInForm extends Component {
 }
 
 const SignInButton = props => (
-  <button className="auth__button" onClick={props.openModalSignIn}>
+  <button className="auth__button auth__button--login" onClick={props.openModalSignIn}>
     Log In
   </button>
 );
