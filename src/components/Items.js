@@ -12,7 +12,7 @@ const Items = props => (
     {props.items.length === 0 && <p>Add an item to start</p>}
 
     {props.items
-      .filter(item => item.priority < 10)
+      .filter(item => item.completed == false)
       .sort(function(a, b) {
         return cmp(a.priority, b.priority) || cmp(a.createDate, b.createDate);
       })
@@ -20,9 +20,10 @@ const Items = props => (
         <Item
           key={item.id}
           text={item.text}
-          createDate={item.createDate}
-          editable={item.editable}
           priority={item.priority}
+          createDate={item.createDate}
+          completed={item.completed}
+          editable={item.editable}
           id={item.id}
           handleRemoveItem={props.handleRemoveItem}
           handleCompleteItem={props.handleCompleteItem}
@@ -30,20 +31,21 @@ const Items = props => (
           handleEditItemReturn={props.handleEditItemReturn}
         />
       ))}
-    {props.items.find(item => item.priority >= 10) && (
+    {props.items.find(item => item.completed) && (
       <h4 className="items__complete">COMPLETED</h4>
     )}
     {props.items
       .sort(function(a, b) {
-        return b.createDate - a.createDate;
+        return b.completeDate - a.complateDate;
       })
-      .filter(item => item.priority >= 10)
+      .filter(item => item.completed !== false)
       .map(item => (
         <Item
           key={item.id}
           text={item.text}
           priority={item.priority}
           createDate={item.createDate}
+          completed={item.completed}
           id={item.id}
           handleUndoItem={props.handleUndoItem}
           handleEditItemReturn={props.handleEditItemReturn}

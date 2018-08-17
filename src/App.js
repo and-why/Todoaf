@@ -21,6 +21,8 @@ class App extends Component {
       text: item,
       priority: itemPriority,
       createDate: itemDate,
+      completed: false,
+      editable:false
     };
     if (item === '') {
       // do nothing
@@ -71,21 +73,25 @@ class App extends Component {
   };
   
   handleCompleteItem = itemToComplete => {
-    console.log(itemToComplete)
     const uid = firebase.auth.currentUser.uid;
-    const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemToComplete.id}`);
-    const completeDate = Date.now();
-    const completedItem = {
-      ...itemToComplete,
-      completeDate: completeDate
-    }
+    const itemId = itemToComplete.id;
+    const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
 
+    const completedItem = {
+      id: itemToComplete.id,
+      text: itemToComplete.text,
+      priority: itemToComplete.priority,
+      createDate: itemToComplete.createDate,
+      editable: false,
+      completed: true,
+      completeDate: Date.now()
+    }
     this.setState(prevState => ({
-      ...prevState,
-      completedItem,
+      items: prevState.items.filter((obj) => obj.id !== completedItem.id).concat(completedItem)
     }));
 
-
+    console.log(completedItem)
+    itemsToUpdate.update(completedItem);
   };
 
   handleUndoItem = itemToUndo => {
@@ -112,6 +118,8 @@ class App extends Component {
               text: items[item].text,
               createDate: items[item].createDate,
               priority: items[item].priority,
+              completed: items[item].completed,
+              editable:items[item].editable
             });
             this.setState({
               items: newState,
