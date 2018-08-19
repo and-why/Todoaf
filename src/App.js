@@ -4,7 +4,6 @@ import Body from './components/Body';
 import './App.css';
 
 import { firebase } from './firebase';
-import { now } from '../node_modules/moment';
 
 class App extends Component {
   state = {
@@ -22,6 +21,7 @@ class App extends Component {
       priority: itemPriority,
       createDate: itemDate,
       completed: false,
+      completeDate: null,
       editable: false,
     };
     if (item === '') {
@@ -30,7 +30,6 @@ class App extends Component {
       this.setState(prevState => ({
         items: prevState.items.concat(newItem),
       }));
-      console.log(newItem);
       itemsRef.push(newItem);
     }
   };
@@ -88,8 +87,6 @@ class App extends Component {
     this.setState(prevState => ({
       items: prevState.items.filter(obj => obj.id !== completedItem.id).concat(completedItem),
     }));
-
-    console.log(completedItem);
     itemsToUpdate.update(completedItem);
   };
 
@@ -124,6 +121,7 @@ class App extends Component {
               createDate: items[item].createDate,
               priority: items[item].priority,
               completed: items[item].completed,
+              completeDate: items[item].completeDate,
               editable: items[item].editable,
             });
             this.setState({
@@ -160,7 +158,6 @@ class App extends Component {
           handleEditItemReturn={this.handleEditItemReturn}
           handleUndoItem={this.handleUndoItem}
         />
-        {console.log(this.state)}
       </div>
     );
   }

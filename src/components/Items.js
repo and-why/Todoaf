@@ -12,7 +12,7 @@ const Items = props => (
     {props.items.length === 0 && <p>Add an item to start</p>}
 
     {props.items
-      .filter(item => item.completed == false)
+      .filter(item => item.completed === false)
       .sort(function(a, b) {
         return cmp(a.priority, b.priority) || cmp(a.createDate, b.createDate);
       })
@@ -23,6 +23,7 @@ const Items = props => (
           priority={item.priority}
           createDate={item.createDate}
           completed={item.completed}
+          completeDate={item.completeDate}
           editable={item.editable}
           id={item.id}
           handleRemoveItem={props.handleRemoveItem}
@@ -31,26 +32,26 @@ const Items = props => (
           handleEditItemReturn={props.handleEditItemReturn}
         />
       ))}
-    {props.items.find(item => item.completed) && (
-      <h4 className="items__complete">COMPLETED</h4>
-    )}
+    {props.items.find(item => item.completed) && <h4 className="items__complete">COMPLETED</h4>}
     {props.items
-      .sort(function(a, b) {
-        return b.completeDate - a.complateDate;
-      })
       .filter(item => item.completed !== false)
+      .sort(function(a, b) {
+        return cmp(b.completeDate, a.completeDate);
+      })
       .map(item => (
-        <Item
-          key={item.id}
-          text={item.text}
-          priority={item.priority}
-          createDate={item.createDate}
-          completed={item.completed}
-          id={item.id}
-          handleUndoItem={props.handleUndoItem}
-          handleEditItemReturn={props.handleEditItemReturn}
-          handleRemoveItem={props.handleRemoveItem}
-        />
+        <div className="completed-item" key={item.id}>
+          <Item
+            text={item.text}
+            priority={item.priority}
+            createDate={item.createDate}
+            completed={item.completed}
+            completeDate={item.completeDate}
+            id={item.id}
+            handleUndoItem={props.handleUndoItem}
+            handleEditItemReturn={props.handleEditItemReturn}
+            handleRemoveItem={props.handleRemoveItem}
+          />
+        </div>
       ))}
   </div>
 );

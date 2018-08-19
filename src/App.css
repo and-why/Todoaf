@@ -325,6 +325,10 @@ button svg {
   margin-top: 16px;
 }
 
+.completed-item {
+  opacity: 0.5;
+}
+
 .help {
   position: fixed;
   left: 0;

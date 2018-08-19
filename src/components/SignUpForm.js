@@ -36,22 +36,16 @@ class SignUpForm extends Component {
   };
 
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const { email, passwordOne, passwordTwo, error } = this.state;
 
-    const isInvalid =
-      passwordOne !== passwordTwo || passwordOne === '' || email === '' || username === '';
+    const isInvalid = passwordOne !== passwordTwo || passwordOne === '' || email === '';
 
     return (
       <div>
         <form onSubmit={this.onSubmit}>
           <div className="modal__form--inputs">
             <h2>Sign Up For An Account</h2>
-            <input
-              value={username}
-              onChange={e => this.setState(byPropKey('username', e.target.value))}
-              type="text"
-              placeholder="Full Name"
-            />
+
             <input
               value={email}
               type="text"

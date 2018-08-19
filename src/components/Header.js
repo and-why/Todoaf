@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import logo from '../images/logo.svg';
 import Modal from 'react-modal';
 
-import { auth } from '../firebase';
-
 import SignOutButton from './SignOutButton';
 import { SignInForm, SignInButton } from './SignInForm';
 import { SignUpForm, SignUpButton } from './SignUpForm';
