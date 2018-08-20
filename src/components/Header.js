@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../images/logo.svg';
 import Modal from 'react-modal';
+import moment from 'moment';
+
 
 import SignOutButton from './SignOutButton';
 import { SignInForm, SignInButton } from './SignInForm';
@@ -87,7 +89,7 @@ class Header extends Component {
 
         <img src={logo} className="app-logo" alt="logo" />
         <h1 className="app-header__title">{this.props.title}</h1>
-        {this.props.subtitle && <h3 className="app-header__subtitle">{this.props.subtitle}</h3>}
+        <p className="app-header__date app-header__subtitle">Today's Date: {moment().format('MMMM Do YYYY')}</p>
       </header>
     );
   }
