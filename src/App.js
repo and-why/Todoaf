@@ -144,8 +144,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header
-          title={'Priorities'}
-          subtitle={'A to do list based on priority weighting'}
+          title={'TodoAF'}
+          subtitle={'Prioritise tasks and get sh*t done.'}
           authUser={this.state.authUser}
         />
         <Body
