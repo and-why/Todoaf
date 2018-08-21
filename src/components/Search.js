@@ -8,7 +8,10 @@ const byPropKey = (propertyName, value) => () => ({
 
 class Search extends Component {
   
-
+  handleSearchItem = e => {
+    let search = e.target.value;
+    handle
+  }
 
   render() {
     return (

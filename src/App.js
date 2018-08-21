@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     items: [],
     authUser: null,
-
+  
   };
 
   handleAddItem = (item, itemPriority, itemDate) => {
