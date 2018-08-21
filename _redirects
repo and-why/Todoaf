@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+http://priorities-todo.netlify.com/* http://todoaf.com/:splat 301!
