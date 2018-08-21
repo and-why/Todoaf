@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Body from './components/Body';
+import Footer from './components/Footer';
+
 import './App.css';
 
 import { firebase } from './firebase';
@@ -9,17 +11,18 @@ class App extends Component {
   state = {
     items: [],
     authUser: null,
-    storage: [],
+
   };
 
   handleAddItem = (item, itemPriority, itemDate) => {
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
+    const createDate = Date.now();
 
     const newItem = {
       text: item,
       priority: itemPriority,
-      createDate: itemDate,
+      createDate: createDate,
       completed: false,
       completeDate: null,
       editable: false,
@@ -158,6 +161,7 @@ class App extends Component {
           handleEditItemReturn={this.handleEditItemReturn}
           handleUndoItem={this.handleUndoItem}
         />
+        <Footer />
       </div>
     );
   }

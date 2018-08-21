@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './Item';
+import Search from './Search';
 
 const cmp = function(a, b) {
   if (a > b) return +1;
@@ -7,12 +8,20 @@ const cmp = function(a, b) {
   return 0;
 };
 
+const handleSearchItem = (e) => {
+  let search = e.value;
+  console.log(search)
+}
+
 const Items = props => (
+  <div>
+  <Search handleSearchItem={props.search}/>  
   <div className="items-list">
     {props.items.length === 0 && <p>Add an item to start</p>}
 
     {props.items
       .filter(item => item.completed === false)
+      .filter(item => item.text == this.search)
       .sort(function(a, b) {
         return cmp(a.priority, b.priority) || cmp(a.createDate, b.createDate);
       })
@@ -53,6 +62,7 @@ const Items = props => (
           />
         </div>
       ))}
+  </div>
   </div>
 );
 

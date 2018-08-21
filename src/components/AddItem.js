@@ -9,8 +9,7 @@ class AddItem extends Component {
 
     const item = e.target.itemText.value.trim();
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
-    const createDate = Date.now();
-    const error = this.props.handleAddItem(item, itemPriority, createDate);
+    const error = this.props.handleAddItem(item, itemPriority);
     if (!error) {
       e.target.itemText.value = '';
       e.target.itemPriority.value = 2;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../images/logo.svg';
+
 import Modal from 'react-modal';
 import moment from 'moment';
 
@@ -8,12 +9,15 @@ import SignOutButton from './SignOutButton';
 import { SignInForm, SignInButton } from './SignInForm';
 import { SignUpForm, SignUpButton } from './SignUpForm';
 
+
 const customStyles = {
   overlay: {
     background: 'rgba(255, 255, 255, 0.75)',
   },
   content: {
     width: '50%',
+    minWidth: '290px',
+    maxWidth: '500px',
     top: '50%',
     left: '50%',
     right: 'auto',
