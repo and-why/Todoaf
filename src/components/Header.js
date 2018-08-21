@@ -86,10 +86,12 @@ class Header extends Component {
             <SignInForm onRequestClose={this.closeModal} />
           )}
         </Modal>
-
+        <div className="app-header__brandwrapper">
         <img src={logo} className="app-logo" alt="logo" />
         <h1 className="app-header__title">{this.props.title}</h1>
-        <p className="app-header__date app-header__subtitle">Today's Date: {moment().format('MMMM Do YYYY')}</p>
+        </div>
+        <p className="app-header__subtitle">{this.props.subtitle}</p>
+        <p className="app-header__date">{moment().format('dddd MMMM Do YYYY')}</p>
       </header>
     );
   }
