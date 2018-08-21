@@ -1,6 +1,11 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans'), url('./fonts/OpenSans-Light.ttf') format('ttf');
+}
+
 html {
   box-sizing: border-box;
-  font-size: 67.5%
+  font-size: 67.5%;
 }
 
 *,
@@ -11,6 +16,21 @@ html {
 
 body {
   font-size: 1.6em;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
 }
 
 ul,
@@ -25,8 +45,10 @@ ol {
   z-index: 10;
 }
 
+/* HEADER */
+
 .app-header {
-  background-color: #222;
+  background-color: #333;
   /* background-color: #1294ca; */
   padding: 20px;
   color: white;
@@ -36,30 +58,46 @@ ol {
 .app-header__title {
   font-size: 2.4rem;
   text-align: center;
-  margin:10px 0;
+  margin: 10px 0;
 }
 
 .app-header__subtitle {
   font-size: 1.6rem;
   text-align: center;
   color: #868686;
-  margin:0;
+  margin: 0;
 }
+
+.auth {
+  position: absolute;
+  right: 20px;
+  display: flex;
+}
+
+.auth__button {
+  border: 2px solid #868686;
+  text-transform: uppercase;
+  text-align: center;
+  height: 70px;
+  width: 70px;
+  background: none;
+  color: #868686;
+  border-radius: 50%;
+  margin-left: 2px;
+}
+
+.auth__button--login {
+  color: white;
+  background: #868686;
+}
+
+/* MAIN */
 
 .Container {
   max-width: 30em;
   width: 90%;
   min-width: 20em;
   margin: auto;
-}
-
-.WidgetHeader {
-  background: #333;
-  color: white;
-  padding: 0.5em 0;
-  font-size: 1em;
-  margin: 1em 0;
-  text-align: center;
 }
 
 input,
@@ -83,37 +121,67 @@ label {
 .btn {
   border: none;
   color: white;
-  padding: 1em 0;
   font-size: 1em;
-  display:flex;
+  padding: 10px;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 button svg {
-  height:16px;
-  width:16px;
+  height: 16px;
+  width: 16px;
 }
 
-.btn-success {
-  background: #2fb62f;
+.btn-add {
+  background: #32b67a;
+  border: 2px solid #32b67a;
+}
+
+.btn-add:hover {
+  background: white;
+  border: 2px solid #32b67a;
+  color: #333;
+}
+
+.btn-circle {
+  border-radius: 50%;
+  background: white;
+  color: #333;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.btn-circle:hover {
+  color: white;
+}
+
+.btn-green {
+  border: 2px solid #32b67a;
 }
 
 .btn-red {
-  background: #cd2727;
+  border: 2px solid #e54b4b;
 }
 
 .btn-blue {
+  border: 2px solid #1261c8;
+}
+
+.btn-green:hover {
+  background: #32b67a;
+}
+
+.btn-red:hover {
+  background: #e54b4b;
+}
+
+.btn-blue:hover {
   background: #1261c8;
 }
 
 .btn:hover {
-  opacity: .8;
   cursor: pointer;
-}
-
-.btn:active {
-  border-bottom: none;
 }
 
 .btn:focus {
@@ -133,18 +201,22 @@ button svg {
 
 /* FORM */
 
-.form-additem, .form-edititem {
+.form-additem,
+.form-edititem {
   display: flex;
 }
+
 .form-additem {
   margin-top: 36px;
   flex: 8;
 }
+
 .form-edititem {
   flex: 8;
 }
+
 .formedit_id {
-  display:none;
+  display: none;
 }
 
 .form-additem>* {
@@ -156,27 +228,37 @@ button svg {
   margin-right: 0;
 }
 
-.form-additem__text {
+.form-additem__text,
+.form-edititem__text {
   flex: 6;
 }
 
-.form-additem__priority {
+.form-additem__priority,
+.form-edititem__priority {
   flex: 2;
 }
 
-.form-additem__btn {
-  flex: 2;
+.form-additem__btn,
+.form-edititem__btn {
+  flex: 1;
 }
+
 .form-edititem>* {
   margin-right: 5px;
 }
+
 .form-edititem>*:last-child {
   margin-right: 0;
 }
 
-.items-list {
-  margin:10px 0;
+.Items p {
+  text-align: center;
 }
+
+.items-list {
+  margin: 10px 0;
+}
+
 .items-list p {
   text-align: center;
 }
@@ -186,22 +268,10 @@ button svg {
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
   padding: 10px;
-  background: whitesmoke;
-  border-bottom: 3px solid rgba(0,0,0,0.25);
-}
-
-.item__wrapper>* {
-  margin-right: 5px;
-}
-.item__wrapper>*:last-child {
-  margin-right: 0;
-}
-
-.item__wrapper .btn {
-  width: 30px;
-  height: 30px;
-  padding: 0;
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }
 
 .item__name {
@@ -221,16 +291,19 @@ button svg {
   padding: 1em 0;
 }
 
-.item__priority--3 {
-  background: #32b67a;
+.item__priority--3,
+.item__priority--13 {
+  border-left: 10px solid #32b67a;
 }
 
-.item__priority--2 {
-  background: #ffbf00;
+.item__priority--2,
+.item__priority--12 {
+  border-left: 10px solid #ffbf00;
 }
 
-.item__priority--1 {
-  background: #e54b4b;
+.item__priority--1,
+.item__priority--11 {
+  border-left: 10px solid #e54b4b
 }
 
 .item__priority--11,
@@ -250,6 +323,10 @@ button svg {
   border-top: 2px dashed #7c7c7c;
   padding-top: 16px;
   margin-top: 16px;
+}
+
+.completed-item {
+  opacity: 0.5;
 }
 
 .help {
@@ -302,4 +379,54 @@ button svg {
   to {
     opacity: 1;
   }
+}
+
+/* MODAL */
+
+.modal__button-exit {
+  background: #e54b4b;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: 300;
+  color: white;
+  border-radius: 0 0 0 5px;
+}
+
+.modal__button--accept {
+  width: 100%;
+  background: #32b67a;
+  padding: 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+.ReactModal__Content input {
+  border: #868686 2px solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #333;
+  color: white;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+:focus {
+  outline: none;
+}
+
+.ReactModal__Content h2 {
+  color: white;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+.ReactModal__Content p {
+  color: white;
+}
+
+.modal__form--inputs {
+  text-align: center;
+  padding: 20px;
 }
