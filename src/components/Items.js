@@ -15,7 +15,7 @@ const handleSearchItem = (e) => {
 
 const Items = props => (
   <div>
-  <Search handleSearchItem={props.search}/>  
+  <Search handleSearchItem={props.handleSearchItem}/>  
   <div className="items-list">
     {props.items.length === 0 && <p>Add an item to start</p>}
 
