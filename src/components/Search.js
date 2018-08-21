@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 
-
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value,
-});
-
-
 class Search extends Component {
-  
   handleSearchItem = e => {
-    let search = e.target.value;
-    this.props.handleSearchItem(search)
-  }
+    let search = e.target.value.toLowerCase();
+    this.props.handleSearchItem(search);
+  };
 
   render() {
     return (
-      <input type="text" onChange={this.handleSearchItem}/>
-    )
+      <div className="items__search">
+        <input type="text" onChange={this.handleSearchItem} placeholder="Filter Items" />
+      </div>
+    );
   }
 }
 

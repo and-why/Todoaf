@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Item from './Item';
 import Search from './Search';
 
@@ -8,62 +8,79 @@ const cmp = function(a, b) {
   return 0;
 };
 
-const handleSearchItem = (e) => {
-  let search = e.value;
-  console.log(search)
-}
+class Items extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filteredItems: [],
+      search: '',
+    };
+  }
 
-const Items = props => (
-  <div>
-  <Search handleSearchItem={props.handleSearchItem}/>  
-  <div className="items-list">
-    {props.items.length === 0 && <p>Add an item to start</p>}
+  handleSearchItem = e => {
+    this.setState({
+      search: e,
+    });
+    let filteredItems = this.props.items.filter(item => item.text.toLowerCase().includes(e));
+    this.setState({
+      filteredItems: filteredItems,
+    });
+  };
 
-    {props.items
-      .filter(item => item.completed === false)
-      .filter(item => item.text == this.search)
-      .sort(function(a, b) {
-        return cmp(a.priority, b.priority) || cmp(a.createDate, b.createDate);
-      })
-      .map(item => (
-        <Item
-          key={item.id}
-          text={item.text}
-          priority={item.priority}
-          createDate={item.createDate}
-          completed={item.completed}
-          completeDate={item.completeDate}
-          editable={item.editable}
-          id={item.id}
-          handleRemoveItem={props.handleRemoveItem}
-          handleCompleteItem={props.handleCompleteItem}
-          handleEditItem={props.handleEditItem}
-          handleEditItemReturn={props.handleEditItemReturn}
-        />
-      ))}
-    {props.items.find(item => item.completed) && <h4 className="items__complete">COMPLETED</h4>}
-    {props.items
-      .filter(item => item.completed !== false)
-      .sort(function(a, b) {
-        return cmp(b.completeDate, a.completeDate);
-      })
-      .map(item => (
-        <div className="completed-item" key={item.id}>
-          <Item
-            text={item.text}
-            priority={item.priority}
-            createDate={item.createDate}
-            completed={item.completed}
-            completeDate={item.completeDate}
-            id={item.id}
-            handleUndoItem={props.handleUndoItem}
-            handleEditItemReturn={props.handleEditItemReturn}
-            handleRemoveItem={props.handleRemoveItem}
-          />
+  render() {
+    return (
+      <div>
+        <Search handleSearchItem={this.handleSearchItem} />
+        <div className="items-list">
+          {this.props.items.length === 0 && <p>Add an item to start</p>}
+          {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
+            .filter(item => item.completed === false)
+            .sort(function(a, b) {
+              return cmp(a.priority, b.priority) || cmp(a.createDate, b.createDate);
+            })
+            .map(item => (
+              <Item
+                key={item.id}
+                text={item.text}
+                priority={item.priority}
+                createDate={item.createDate}
+                completed={item.completed}
+                completeDate={item.completeDate}
+                editable={item.editable}
+                id={item.id}
+                handleRemoveItem={this.props.handleRemoveItem}
+                handleCompleteItem={this.props.handleCompleteItem}
+                handleEditItem={this.props.handleEditItem}
+                handleEditItemReturn={this.props.handleEditItemReturn}
+              />
+            ))}
+          {this.props.items.find(item => item.completed) && (
+            <h4 className="items__complete">COMPLETED</h4>
+          )}
+          {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
+            .filter(item => item.completed !== false)
+            .sort(function(a, b) {
+              return cmp(b.completeDate, a.completeDate);
+            })
+            .map(item => (
+              <div className="completed-item" key={item.id}>
+                <Item
+                  text={item.text}
+                  priority={item.priority}
+                  createDate={item.createDate}
+                  completed={item.completed}
+                  completeDate={item.completeDate}
+                  id={item.id}
+                  handleUndoItem={this.props.handleUndoItem}
+                  handleEditItemReturn={this.props.handleEditItemReturn}
+                  handleRemoveItem={this.props.handleRemoveItem}
+                />
+              </div>
+            ))}
         </div>
-      ))}
-  </div>
-  </div>
-);
+      </div>
+    );
+  }
+}
 
 export default Items;
