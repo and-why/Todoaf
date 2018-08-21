@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class AddItem extends Component {
   state = {
     error: undefined,
@@ -34,7 +33,7 @@ class AddItem extends Component {
               <option value="3">Low</option>
             </select>
           </div>
-          <button className="btn btn-success form-additem__btn">Add</button>
+          <button className="btn btn-add form-additem__btn">Add</button>
         </form>
       </div>
     );
