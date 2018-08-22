@@ -1,5 +1,6 @@
 import React from 'react';
 import EditItem from './EditItem';
+import moment from 'moment';
 
 const Item = props => (
   <div className={`item__wrapper item__priority--${props.priority}`}>
@@ -8,6 +9,7 @@ const Item = props => (
         <EditItem
           id={props.id}
           text={props.text}
+          dueDate={props.dueDate}
           priority={props.priority}
           createDate={props.createDate}
           completeDate={props.completeDate}
@@ -17,6 +19,9 @@ const Item = props => (
         props.text
       )}
     </div>
+    {props.dueDate && (
+      <div className="item__due-date">Due: {moment(props.dueDate).format('MMMM Do')}</div>
+    )}
 
     {props.handleUndoItem && (
       <button

@@ -36,12 +36,17 @@ class Items extends Component {
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
             .filter(item => item.completed === false)
             .sort(function(a, b) {
-              return cmp(a.priority, b.priority) || cmp(a.createDate, b.createDate);
+              return (
+                cmp(b.dueDate, a.dueDate) ||
+                cmp(a.priority, b.priority) ||
+                cmp(a.createDate, b.createDate)
+              );
             })
             .map(item => (
               <Item
                 key={item.id}
                 text={item.text}
+                dueDate={item.dueDate}
                 priority={item.priority}
                 createDate={item.createDate}
                 completed={item.completed}
@@ -67,6 +72,7 @@ class Items extends Component {
                 <Item
                   text={item.text}
                   priority={item.priority}
+                  dueDate={item.dueDate}
                   createDate={item.createDate}
                   completed={item.completed}
                   completeDate={item.completeDate}
