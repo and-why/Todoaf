@@ -37,7 +37,7 @@ class Items extends Component {
             .filter(item => item.completed === false)
             .sort(function(a, b) {
               return (
-                cmp(b.dueDate, a.dueDate) ||
+                cmp(a.dueDate, b.dueDate) ||
                 cmp(a.priority, b.priority) ||
                 cmp(a.createDate, b.createDate)
               );
