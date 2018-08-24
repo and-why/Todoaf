@@ -47,12 +47,15 @@ class EditItem extends Component {
           </div>
           <div className="form-additem__duedate">
             <SingleDatePicker
+              enableOutsideDay={true}
               date={this.state.date} // momentPropTypes.momentObj or null
               onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
               focused={this.state.focused} // PropTypes.bool
               onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
               id="datePicker" // PropTypes.string.isRequired,
               numberOfMonths={1}
+              showClearDate={true}
+              isOutsideRange={this.isOutsideRange}
             />
           </div>
           <div className="formedit_id">

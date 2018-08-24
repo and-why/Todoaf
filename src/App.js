@@ -65,6 +65,7 @@ class App extends Component {
       priority: itemPriority,
       dueDate: dueDate ? dueDate : null,
       createDate: itemDate,
+      completed: false,
       editable: false,
     };
 
