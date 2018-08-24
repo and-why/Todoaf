@@ -8,6 +8,19 @@ const cmp = function(a, b) {
   return 0;
 };
 
+const cmpn = function(a, b) {
+  if (a === null) {
+    return +1;
+  } else if (b === null) {
+    return -1;
+  } else if (a === b) {
+    return 0;
+  } else if (a > b) {
+    return +1;
+  } else if (a < b) {
+    return -1;
+  }
+};
 class Items extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +50,7 @@ class Items extends Component {
             .filter(item => item.completed === false)
             .sort(function(a, b) {
               return (
-                cmp(a.dueDate, b.dueDate) ||
+                cmpn(a.dueDate, b.dueDate) ||
                 cmp(a.priority, b.priority) ||
                 cmp(a.createDate, b.createDate)
               );
