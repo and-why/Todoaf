@@ -53,6 +53,7 @@ class AddItem extends Component {
               onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
               id="datePicker" // PropTypes.string.isRequired,
               numberOfMonths={1}
+              isOutsideRange={() => false}
             />
           </div>
           <button className="btn btn-add form-additem__btn">Add</button>

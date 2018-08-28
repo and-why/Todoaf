@@ -26,6 +26,7 @@ class App extends Component {
       completed: false,
       completeDate: null,
       editable: false,
+      daysToDueDate: itemDate ? itemDate : null,
     };
     if (item === '') {
       // do nothing

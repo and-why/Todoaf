@@ -55,7 +55,7 @@ class EditItem extends Component {
               id="datePicker" // PropTypes.string.isRequired,
               numberOfMonths={1}
               showClearDate={true}
-              isOutsideRange={this.isOutsideRange}
+              isOutsideRange={() => false}
             />
           </div>
           <div className="formedit_id">
