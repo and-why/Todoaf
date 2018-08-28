@@ -10,7 +10,7 @@ const cmp = function(a, b) {
 
 const cmpn = function(a, b) {
   if (a === null) {
-    return +1;
+    return 1;
   } else if (b === null) {
     return -1;
   } else if (a === b) {
@@ -21,6 +21,16 @@ const cmpn = function(a, b) {
     return -1;
   }
 };
+
+Date.prototype.addDays = function(days) {
+  let date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+};
+
+let date = new Date();
+let dayLimit = 3;
+
 class Items extends Component {
   constructor(props) {
     super(props);
@@ -47,16 +57,44 @@ class Items extends Component {
         <div className="items-list">
           {this.props.items.length === 0 && <p>Add an item to start</p>}
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
-            .filter(item => item.completed === false)
+            .filter(
+              item =>
+                item.completed === false &&
+                (item.dueDate !== null && item.dueDate < date.addDays(dayLimit)),
+            )
             .sort(function(a, b) {
-              return (
-                cmpn(a.dueDate, b.dueDate) ||
-                cmp(a.priority, b.priority) ||
-                cmp(a.createDate, b.createDate)
-              );
+              return cmpn(a.dueDate, b.dueDate) || cmp(a.priority, b.priority);
             })
             .map(item => (
               <Item
+                date={date}
+                key={item.id}
+                text={item.text}
+                dueDate={item.dueDate}
+                priority={item.priority}
+                createDate={item.createDate}
+                completed={item.completed}
+                completeDate={item.completeDate}
+                editable={item.editable}
+                id={item.id}
+                handleRemoveItem={this.props.handleRemoveItem}
+                handleCompleteItem={this.props.handleCompleteItem}
+                handleEditItem={this.props.handleEditItem}
+                handleEditItemReturn={this.props.handleEditItemReturn}
+              />
+            ))}
+          {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
+            .filter(
+              item =>
+                item.completed === false &&
+                (item.dueDate === null || item.dueDate > date.addDays(dayLimit)),
+            )
+            .sort(function(a, b) {
+              return cmp(a.priority, b.priority) || cmpn(a.dueDate, b.dueDate);
+            })
+            .map(item => (
+              <Item
+                date={date}
                 key={item.id}
                 text={item.text}
                 dueDate={item.dueDate}

@@ -21,7 +21,9 @@ const Item = props => (
       <div />
     ) : (
       props.dueDate && (
-        <div className="item__due-date">Due: {moment(props.dueDate).format('MMM Do YY')}</div>
+        <div className={`item__due-date ${props.dueDate < props.date ? 'overdue' : 'due'}`}>
+          Due: {moment(props.dueDate).format('Do MMM YYYY')}
+        </div>
       )
     )}
 

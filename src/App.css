@@ -285,6 +285,10 @@ button svg {
   color: #868686;
 }
 
+.overdue {
+  color: #e54b4b;
+}
+
 .Items p {
   text-align: center;
 }
