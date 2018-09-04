@@ -1,22 +1,31 @@
 import React from 'react';
 import EditItem from './EditItem';
+import moment from 'moment';
 
 const Item = props => (
   <div className={`item__wrapper item__priority--${props.priority}`}>
-    <div className="item__name">
-      {props.editable ? (
-        <EditItem
-          id={props.id}
-          text={props.text}
-          priority={props.priority}
-          createDate={props.createDate}
-          completeDate={props.completeDate}
-          handleEditItemReturn={props.handleEditItemReturn}
-        />
-      ) : (
-        props.text
-      )}
-    </div>
+    {props.editable ? (
+      <EditItem
+        id={props.id}
+        text={props.text}
+        dueDate={props.dueDate}
+        priority={props.priority}
+        createDate={props.createDate}
+        completeDate={props.completeDate}
+        handleEditItemReturn={props.handleEditItemReturn}
+      />
+    ) : (
+      <div className="item__name">{props.text}</div>
+    )}
+    {props.editable && props.dueDate ? (
+      <div />
+    ) : (
+      props.dueDate && (
+        <div className={`item__due-date ${props.dueDate < props.date ? 'overdue' : 'due'}`}>
+          Due: {moment(props.dueDate).format('Do MMM YYYY')}
+        </div>
+      )
+    )}
 
     {props.handleUndoItem && (
       <button

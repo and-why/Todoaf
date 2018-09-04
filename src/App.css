@@ -44,8 +44,8 @@ ol {
 
 .app-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-  z-index: 10;
+  height: 40px;
+  z-index: 0;
 }
 
 /* HEADER */
@@ -124,7 +124,6 @@ ol {
 .Container {
   max-width: 30em;
   width: 90%;
-  min-width: 20em;
   margin: auto;
 }
 
@@ -277,6 +276,17 @@ button svg {
 
 .form-edititem>*:last-child {
   margin-right: 0;
+}
+
+.item__due-date {
+  font-size: 0.6em;
+  align-self: flex-start;
+  margin-right: 1rem;
+  color: #868686;
+}
+
+.overdue {
+  color: #e54b4b;
 }
 
 .Items p {

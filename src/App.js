@@ -11,7 +11,6 @@ class App extends Component {
   state = {
     items: [],
     authUser: null,
-  
   };
 
   handleAddItem = (item, itemPriority, itemDate) => {
@@ -23,9 +22,11 @@ class App extends Component {
       text: item,
       priority: itemPriority,
       createDate: createDate,
+      dueDate: itemDate ? itemDate : null,
       completed: false,
       completeDate: null,
       editable: false,
+      daysToDueDate: itemDate ? itemDate : null,
     };
     if (item === '') {
       // do nothing
@@ -56,14 +57,16 @@ class App extends Component {
     }));
   };
 
-  handleEditItemReturn = (item, itemPriority, itemId, itemDate) => {
+  handleEditItemReturn = (item, itemPriority, itemId, itemDate, dueDate) => {
     const uid = firebase.auth.currentUser.uid;
     const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
     const editedItem = {
       id: itemId,
       text: item,
       priority: itemPriority,
+      dueDate: dueDate ? dueDate : null,
       createDate: itemDate,
+      completed: false,
       editable: false,
     };
 
@@ -83,6 +86,7 @@ class App extends Component {
       text: itemToComplete.text,
       priority: itemToComplete.priority,
       createDate: itemToComplete.createDate,
+      dueDate: itemToComplete.dueDate,
       editable: false,
       completed: true,
       completeDate: Date.now(),
@@ -122,6 +126,7 @@ class App extends Component {
               id: item,
               text: items[item].text,
               createDate: items[item].createDate,
+              dueDate: items[item].dueDate ? items[item].dueDate : null,
               priority: items[item].priority,
               completed: items[item].completed,
               completeDate: items[item].completeDate,
@@ -147,7 +152,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header
-          title={'TodoAF'}
+          title={'todoAF'}
           subtitle={'Prioritise tasks and get sh*t done.'}
           authUser={this.state.authUser}
         />
