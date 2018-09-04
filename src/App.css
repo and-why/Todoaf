@@ -151,6 +151,10 @@ select {
   border: 1px solid #333;
 }
 
+textarea {
+  width: 100%;
+}
+
 :focus {
   outline-color: #1261c8;
 }
@@ -261,33 +265,6 @@ form .btn {
   margin-bottom: 25px;
   position: relative;
   width: 100%;
-}
-
-.form-additem>*:last-child {
-  margin-right: 0;
-}
-
-.form-additem__text,
-.form-edititem__text {
-  flex: 6;
-}
-
-.form-additem__priority,
-.form-edititem__priority {
-  flex: 2;
-}
-
-.form-additem__btn,
-.form-edititem__btn {
-  flex: 1;
-}
-
-.form-edititem>* {
-  margin-right: 5px;
-}
-
-.form-edititem>*:last-child {
-  margin-right: 0;
 }
 
 .item__due-date {

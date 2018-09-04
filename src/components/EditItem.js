@@ -60,7 +60,7 @@ class EditItem extends Component {
             />
           </div>
           <div className="notes">
-            <textarea name="notes" id="notes" cols="100%" rows="auto">
+            <textarea name="notes" id="notes" rows="auto" placeholder="Add notes">
               {this.props.notes}
             </textarea>
           </div>
