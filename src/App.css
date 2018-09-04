@@ -49,7 +49,6 @@ ol {
 }
 
 /* HEADER */
-
 .app-header {
   background-color: #111;
   padding: 20px;
@@ -119,8 +118,22 @@ ol {
   background: #868686;
 }
 
-/* MAIN */
+.addItemButton {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.3);
+  color: white;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: 700;
+}
 
+/* MAIN */
 .Container {
   max-width: 30em;
   width: 90%;
@@ -144,9 +157,9 @@ select {
 
 label {
   font-size: 10px;
-  color: #7c7c7c;
+  color: #d0d0d0;
   position: absolute;
-  top: -13px;
+  top: -15px;
 }
 
 .btn {
@@ -219,36 +232,35 @@ button svg {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 /* ITEMS */
-
 /* FORM */
-
-.form-additem,
+.form__wrapper,
 .form-edititem {
-  display: flex;
+  padding: 20px;
 }
 
 .form-additem {
   margin-top: 36px;
-  flex: 8;
 }
 
-.form-edititem {
-  flex: 8;
+form .btn {
+  width: 100%;
 }
 
 .formedit_id {
   display: none;
 }
 
-.form-additem>* {
-  margin-right: 5px;
+.form__wrapper>* {
+  margin-bottom: 25px;
   position: relative;
+  width: 100%;
 }
 
 .form-additem>*:last-child {
@@ -280,7 +292,6 @@ button svg {
 
 .item__due-date {
   font-size: 0.6em;
-  align-self: flex-start;
   margin-right: 1rem;
   color: #868686;
 }
@@ -302,7 +313,7 @@ button svg {
 }
 
 .item__wrapper {
-  display: flex;
+  /* display: flex; */
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -310,6 +321,37 @@ button svg {
   padding: 10px;
   box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+}
+
+.item__topline,
+.item__bottomline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.item__bottomline {
+  flex-direction: column;
+}
+
+.item__bottomline>.notes {
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+  align-items: left;
+}
+
+.item__downarrow {
+  color: #868686;
+  width: 10px;
+}
+
+.notes {
+  color: #868686;
+  font-size: 0.7em;
+  padding-right: 10px;
 }
 
 .item__name {
@@ -351,10 +393,14 @@ button svg {
   position: relative;
 }
 
-.item__priority--1button.btn.btn-success.item__complete {
-  display: none;
+.button__wrapper {
+  display: flex;
 }
 
+/* 
+.item__priority--1 button.btn.btn-success.item__complete {
+  display: none;
+} */
 .items__complete {
   color: #7c7c7c;
   text-align: center;
@@ -375,17 +421,21 @@ button svg {
   padding: 11px 8px;
 }
 
+.hidden>.item__bottomline {
+  display: none;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 /* MODAL */
-
 .modal__button-exit {
   background: #e54b4b;
   border: none;
@@ -405,14 +455,18 @@ button svg {
 }
 
 .ReactModal__Content input {
-  border: #868686 2px solid;
-  border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
-  background: #333;
-  color: white;
+  background: white;
+  color: #333;
   font-weight: 300;
+  width: 100%;
   text-rendering: optimizeLegibility;
+}
+
+.ReactModal__Content textarea {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
 }
 
 .ReactModal__Content h2 {

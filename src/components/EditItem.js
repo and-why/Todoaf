@@ -24,7 +24,8 @@ class EditItem extends Component {
     const id = e.target.itemid.value;
     const date = parseFloat(e.target.itemdate.value);
     const dueDate = moment(this.state.date).valueOf();
-    this.props.handleEditItemReturn(item, itemPriority, id, date, dueDate);
+    const notes = e.target.notes.value.trim();
+    this.props.handleEditItemReturn(item, itemPriority, id, date, dueDate, notes);
   };
   render() {
     return (
@@ -57,6 +58,11 @@ class EditItem extends Component {
               showClearDate={true}
               isOutsideRange={() => false}
             />
+          </div>
+          <div className="notes">
+            <textarea name="notes" id="notes" cols="100%" rows="auto">
+              {this.props.notes}
+            </textarea>
           </div>
           <div className="formedit_id">
             <input type="text" name="itemid" defaultValue={this.props.id} />

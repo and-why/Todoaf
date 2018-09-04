@@ -13,7 +13,7 @@ class App extends Component {
     authUser: null,
   };
 
-  handleAddItem = (item, itemPriority, itemDate) => {
+  handleAddItem = (item, itemPriority, itemDate, notes) => {
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
     const createDate = Date.now();
@@ -27,6 +27,7 @@ class App extends Component {
       completeDate: null,
       editable: false,
       daysToDueDate: itemDate ? itemDate : null,
+      notes: notes,
     };
     if (item === '') {
       // do nothing
@@ -57,7 +58,7 @@ class App extends Component {
     }));
   };
 
-  handleEditItemReturn = (item, itemPriority, itemId, itemDate, dueDate) => {
+  handleEditItemReturn = (item, itemPriority, itemId, itemDate, dueDate, notes) => {
     const uid = firebase.auth.currentUser.uid;
     const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
     const editedItem = {
@@ -68,6 +69,7 @@ class App extends Component {
       createDate: itemDate,
       completed: false,
       editable: false,
+      notes: notes,
     };
 
     this.setState(prevState => ({
@@ -87,6 +89,7 @@ class App extends Component {
       priority: itemToComplete.priority,
       createDate: itemToComplete.createDate,
       dueDate: itemToComplete.dueDate,
+      notes: itemToComplete.notes,
       editable: false,
       completed: true,
       completeDate: Date.now(),
@@ -127,6 +130,7 @@ class App extends Component {
               text: items[item].text,
               createDate: items[item].createDate,
               dueDate: items[item].dueDate ? items[item].dueDate : null,
+              notes: items[item].notes,
               priority: items[item].priority,
               completed: items[item].completed,
               completeDate: items[item].completeDate,

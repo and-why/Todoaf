@@ -71,6 +71,7 @@ class Items extends Component {
                 key={item.id}
                 text={item.text}
                 dueDate={item.dueDate}
+                notes={item.notes}
                 priority={item.priority}
                 createDate={item.createDate}
                 completed={item.completed}
@@ -98,6 +99,7 @@ class Items extends Component {
                 key={item.id}
                 text={item.text}
                 dueDate={item.dueDate}
+                notes={item.notes}
                 priority={item.priority}
                 createDate={item.createDate}
                 completed={item.completed}
@@ -124,6 +126,7 @@ class Items extends Component {
                   text={item.text}
                   priority={item.priority}
                   dueDate={item.dueDate}
+                  notes={item.notes}
                   createDate={item.createDate}
                   completed={item.completed}
                   completeDate={item.completeDate}
