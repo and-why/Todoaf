@@ -13,6 +13,9 @@ class AddItem extends Component {
       focused: undefined,
     };
   }
+  autoSize = e => {
+    e.target.style.height = e.target.scrollHeight + 'px';
+  };
   handleAddItem = e => {
     e.preventDefault();
 
@@ -39,7 +42,7 @@ class AddItem extends Component {
               <input type="text" name="itemText" placeholder="Insert task here" />
             </div>
             <div className="form-additem__priority">
-              <label htmlFor="itemPriority">Priority</label>
+              <label htmlFor="itemPriority">Priority:</label>
               <select name="itemPriority" id="priority" defaultValue="2">
                 <option value="1">High</option>
                 <option value="2">Medium</option>
@@ -47,7 +50,7 @@ class AddItem extends Component {
               </select>
             </div>
             <div className="form-additem__duedate">
-              <label htmlFor="datePicker">Due Date</label>
+              <label htmlFor="datePicker">Due Date:</label>
               <SingleDatePicker
                 date={this.state.date} // momentPropTypes.momentObj or null
                 onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
@@ -60,7 +63,7 @@ class AddItem extends Component {
             </div>
             <div className="notes">
               <label htmlFor="notes">Notes:</label>
-              <textarea name="notes" id="notes" />
+              <textarea name="notes" id="notes" onChange={this.autoSize} />
             </div>
           </div>
           <button className="btn btn-add form-additem__btn">Add</button>

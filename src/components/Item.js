@@ -3,23 +3,42 @@ import EditItem from './EditItem';
 import moment from 'moment';
 
 const handleExpand = e => {
-  let element = e.target.parentElement.parentElement.id;
+  e.stopPropagation();
+  e.preventDefault();
+  let element = e.target.id;
   console.log(element);
   if (!element) {
   } else {
     document.querySelector(`.${element}`).classList.toggle('hidden');
-    document.querySelector(`.${element}`).classList.toggle('fadein');
+    document.querySelector(`.arrow-${element}`).classList.toggle('rotate');
   }
 };
 
 const Item = props => (
-  <div
-    className={`item__wrapper item__priority--${props.priority} ${props.id} hidden`}
-    id={props.id}
-    onClick={handleExpand}
-  >
-    <div className={`item__topline`}>
-      {props.editable ? (
+  <div className={`item__wrapper item__priority--${props.priority} ${props.id} hidden`}>
+    {!props.editable && (
+      <div className={`item__topline`} onClick={handleExpand} id={props.id}>
+        <div className="item__name">{props.text}</div>
+        {props.editable && props.dueDate ? (
+          <div />
+        ) : (
+          props.dueDate && (
+            <div className={`item__due-date ${props.dueDate < props.date ? 'overdue' : 'due'}`}>
+              Due: {moment(props.dueDate).format('Do MMM YYYY')}
+            </div>
+          )
+        )}
+
+        <svg className={`item__downarrow arrow-${props.id}`} viewBox="0 0 320 512">
+          <path
+            fill="currentColor"
+            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+          />
+        </svg>
+      </div>
+    )}
+    <div className="item__bottomline">
+      {props.editable && (
         <EditItem
           id={props.id}
           text={props.text}
@@ -29,29 +48,15 @@ const Item = props => (
           createDate={props.createDate}
           completeDate={props.completeDate}
           handleEditItemReturn={props.handleEditItemReturn}
+          handleEditItem={props.handleEditItem}
         />
-      ) : (
-        <div className="item__name">{props.text}</div>
-      )}
-      {props.editable && props.dueDate ? (
-        <div />
-      ) : (
-        props.dueDate && (
-          <div className={`item__due-date ${props.dueDate < props.date ? 'overdue' : 'due'}`}>
-            Due: {moment(props.dueDate).format('Do MMM YYYY')}
-          </div>
-        )
       )}
 
-      <svg className="item__downarrow" viewBox="0 0 320 512">
-        <path
-          fill="currentColor"
-          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
-        />
-      </svg>
-    </div>
-    <div className="item__bottomline">
-      <div className="notes">{props.notes}</div>
+      {!props.editable && (
+        <div className="notes">
+          <div className="notes__content">{props.notes}</div>
+        </div>
+      )}
       <div className="button__wrapper">
         {props.handleUndoItem && (
           <button

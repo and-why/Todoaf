@@ -9,6 +9,7 @@ const customStyles = {
   },
   content: {
     width: '90%',
+    maxWidth: '520px',
     overflow: 'display',
     top: '20%',
     left: '50%',
