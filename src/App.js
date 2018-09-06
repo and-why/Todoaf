@@ -27,7 +27,7 @@ class App extends Component {
       completeDate: null,
       editable: false,
       daysToDueDate: itemDate ? itemDate : null,
-      notes: notes,
+      notes: notes ? notes : null,
     };
     if (item === '') {
       // do nothing
@@ -89,7 +89,7 @@ class App extends Component {
       priority: itemToComplete.priority,
       createDate: itemToComplete.createDate,
       dueDate: itemToComplete.dueDate,
-      notes: itemToComplete.notes,
+      notes: itemToComplete.notes ? itemToComplete.notes : null,
       editable: false,
       completed: true,
       completeDate: Date.now(),
@@ -130,7 +130,7 @@ class App extends Component {
               text: items[item].text,
               createDate: items[item].createDate,
               dueDate: items[item].dueDate ? items[item].dueDate : null,
-              notes: items[item].notes,
+              notes: items[item].notes ? items[item].notes : null,
               priority: items[item].priority,
               completed: items[item].completed,
               completeDate: items[item].completeDate,

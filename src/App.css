@@ -252,6 +252,19 @@ button svg {
   background: #1261c8;
 }
 
+.btn__showmore {
+  width: 100%;
+  background: none;
+  border: 1px solid #868686;
+  color: #868686;
+  font-size: 1em;
+}
+
+.btn__showmore:hover {
+  background-color: #868686;
+  color: #333;
+}
+
 .btn:hover {
   cursor: pointer;
 }
@@ -479,6 +492,21 @@ form .btn {
   background: #32b67a;
   padding: 20px;
   border-radius: 0 0 5px 5px;
+}
+
+.modal__button--cancel {
+  width: 100%;
+  background: #e54b4b;
+  padding: 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+.modal__form--remove-confirm .modal__button--accept {
+  border-radius: 0 0 0 5px;
+}
+
+.modal__form--remove-confirm .modal__button--cancel {
+  border-radius: 0 0 5px 0;
 }
 
 .ReactModal__Content input {

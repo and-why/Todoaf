@@ -37,6 +37,7 @@ class Items extends Component {
     this.state = {
       filteredItems: [],
       search: '',
+      completedNumber: 10,
     };
   }
 
@@ -49,7 +50,14 @@ class Items extends Component {
       filteredItems: filteredItems,
     });
   };
-
+  handleShowMore = () => {
+    this.setState({
+      completedNumber:
+        this.state.completedNumber >= this.props.items.length
+          ? this.props.items.length
+          : this.state.completedNumber + 10,
+    });
+  };
   render() {
     return (
       <div>
@@ -120,6 +128,7 @@ class Items extends Component {
             .sort(function(a, b) {
               return cmp(b.completeDate, a.completeDate);
             })
+            .slice(0, this.state.completedNumber)
             .map(item => (
               <div className="completed-item" key={item.id}>
                 <Item
@@ -138,6 +147,13 @@ class Items extends Component {
               </div>
             ))}
         </div>
+        {this.state.completedNumber < this.props.items.length ? (
+          <button className="btn btn__showmore" onClick={this.handleShowMore}>
+            Show More
+          </button>
+        ) : (
+          <p>All items being shown</p>
+        )}
       </div>
     );
   }
