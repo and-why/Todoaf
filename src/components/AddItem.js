@@ -23,8 +23,11 @@ class AddItem extends Component {
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
     const itemDate = moment(this.state.date).valueOf();
     const notes = e.target.notes.value.trim();
-    const error = this.props.handleAddItem(item, itemPriority, itemDate, notes);
+    const list = e.target.list.value;
 
+    console.log(list);
+
+    const error = this.props.handleAddItem(item, itemPriority, itemDate, notes, list);
     if (!error) {
       e.target.itemText.value = '';
       e.target.itemPriority.value = 2;
@@ -64,6 +67,11 @@ class AddItem extends Component {
             <div className="notes">
               <label htmlFor="notes">Notes:</label>
               <textarea name="notes" id="notes" onChange={this.autoSize} />
+            </div>
+            <div className="list flex-start">
+              <label htmlFor="list">List:</label>
+              Personal <input type="radio" name="list" id="list" value="personal" defaultChecked />
+              Work <input type="radio" name="list" id="list" value="work" />
             </div>
           </div>
           <button className="btn btn-add form-additem__btn">Add</button>

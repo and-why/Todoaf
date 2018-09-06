@@ -94,7 +94,7 @@ class Header extends Component {
         <p className="app-header__subtitle">{this.props.subtitle}</p>
         <p className="app-header__date">{moment().format('dddd MMMM Do YYYY')}</p>
         <p className="app-heder__completed-tally">
-          Completed Tasks: {this.props.items.filter(item => item.completed).length} /
+          Completed Tasks: {this.props.items.filter(item => item.completed).length} /{' '}
           {this.props.items.length}
         </p>
       </header>

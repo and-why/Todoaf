@@ -30,9 +30,10 @@ class EditItem extends Component {
     const itemPriority = parseInt(e.target.itemPriority.value, 10);
     const id = e.target.itemid.value;
     const date = parseFloat(e.target.itemdate.value);
+    const list = e.target.list.value;
     const dueDate = moment(this.state.date).valueOf();
     const notes = e.target.notes.value.trim();
-    this.props.handleEditItemReturn(item, itemPriority, id, date, dueDate, notes);
+    this.props.handleEditItemReturn(item, itemPriority, id, date, dueDate, notes, list);
   };
   render() {
     return (
@@ -73,6 +74,24 @@ class EditItem extends Component {
             height={this.scrollHeight}
             onChange={this.autoSize}
             defaultValue={this.props.notes ? this.props.notes : 'Add notes'}
+          />
+        </div>
+        <div className="list flex-start">
+          Personal{' '}
+          <input
+            type="radio"
+            name="list"
+            id="list"
+            value="personal"
+            defaultChecked={this.props.list === 'personal'}
+          />
+          Work{' '}
+          <input
+            type="radio"
+            name="list"
+            id="list"
+            value="work"
+            defaultChecked={this.props.list === 'work'}
           />
         </div>
         <div className="formedit_id">

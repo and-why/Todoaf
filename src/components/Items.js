@@ -38,6 +38,8 @@ class Items extends Component {
       filteredItems: [],
       search: '',
       completedNumber: 10,
+      listFilter: 'personal',
+      nextList: 'work',
     };
   }
 
@@ -58,16 +60,32 @@ class Items extends Component {
           : this.state.completedNumber + 10,
     });
   };
+  handleListChange = () => {
+    this.setState({
+      listFilter: this.state.listFilter === 'personal' ? 'work' : 'personal',
+      nextList: this.state.listFilter === 'personal' ? 'personal' : 'work',
+    });
+  };
   render() {
     return (
       <div>
+        {(this.props.items.find(item => item.list === 'work') ||
+          this.state.listFilter === 'work') && (
+          <button className="btn btn__showmore" onClick={this.handleListChange}>
+            Show {this.state.nextList} list
+          </button>
+        )}
+        <h3 className="capitalize">{this.state.listFilter} List:</h3>
         <Search handleSearchItem={this.handleSearchItem} />
         <div className="items-list">
           {this.props.items.length === 0 && <p>Add an item to start</p>}
+
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
+            .map(item => item)
             .filter(
               item =>
                 item.completed === false &&
+                item.list === this.state.listFilter &&
                 (item.dueDate !== null && item.dueDate < date.addDays(dayLimit)),
             )
             .sort(function(a, b) {
@@ -80,6 +98,7 @@ class Items extends Component {
                 text={item.text}
                 dueDate={item.dueDate}
                 notes={item.notes}
+                list={item.list}
                 priority={item.priority}
                 createDate={item.createDate}
                 completed={item.completed}
@@ -96,6 +115,7 @@ class Items extends Component {
             .filter(
               item =>
                 item.completed === false &&
+                item.list === this.state.listFilter &&
                 (item.dueDate === null || item.dueDate > date.addDays(dayLimit)),
             )
             .sort(function(a, b) {
@@ -108,6 +128,7 @@ class Items extends Component {
                 text={item.text}
                 dueDate={item.dueDate}
                 notes={item.notes}
+                list={item.list}
                 priority={item.priority}
                 createDate={item.createDate}
                 completed={item.completed}
@@ -124,7 +145,7 @@ class Items extends Component {
             <h4 className="items__complete">COMPLETED</h4>
           )}
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
-            .filter(item => item.completed !== false)
+            .filter(item => item.completed !== false && item.list === this.state.listFilter)
             .sort(function(a, b) {
               return cmp(b.completeDate, a.completeDate);
             })
@@ -136,6 +157,7 @@ class Items extends Component {
                   priority={item.priority}
                   dueDate={item.dueDate}
                   notes={item.notes}
+                  list={item.list}
                   createDate={item.createDate}
                   completed={item.completed}
                   completeDate={item.completeDate}

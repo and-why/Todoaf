@@ -96,6 +96,7 @@ class Item extends Component {
               priority={this.props.priority}
               dueDate={this.props.dueDate}
               notes={this.props.notes}
+              list={this.props.list}
               createDate={this.props.createDate}
               completeDate={this.props.completeDate}
               handleEditItemReturn={this.props.handleEditItemReturn}

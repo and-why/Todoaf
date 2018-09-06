@@ -85,7 +85,8 @@ ol {
 
 .app-heder__completed-tally {
   font-size: 0.8em;
-  margin: 0;
+  margin: 5px 0 0;
+  color: #32b67a
 }
 
 .auth {
@@ -156,6 +157,13 @@ select {
   border: 1px solid #333;
 }
 
+input[type="radio"] {
+  -webkit-appearance: radio;
+  box-sizing: border-box;
+  height: 20px;
+  border: none;
+}
+
 textarea {
   width: 100%;
   max-height: 200px;
@@ -178,6 +186,11 @@ label {
 
 .flex {
   display: flex;
+}
+
+.flex-start {
+  display: flex;
+  align-content: flex-start;
 }
 
 .mr1 {
@@ -386,6 +399,10 @@ form .btn {
   transition: transform .2s ease-in-out;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .notes {
   color: #868686;
   font-size: 0.7em;
@@ -394,6 +411,14 @@ form .btn {
 .notes__content {
   max-height: 220px;
   overflow: scroll;
+}
+
+.list {
+  color: white;
+}
+
+.form-edititem .list {
+  color: #333;
 }
 
 .item__name {
