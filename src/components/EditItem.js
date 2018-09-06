@@ -72,7 +72,7 @@ class EditItem extends Component {
             placeholder="Add notes"
             height={this.scrollHeight}
             onChange={this.autoSize}
-            defaultValue={this.props.notes}
+            defaultValue={this.props.notes ? this.props.notes : 'Add notes'}
           />
         </div>
         <div className="formedit_id">
