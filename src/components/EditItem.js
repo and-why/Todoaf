@@ -3,6 +3,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import autosize from 'autosize';
 
 class EditItem extends Component {
   constructor(props) {
@@ -15,10 +16,10 @@ class EditItem extends Component {
       focused: undefined,
     };
   }
+  componentDidMount() {
+    autosize(this.textarea);
+  }
 
-  autoSize = e => {
-    e.target.style.height = e.target.scrollHeight + 'px';
-  };
   cancel = e => {
     e.preventDefault();
     this.props.handleEditItem({ ...this.props });
@@ -67,12 +68,11 @@ class EditItem extends Component {
         </div>
         <div className="notes">
           <textarea
+            ref={c => (this.textarea = c)}
             name="notes"
             id="notes"
             rows="auto"
             placeholder="Add notes"
-            height={this.scrollHeight}
-            onChange={this.autoSize}
             defaultValue={this.props.notes ? this.props.notes : 'Add notes'}
           />
         </div>
