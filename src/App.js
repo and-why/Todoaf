@@ -159,6 +159,7 @@ class App extends Component {
           title={'todoAF'}
           subtitle={'Prioritise tasks and get sh*t done.'}
           authUser={this.state.authUser}
+          items={this.state.items}
         />
         <Body
           authUser={this.state.authUser}

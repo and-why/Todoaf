@@ -83,6 +83,11 @@ ol {
   margin: 0;
 }
 
+.app-heder__completed-tally {
+  font-size: 0.8em;
+  margin: 0;
+}
+
 .auth {
   position: absolute;
   right: 20px;
