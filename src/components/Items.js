@@ -79,7 +79,7 @@ class Items extends Component {
         <Search handleSearchItem={this.handleSearchItem} />
         <div className="items-list">
           {this.props.items.length === 0 && <p>Add an item to start</p>}
-
+          {/* Items with due dates first */}
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
             .map(item => item)
             .filter(
@@ -111,6 +111,7 @@ class Items extends Component {
                 handleEditItemReturn={this.props.handleEditItemReturn}
               />
             ))}
+          {/* Items with no due dates next */}
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
             .filter(
               item =>
@@ -141,6 +142,7 @@ class Items extends Component {
                 handleEditItemReturn={this.props.handleEditItemReturn}
               />
             ))}
+          {/* Completed items last */}
           {this.props.items.find(item => item.completed) && (
             <h4 className="items__complete">COMPLETED</h4>
           )}
