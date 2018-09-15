@@ -399,6 +399,10 @@ form .btn {
   pointer-events: none;
 }
 
+.completed-item .item__name {
+  text-decoration: line-through;
+}
+
 .item__bottomline {
   flex-direction: column;
 }
