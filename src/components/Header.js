@@ -4,11 +4,9 @@ import logo from '../images/logo.svg';
 import Modal from 'react-modal';
 import moment from 'moment';
 
-
 import SignOutButton from './SignOutButton';
 import { SignInForm, SignInButton } from './SignInForm';
 import { SignUpForm, SignUpButton } from './SignUpForm';
-
 
 const customStyles = {
   overlay: {
@@ -72,7 +70,6 @@ class Header extends Component {
             <SignUpButton openModalSignUp={this.openModalSignUp} />
           </div>
         )}
-
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -91,11 +88,15 @@ class Header extends Component {
           )}
         </Modal>
         <div className="app-header__brandwrapper">
-        <img src={logo} className="app-logo" alt="logo" />
-        <h1 className="app-header__title">{this.props.title}</h1>
+          <img src={logo} className="app-logo" alt="logo" />
+          <h1 className="app-header__title">{this.props.title}</h1>
         </div>
         <p className="app-header__subtitle">{this.props.subtitle}</p>
         <p className="app-header__date">{moment().format('dddd MMMM Do YYYY')}</p>
+        <p className="app-heder__completed-tally">
+          Completed Tasks: {this.props.items.filter(item => item.completed).length} /{' '}
+          {this.props.items.length}
+        </p>
       </header>
     );
   }
