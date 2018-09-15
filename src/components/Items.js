@@ -38,7 +38,7 @@ class Items extends Component {
       filteredItems: [],
       search: '',
       completedNumber: 10,
-      listFilter: 'personal',
+      listFilter: 'entire',
       nextList: 'work',
     };
   }
@@ -61,9 +61,15 @@ class Items extends Component {
     });
   };
   handleListChange = () => {
+    console.log(this.state.listFilter);
     this.setState({
-      listFilter: this.state.listFilter === 'personal' ? 'work' : 'personal',
+      listFilter: this.state.listFilter === ('personal' || 'entire') ? 'work' : 'personal',
       nextList: this.state.listFilter === 'personal' ? 'personal' : 'work',
+    });
+  };
+  handleListShowAll = () => {
+    this.setState({
+      listFilter: (this.state.listFilter = 'entire'),
     });
   };
   render() {
@@ -71,9 +77,14 @@ class Items extends Component {
       <div>
         {(this.props.items.find(item => item.list === 'work') ||
           this.state.listFilter === 'work') && (
-          <button className="btn btn__showmore" onClick={this.handleListChange}>
-            Show {this.state.nextList} list
-          </button>
+          <div className="btn__showlist-wrapper">
+            <button className="btn btn__showlists" onClick={this.handleListShowAll}>
+              Show all items
+            </button>
+            <button className="btn btn__showlists" onClick={this.handleListChange}>
+              Show {this.state.nextList} items
+            </button>
+          </div>
         )}
         <h3 className="capitalize">{this.state.listFilter} List:</h3>
         <Search handleSearchItem={this.handleSearchItem} />
@@ -85,7 +96,7 @@ class Items extends Component {
             .filter(
               item =>
                 item.completed === false &&
-                item.list === this.state.listFilter &&
+                (item.list === this.state.listFilter || this.state.listFilter === 'entire') &&
                 (item.dueDate !== null && item.dueDate < date.addDays(dayLimit)),
             )
             .sort(function(a, b) {
@@ -116,7 +127,7 @@ class Items extends Component {
             .filter(
               item =>
                 item.completed === false &&
-                item.list === this.state.listFilter &&
+                (item.list === this.state.listFilter || this.state.listFilter === 'entire') &&
                 (item.dueDate === null || item.dueDate > date.addDays(dayLimit)),
             )
             .sort(function(a, b) {
@@ -147,7 +158,11 @@ class Items extends Component {
             <h4 className="items__complete">COMPLETED</h4>
           )}
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
-            .filter(item => item.completed !== false && item.list === this.state.listFilter)
+            .filter(
+              item =>
+                item.completed !== false &&
+                (item.list === this.state.listFilter || this.state.listFilter === 'entire'),
+            )
             .sort(function(a, b) {
               return cmp(b.completeDate, a.completeDate);
             })

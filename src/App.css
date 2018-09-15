@@ -279,6 +279,24 @@ button svg {
   font-size: 1em;
 }
 
+.btn__showlist-wrapper {
+  display: flex;
+  margin: 10px 0;
+}
+
+.btn__showlists {
+  margin-right: 10px;
+  width: 100%;
+  background: none;
+  border: 1px solid #868686;
+  color: #868686;
+  font-size: 1em;
+}
+
+.btn__showlists:last-child {
+  margin-right: 0;
+}
+
 .btn__showmore:hover {
   background-color: #868686;
   color: #333;
