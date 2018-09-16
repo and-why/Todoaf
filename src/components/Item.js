@@ -30,6 +30,7 @@ const handleExpand = e => {
   e.preventDefault();
   let element = e.target.id;
   console.log(element);
+
   if (!element) {
   } else {
     document.querySelector(`.${element}`).classList.toggle('hidden');
@@ -91,14 +92,7 @@ class Item extends Component {
         <div className="item__bottomline">
           {this.props.editable && (
             <EditItem
-              id={this.props.id}
-              text={this.props.text}
-              priority={this.props.priority}
-              dueDate={this.props.dueDate}
-              notes={this.props.notes}
-              list={this.props.list}
-              createDate={this.props.createDate}
-              completeDate={this.props.completeDate}
+              item={this.props}
               handleEditItemReturn={this.props.handleEditItemReturn}
               handleEditItem={this.props.handleEditItem}
             />

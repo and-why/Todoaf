@@ -142,7 +142,7 @@ ol {
 
 /* MAIN */
 .Container {
-  max-width: 30em;
+  max-width: 60em;
   width: 90%;
   margin: auto;
 }
@@ -485,7 +485,8 @@ form .btn {
 
 .button__wrapper {
   display: flex;
-  width: 100%;
+  /* width: 50%; */
+  align-self: flex-end;
 }
 
 /* 

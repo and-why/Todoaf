@@ -13,22 +13,18 @@ class App extends Component {
     authUser: null,
   };
 
-  handleAddItem = (item, itemPriority, itemDate, notes, list) => {
+  handleAddItem = item => {
+    console.log('app item:', item);
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
     const createDate = Date.now();
 
     const newItem = {
-      text: item,
-      priority: itemPriority,
+      ...item,
       createDate: createDate,
-      dueDate: itemDate ? itemDate : null,
-      notes: notes ? notes : null,
-      list: list ? list : 'personal',
       completed: false,
       completeDate: null,
       editable: false,
-      daysToDueDate: itemDate ? itemDate : null,
     };
     if (item === '') {
       // do nothing
@@ -38,7 +34,7 @@ class App extends Component {
       }));
       itemsRef.push(newItem);
     }
-    console.log(newItem);
+    console.log('new item:', newItem);
   };
   handleRemoveItem = itemToRemove => {
     const uid = firebase.auth.currentUser.uid;
@@ -60,19 +56,20 @@ class App extends Component {
     }));
   };
 
-  handleEditItemReturn = (item, itemPriority, itemId, itemDate, dueDate, notes, list) => {
+  handleEditItemReturn = item => {
+    console.log('app.js handleEditItemReturn: ', item);
     const uid = firebase.auth.currentUser.uid;
-    const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
+    const itemsToUpdate = firebase.database.ref(`users/${uid}/${item.id}`);
     const editedItem = {
-      id: itemId,
-      text: item,
-      priority: itemPriority,
-      dueDate: dueDate ? dueDate : null,
-      list: list ? list : 'personal',
-      createDate: itemDate,
+      id: item.id,
+      text: item.text,
+      priority: item.priority,
+      dueDate: item.dueDate,
+      notes: item.notes,
+      list: item.list,
       completed: false,
+      completeDate: null,
       editable: false,
-      notes: notes,
     };
 
     this.setState(prevState => ({
@@ -92,7 +89,7 @@ class App extends Component {
       priority: itemToComplete.priority,
       createDate: itemToComplete.createDate,
       dueDate: itemToComplete.dueDate,
-      notes: itemToComplete.notes ? itemToComplete.notes : null,
+      notes: itemToComplete.notes ? itemToComplete.notes : '',
       list: itemToComplete.list ? itemToComplete.list : 'personal',
       editable: false,
       completed: true,
@@ -134,7 +131,7 @@ class App extends Component {
               text: items[item].text,
               createDate: items[item].createDate,
               dueDate: items[item].dueDate ? items[item].dueDate : null,
-              notes: items[item].notes ? items[item].notes : null,
+              notes: items[item].notes ? items[item].notes : '',
               list: items[item].list ? items[item].list : 'personal',
               priority: items[item].priority,
               completed: items[item].completed,
