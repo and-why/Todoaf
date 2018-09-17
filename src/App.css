@@ -593,6 +593,13 @@ form .btn {
   padding: 20px;
 }
 
+.error-message {
+  color: #e54b4b !important;
+  text-align: center;
+  font-style: italic;
+  font-size: .8em;
+}
+
 footer {
   background: #fff;
   text-align: center;

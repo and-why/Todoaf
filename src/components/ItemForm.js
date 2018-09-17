@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-import { Editor, EditorState } from 'draft-js';
+// import { Editor, EditorState } from 'draft-js';
 import Moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
 class ItemForm extends Component {
   constructor(props) {
     super(props);
-    console.log('ItemForm form open', props.item);
+    // console.log('ItemForm form open', props.item);
     this.state = {
       id: props.item ? props.item.id : '',
       text: props.item ? props.item.text : '',
       priority: props.item ? props.item.priority : '2',
-      dueDate: props.item ? Moment(props.item.dueDate) : null,
+      dueDate: props.item ? props.item.dueDate : null,
       notes: props.item ? props.item.notes : '',
       list: props.item ? props.item.list : 'personal',
       // editorState: EditorState.createEmpty(),
@@ -46,22 +46,30 @@ class ItemForm extends Component {
     this.setState({ notes });
     e.target.style.height = e.target.scrollHeight + 'px';
   };
+  onFocusChange = ({ focused }) => {
+    this.setState(() => ({ calendarFocused: focused }));
+  };
   onSubmit = e => {
     e.preventDefault();
-    if (!this.state.text) {
-      this.setState(() => {
-        error: 'please provide an item title at least.';
-      });
+    console.log(this.state);
+    if (this.state.text === '') {
+      this.setState(() => ({
+        error: 'Please provide an item title.',
+      }));
     } else {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         ...this.state,
+        dueDate: this.state.dueDate !== null ? this.state.dueDate.valueOf() : null,
       });
     }
   };
   render() {
     return (
-      <form className="form-additem" onSubmit={this.onSubmit}>
+      <form
+        className={`form-${this.state.text !== '' ? 'edititem' : 'additem'}`}
+        onSubmit={this.onSubmit}
+      >
         <div className="form__wrapper">
           <div className="form-additem__text">
             <label htmlFor="itemText">Task title:</label>
@@ -72,6 +80,7 @@ class ItemForm extends Component {
               value={this.state.text}
               onChange={this.onItemNameChange}
             />
+            {this.state.error && <p className="error-message">{this.state.error}</p>}
           </div>
           <div className="form-additem__priority">
             <label htmlFor="itemPriority">Priority:</label>
@@ -89,7 +98,7 @@ class ItemForm extends Component {
           <div className="form-additem__duedate">
             <label htmlFor="datePicker">Due Date:</label>
             <SingleDatePicker
-              date={this.state.dueDate} // momentPropTypes.momentObj or null
+              date={this.state.dueDate !== null ? Moment(this.state.dueDate) : null} // momentPropTypes.momentObj or null
               onDateChange={this.onDateChange} // PropTypes.func.isRequired
               focused={this.state.focused} // PropTypes.bool
               onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
