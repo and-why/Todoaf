@@ -66,11 +66,7 @@ class Items extends Component {
       listFilter: value,
     });
   };
-  handleListShowAll = () => {
-    this.setState({
-      listFilter: (this.state.listFilter = 'entire'),
-    });
-  };
+
   render() {
     return (
       <div>

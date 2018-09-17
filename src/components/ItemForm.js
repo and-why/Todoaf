@@ -15,9 +15,11 @@ class ItemForm extends Component {
       dueDate: props.item ? props.item.dueDate : null,
       notes: props.item ? props.item.notes : '',
       list: props.item ? props.item.list : 'personal',
+      editable: props.item ? props.item.editable : false,
       // editorState: EditorState.createEmpty(),
       error: undefined,
       focused: undefined,
+      form: props.form,
     };
   }
   onItemNameChange = e => {
@@ -40,6 +42,10 @@ class ItemForm extends Component {
     } else {
       this.setState(() => ({ dueDate: null }));
     }
+  };
+  cancel = e => {
+    e.preventDefault();
+    this.props.handleEditItem({ ...this.props.item });
   };
   onNotesChange = e => {
     const notes = e.target.value;
@@ -66,10 +72,7 @@ class ItemForm extends Component {
   };
   render() {
     return (
-      <form
-        className={`form-${this.state.text !== '' ? 'edititem' : 'additem'}`}
-        onSubmit={this.onSubmit}
-      >
+      <form className={`form-${this.state.form}item`} onSubmit={this.onSubmit}>
         <div className="form__wrapper">
           <div className="form-additem__text">
             <label htmlFor="itemText">Task title:</label>
@@ -137,7 +140,7 @@ class ItemForm extends Component {
             />
           </div>
         </div>
-        {this.state.text === '' ? (
+        {this.state.form === 'add' ? (
           <button className="btn btn-add form-additem__btn">Add</button>
         ) : (
           <div className="flex">

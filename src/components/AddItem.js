@@ -8,9 +8,6 @@ import 'react-dates/lib/css/_datepicker.css';
 import ItemForm from './ItemForm';
 
 class AddItem extends Component {
-  constructor(props) {
-    super(props);
-  }
   onSubmit = item => {
     console.log('item:', item);
     this.props.handleAddItem(item);
@@ -41,7 +38,7 @@ class AddItem extends Component {
     return (
       <div>
         {this.props.error && <p>{this.props.error}</p>}
-        <ItemForm onSubmit={this.onSubmit} />
+        <ItemForm onSubmit={this.onSubmit} form="add" />
       </div>
     );
   }

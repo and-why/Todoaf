@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import { SingleDatePicker } from 'react-dates';
+
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import autosize from 'autosize';
 import ItemForm from './ItemForm';
 
 class EditItem extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     autosize(this.textarea);
     console.log('component did mount edit', this.props.item);
@@ -20,7 +16,14 @@ class EditItem extends Component {
   };
 
   render() {
-    return <ItemForm item={this.props.item} onSubmit={this.onSubmit} />;
+    return (
+      <ItemForm
+        item={this.props.item}
+        onSubmit={this.onSubmit}
+        handleEditItem={this.props.handleEditItem}
+        form="edit"
+      />
+    );
   }
 }
 
