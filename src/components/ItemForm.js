@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import autosize from 'autosize';
 
 // import { Editor, EditorState } from 'draft-js';
 import Moment from 'moment';
@@ -21,6 +22,14 @@ class ItemForm extends Component {
       focused: undefined,
       form: props.form,
     };
+  }
+  componentDidMount() {
+    autosize(this.textarea);
+    console.log('component did mount edit', this.props.item);
+  }
+  componentDidUpdate() {
+    autosize(this.textarea);
+    console.log('component did update edit', this.props.item);
   }
   onItemNameChange = e => {
     const text = e.target.value;
@@ -52,6 +61,12 @@ class ItemForm extends Component {
     this.setState({ notes });
     e.target.style.height = e.target.scrollHeight + 'px';
   };
+  onListChangePersonal = e => {
+    this.setState({list: 'personal'})
+  }
+  onListChangeWork = e => {
+    this.setState({list: 'work'})
+  }
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
@@ -114,6 +129,7 @@ class ItemForm extends Component {
             <label htmlFor="notes">Notes:</label>
             {/*<Editor editorState={this.state.editorState} onChange={this.onNotesChange} />*/}
             <textarea
+              ref={c => (this.textarea = c)}
               name="notes"
               id="notes"
               onChange={this.onNotesChange}
@@ -127,7 +143,7 @@ class ItemForm extends Component {
               type="radio"
               name="list"
               id="list"
-              value="personal"
+              onChange={this.onListChangePersonal}
               defaultChecked={this.state.list === 'personal'}
             />
             Work{' '}
@@ -135,7 +151,7 @@ class ItemForm extends Component {
               type="radio"
               name="list"
               id="list"
-              value="work"
+              onChange={this.onListChangeWork}
               defaultChecked={this.state.list === 'work'}
             />
           </div>

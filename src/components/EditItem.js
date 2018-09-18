@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 
+
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import autosize from 'autosize';
+
 import ItemForm from './ItemForm';
 
 class EditItem extends Component {
-  componentDidMount() {
-    autosize(this.textarea);
-    console.log('component did mount edit', this.props.item);
-  }
+
   onSubmit = item => {
     console.log('edit item submit:', item);
     this.props.handleEditItemReturn(item);
