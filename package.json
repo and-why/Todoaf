@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "autosize": "^4.0.2",
+    "draft-js": "^0.10.5",
     "firebase": "^5.3.1",
     "moment": "^2.22.2",
     "react": "^16.4.1",
+    "react-dates": "^17.2.0",
     "react-dom": "^16.4.1",
     "react-modal": "^3.5.1",
     "react-moment": "^0.7.9",

@@ -11,17 +11,16 @@ class App extends Component {
   state = {
     items: [],
     authUser: null,
-  
   };
 
-  handleAddItem = (item, itemPriority, itemDate) => {
+  handleAddItem = item => {
+    console.log('app item:', item);
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
     const createDate = Date.now();
 
     const newItem = {
-      text: item,
-      priority: itemPriority,
+      ...item,
       createDate: createDate,
       completed: false,
       completeDate: null,
@@ -35,6 +34,7 @@ class App extends Component {
       }));
       itemsRef.push(newItem);
     }
+    console.log('new item:', newItem);
   };
   handleRemoveItem = itemToRemove => {
     const uid = firebase.auth.currentUser.uid;
@@ -56,14 +56,19 @@ class App extends Component {
     }));
   };
 
-  handleEditItemReturn = (item, itemPriority, itemId, itemDate) => {
+  handleEditItemReturn = item => {
+    console.log('app.js handleEditItemReturn: ', item);
     const uid = firebase.auth.currentUser.uid;
-    const itemsToUpdate = firebase.database.ref(`users/${uid}/${itemId}`);
+    const itemsToUpdate = firebase.database.ref(`users/${uid}/${item.id}`);
     const editedItem = {
-      id: itemId,
-      text: item,
-      priority: itemPriority,
-      createDate: itemDate,
+      id: item.id,
+      text: item.text,
+      priority: item.priority,
+      dueDate: item.dueDate,
+      notes: item.notes,
+      list: item.list,
+      completed: false,
+      completeDate: null,
       editable: false,
     };
 
@@ -83,6 +88,9 @@ class App extends Component {
       text: itemToComplete.text,
       priority: itemToComplete.priority,
       createDate: itemToComplete.createDate,
+      dueDate: itemToComplete.dueDate,
+      notes: itemToComplete.notes ? itemToComplete.notes : '',
+      list: itemToComplete.list ? itemToComplete.list : 'personal',
       editable: false,
       completed: true,
       completeDate: Date.now(),
@@ -122,6 +130,9 @@ class App extends Component {
               id: item,
               text: items[item].text,
               createDate: items[item].createDate,
+              dueDate: items[item].dueDate ? items[item].dueDate : null,
+              notes: items[item].notes ? items[item].notes : '',
+              list: items[item].list ? items[item].list : 'personal',
               priority: items[item].priority,
               completed: items[item].completed,
               completeDate: items[item].completeDate,
@@ -147,9 +158,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header
-          title={'TodoAF'}
+          title={'todoAF'}
           subtitle={'Prioritise tasks and get sh*t done.'}
           authUser={this.state.authUser}
+          items={this.state.items}
         />
         <Body
           authUser={this.state.authUser}
