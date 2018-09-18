@@ -170,7 +170,7 @@ textarea {
   max-height: 200px;
   min-height: 60px;
   padding: 10px;
-  overflow: scroll;
+  overflow-y: auto;
   resize: none;
 }
 
@@ -434,7 +434,7 @@ form .btn {
 
 .notes__content {
   max-height: 220px;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .list {
