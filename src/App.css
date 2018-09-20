@@ -280,7 +280,6 @@ button svg {
 
 .btn-circle {
   /* border-radius: 50%; */
-  flex: 1;
   background: #111;
   color: white;
   padding: 10px;
@@ -569,7 +568,9 @@ form .btn {
   padding-top: 16px;
   margin-top: 16px;
 }
-
+.item__complete {
+  margin-right:10px;
+}
 .completed-item {
   opacity: 0.5;
 }
