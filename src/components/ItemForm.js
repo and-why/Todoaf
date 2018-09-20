@@ -5,6 +5,8 @@ import autosize from 'autosize';
 import Moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
+
+
 class ItemForm extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ class ItemForm extends Component {
       form: props.form,
     };
   }
+  
   componentDidMount() {
     autosize(this.textarea);
     console.log('component did mount edit', this.props.item);
@@ -92,6 +95,7 @@ class ItemForm extends Component {
           <div className="form-additem__text">
             <label htmlFor="itemText">Task title:</label>
             <input
+              autofocus="true"
               type="text"
               name="title"
               placeholder="Insert task here"
@@ -123,6 +127,7 @@ class ItemForm extends Component {
               id="datePicker" // PropTypes.string.isRequired,
               numberOfMonths={1}
               isOutsideRange={() => false}
+
             />
           </div>
           <div className="notes">
