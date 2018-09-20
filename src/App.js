@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
+import LoadingPage from './components/LoadingPage';
 
 import './App.css';
 
@@ -11,6 +12,7 @@ class App extends Component {
   state = {
     items: [],
     authUser: null,
+    hasRendered: false,
   };
 
   handleAddItem = item => {
@@ -140,11 +142,16 @@ class App extends Component {
             });
             this.setState({
               items: newState,
+              hasRendered: true,
             });
           }
         });
       } else {
-        this.setState({ authUser: null });
+        this.setState({ 
+          authUser: null,
+          hasRendered: true,
+        });
+
       }
     });
   }
@@ -157,23 +164,30 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header
-          title={'todoAF'}
-          subtitle={'Prioritise tasks and get sh*t done.'}
-          authUser={this.state.authUser}
-          items={this.state.items}
-        />
-        <Body
-          authUser={this.state.authUser}
-          handleAddItem={this.handleAddItem}
-          items={this.state.items}
-          handleRemoveItem={this.handleRemoveItem}
-          handleCompleteItem={this.handleCompleteItem}
-          handleEditItem={this.handleEditItem}
-          handleEditItemReturn={this.handleEditItemReturn}
-          handleUndoItem={this.handleUndoItem}
-        />
-        <Footer />
+        {this.state.hasRendered ? 
+          <div>
+            <Header
+              title={'todoAF'}
+              subtitle={'Prioritise tasks and get sh*t done.'}
+              authUser={this.state.authUser}
+              items={this.state.items}
+            />
+            <Body
+              authUser={this.state.authUser}
+              handleAddItem={this.handleAddItem}
+              items={this.state.items}
+              handleRemoveItem={this.handleRemoveItem}
+              handleCompleteItem={this.handleCompleteItem}
+              handleEditItem={this.handleEditItem}
+              handleEditItemReturn={this.handleEditItemReturn}
+              handleUndoItem={this.handleUndoItem}
+            />
+            <Footer />
+          </div>
+      :
+        <LoadingPage />
+      
+      }
       </div>
     );
   }

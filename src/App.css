@@ -16,8 +16,8 @@ html {
   box-sizing: border-box;
 }
 
-body {
-  font-size: 1.6em;
+body, .App {
+  font-size: 1.6rem;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   letter-spacing: 0.01em;
@@ -47,6 +47,37 @@ ol {
   height: 40px;
   z-index: 0;
 }
+#root, .App {
+  height:100%
+}
+.loading-page {
+  background-color: #111;
+  height:100%;
+  position: relative;
+  text-align: center;
+}
+.loader {
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+}
+.loader__copy {
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-100%);
+  color:#d0d0d0;
+  font-size:1em;
+}
+.app-logo-loading {
+  animation: App-logo-spin infinite 20s linear;
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
 
 /* HEADER */
 .app-header {
