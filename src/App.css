@@ -6,7 +6,7 @@
 html {
   box-sizing: border-box;
   font-size: 67.5%;
-  height: 100%;
+
   /* background: url(images/background.png) bottom center; */
 }
 
@@ -16,15 +16,14 @@ html {
   box-sizing: border-box;
 }
 
-body {
-  font-size: 1.6em;
+body, .App {
+  font-size: 1.6rem;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  height: 100%;
 }
 
 h1,
@@ -47,6 +46,40 @@ ol {
   height: 40px;
   z-index: 0;
 }
+#root, .App {
+
+  background-color: #111;
+  color:white;
+}
+.loading-page {
+  background-color: #111;
+  position: relative;
+  text-align: center;
+  height:100vh;
+  width:100vw;
+}
+.loader {
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+}
+.loader__copy {
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-100%);
+  color:#d0d0d0;
+  font-size:1em;
+}
+.app-logo-loading {
+  animation: App-logo-spin infinite 20s linear;
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
 
 /* HEADER */
 .app-header {
@@ -54,6 +87,7 @@ ol {
   padding: 20px;
   color: white;
   text-align: center;
+  min-width: 20em;
 }
 
 .app-header__brandwrapper {
@@ -106,7 +140,9 @@ ol {
     margin-bottom: 20px;
   }
 }
-
+button {
+  cursor: pointer;
+}
 .auth__button {
   border: 2px solid #868686;
   text-transform: uppercase;
@@ -118,10 +154,18 @@ ol {
   border-radius: 50%;
   margin-left: 2px;
 }
-
+.auth__button:hover {
+  background: #868686;
+  color:white;
+}
 .auth__button--login {
   color: white;
-  background: #868686;
+  background: #32b67a;
+  border: 2px solid #32b67a;
+}
+.auth__button--login:hover {
+  color: #868686;
+  background: #111;
 }
 
 .addItemButton {
@@ -142,7 +186,7 @@ ol {
 
 /* MAIN */
 .Container {
-  max-width: 30em;
+  max-width: 60em;
   width: 90%;
   margin: auto;
 }
@@ -169,7 +213,7 @@ textarea {
   max-height: 200px;
   min-height: 60px;
   padding: 10px;
-  overflow: scroll;
+  overflow-y: auto;
   resize: none;
 }
 
@@ -236,16 +280,12 @@ button svg {
 
 .btn-circle {
   /* border-radius: 50%; */
-  flex: 1;
-  background: white;
-  color: #333;
+  background: #111;
+  color: white;
   padding: 10px;
   margin-right: 5px;
 }
 
-.btn-circle:hover {
-  color: white;
-}
 
 .btn-green {
   border: 2px solid #32b67a;
@@ -297,8 +337,16 @@ button svg {
   margin-right: 0;
 }
 
+.btn__showlists:hover {
+  background-color: white;
+  color: #333;
+}
+.btn__showlists.active {
+  background-color: white;
+  color: #333;
+}
 .btn__showmore:hover {
-  background-color: #868686;
+  background-color: white;
   color: #333;
 }
 
@@ -381,6 +429,24 @@ form .btn {
   padding: 10px;
   border-bottom: #d0d0d0 1px solid;
 }
+/* 
+.item__wrapper.hidden {
+  background: #111;
+  color: white;
+}
+.item__wrapper.item__priority--1 {
+  background: #e54b4b;
+  color: white;
+}
+.item__wrapper.item__priority--2 {
+  background: #ffbf00;
+  color: white;
+}
+.item__wrapper.item__priority--3 {
+  background: #32b67a;
+  color: white;
+} */
+
 
 /* .item__wrapper  {
   pointer-events: none;
@@ -433,7 +499,7 @@ form .btn {
 
 .notes__content {
   max-height: 220px;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .list {
@@ -485,8 +551,11 @@ form .btn {
 
 .button__wrapper {
   display: flex;
-  width: 100%;
+  /* width: 50%; */
+  align-self: flex-end;
 }
+
+
 
 /* 
 .item__priority--1 button.btn.btn-success.item__complete {
@@ -499,7 +568,9 @@ form .btn {
   padding-top: 16px;
   margin-top: 16px;
 }
-
+.item__complete {
+  margin-right:10px;
+}
 .completed-item {
   opacity: 0.5;
 }
@@ -592,17 +663,24 @@ form .btn {
   padding: 20px;
 }
 
+.error-message {
+  color: #e54b4b !important;
+  text-align: center;
+  font-style: italic;
+  font-size: .8em;
+}
+
 footer {
-  background: #fff;
+  background: #222;
   text-align: center;
   padding: 20px;
   margin-top: 5rem;
-  color: #222;
+  color: white;
   font-size: 1rem;
 }
 
 footer a {
-  color: #222;
+  color: white;
 }
 
 @keyframes fadein {

@@ -39,7 +39,6 @@ class Items extends Component {
       search: '',
       completedNumber: 10,
       listFilter: 'entire',
-      nextList: 'work',
     };
   }
 
@@ -60,29 +59,28 @@ class Items extends Component {
           : this.state.completedNumber + 10,
     });
   };
-  handleListChange = () => {
+  handleListChange = e => {
     console.log(this.state.listFilter);
+    const value = e.target.value;
     this.setState({
-      listFilter: this.state.listFilter === ('personal' || 'entire') ? 'work' : 'personal',
-      nextList: this.state.listFilter === 'personal' ? 'personal' : 'work',
+      listFilter: value,
     });
   };
-  handleListShowAll = () => {
-    this.setState({
-      listFilter: (this.state.listFilter = 'entire'),
-    });
-  };
+
   render() {
     return (
       <div>
         {(this.props.items.find(item => item.list === 'work') ||
           this.state.listFilter === 'work') && (
           <div className="btn__showlist-wrapper">
-            <button className="btn btn__showlists" onClick={this.handleListShowAll}>
-              Show all items
+            <button className={`btn btn__showlists ${this.state.listFilter === 'entire' && 'active'}`} onClick={this.handleListChange} value="entire">
+              Entire List
             </button>
-            <button className="btn btn__showlists" onClick={this.handleListChange}>
-              Show {this.state.nextList} items
+            <button className={`btn btn__showlists ${this.state.listFilter === 'personal' && 'active'}`} onClick={this.handleListChange} value="personal">
+              Personal List
+            </button>
+            <button className={`btn btn__showlists ${this.state.listFilter === 'work' && 'active'}`} onClick={this.handleListChange} value="work">
+              Work List
             </button>
           </div>
         )}
