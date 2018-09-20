@@ -134,6 +134,7 @@ class ItemForm extends Component {
               id="notes"
               onChange={this.onNotesChange}
               value={this.state.notes}
+              placeholder="Add notes..."
             />
           </div>
           <div className="list flex-start">
