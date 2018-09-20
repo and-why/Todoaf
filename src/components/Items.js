@@ -73,13 +73,13 @@ class Items extends Component {
         {(this.props.items.find(item => item.list === 'work') ||
           this.state.listFilter === 'work') && (
           <div className="btn__showlist-wrapper">
-            <button className="btn btn__showlists" onClick={this.handleListChange} value="entire">
+            <button className={`btn btn__showlists ${this.state.listFilter === 'entire' && 'active'}`} onClick={this.handleListChange} value="entire">
               Entire List
             </button>
-            <button className="btn btn__showlists" onClick={this.handleListChange} value="personal">
+            <button className={`btn btn__showlists ${this.state.listFilter === 'personal' && 'active'}`} onClick={this.handleListChange} value="personal">
               Personal List
             </button>
-            <button className="btn btn__showlists" onClick={this.handleListChange} value="work">
+            <button className={`btn btn__showlists ${this.state.listFilter === 'work' && 'active'}`} onClick={this.handleListChange} value="work">
               Work List
             </button>
           </div>
