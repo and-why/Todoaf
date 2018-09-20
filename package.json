@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "autosize": "^4.0.2",
+    "draft-js": "^0.10.5",
     "firebase": "^5.3.1",
     "moment": "^2.22.2",
     "react": "^16.4.1",
