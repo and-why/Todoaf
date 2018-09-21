@@ -84,8 +84,6 @@ class ItemForm extends Component {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         ...this.state,
-        error:null,
-        focused: null,
         dueDate: this.state.dueDate !== null ? this.state.dueDate.valueOf() : null,
       });
     }
@@ -97,7 +95,7 @@ class ItemForm extends Component {
           <div className="form-additem__text">
             <label htmlFor="itemText">Task title:</label>
             <input
-              autoFocus="true"
+              autofocus="true"
               type="text"
               name="title"
               placeholder="Insert task here"

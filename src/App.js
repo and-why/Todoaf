@@ -11,6 +11,7 @@ import { firebase } from './firebase';
 class App extends Component {
   state = {
     items: [],
+    light:false,
     authUser: null,
     hasRendered: false,
   };
@@ -47,7 +48,18 @@ class App extends Component {
 
     itemToRemoveRef.remove();
   };
-
+  handleNightMode = () => {
+    const uid = firebase.auth.currentUser.uid;
+    let light = this.state.light;
+    
+    light = !light
+    
+    console.log(light)
+    
+    this.setState({
+      light 
+    })
+  }
   handleEditItem = itemToEdit => {
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
 
@@ -163,9 +175,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={`App ${this.state.light && 'light'}`}>
         {this.state.hasRendered ? 
           <div>
+            <button className="btn " onClick={this.handleNightMode}>Light Mode</button>
             <Header
               title={'todoAF'}
               subtitle={'Prioritise tasks and get sh*t done.'}
