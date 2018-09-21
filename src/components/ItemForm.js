@@ -5,6 +5,8 @@ import autosize from 'autosize';
 import Moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
+
+
 class ItemForm extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ class ItemForm extends Component {
       form: props.form,
     };
   }
+  
   componentDidMount() {
     autosize(this.textarea);
     console.log('component did mount edit', this.props.item);
@@ -81,6 +84,8 @@ class ItemForm extends Component {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         ...this.state,
+        error:null,
+        focused: null,
         dueDate: this.state.dueDate !== null ? this.state.dueDate.valueOf() : null,
       });
     }
@@ -92,6 +97,7 @@ class ItemForm extends Component {
           <div className="form-additem__text">
             <label htmlFor="itemText">Task title:</label>
             <input
+              autoFocus="true"
               type="text"
               name="title"
               placeholder="Insert task here"

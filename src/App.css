@@ -6,8 +6,7 @@
 html {
   box-sizing: border-box;
   font-size: 67.5%;
-
-  /* background: url(images/background.png) bottom center; */
+  background:#111;
 }
 
 *,
@@ -47,12 +46,9 @@ ol {
   z-index: 0;
 }
 #root, .App {
-
-  background-color: #111;
   color:white;
 }
 .loading-page {
-  background-color: #111;
   position: relative;
   text-align: center;
   height:100vh;
@@ -172,6 +168,8 @@ button {
   position: fixed;
   bottom: 50px;
   right: 50px;
+  height: 50px;
+  width: 50px;
   display: table;
   padding: 15px;
   vertical-align: middle;
@@ -576,7 +574,7 @@ form .btn {
 }
 
 .items__search {
-  margin-top: 10px;
+  margin: 20px 0;
 }
 
 .items__search input {
@@ -671,7 +669,7 @@ form .btn {
 }
 
 footer {
-  background: #222;
+  background: #111;
   text-align: center;
   padding: 20px;
   margin-top: 5rem;
