@@ -84,6 +84,8 @@ class ItemForm extends Component {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         ...this.state,
+        error:null,
+        focused: null,
         dueDate: this.state.dueDate !== null ? this.state.dueDate.valueOf() : null,
       });
     }
@@ -95,7 +97,7 @@ class ItemForm extends Component {
           <div className="form-additem__text">
             <label htmlFor="itemText">Task title:</label>
             <input
-              autofocus="true"
+              autoFocus="true"
               type="text"
               name="title"
               placeholder="Insert task here"
@@ -127,7 +129,6 @@ class ItemForm extends Component {
               id="datePicker" // PropTypes.string.isRequired,
               numberOfMonths={1}
               isOutsideRange={() => false}
-
             />
           </div>
           <div className="notes">
