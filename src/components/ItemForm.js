@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import autosize from 'autosize';
 
 // import { Editor, EditorState } from 'draft-js';
-import Moment from 'moment';
+import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
-
+moment.locale('en-gb');
 
 class ItemForm extends Component {
   constructor(props) {
@@ -95,7 +95,7 @@ class ItemForm extends Component {
           <div className="form-additem__text">
             <label htmlFor="itemText">Task title:</label>
             <input
-              autofocus="true"
+              autoFocus="true"
               type="text"
               name="title"
               placeholder="Insert task here"
@@ -120,13 +120,14 @@ class ItemForm extends Component {
           <div className="form-additem__duedate">
             <label htmlFor="datePicker">Due Date:</label>
             <SingleDatePicker
-              date={this.state.dueDate !== null ? Moment(this.state.dueDate) : null} // momentPropTypes.momentObj or null
+              date={this.state.dueDate !== null ? moment(this.state.dueDate) : null} // momentPropTypes.momentObj or null
               onDateChange={this.onDateChange} // PropTypes.func.isRequired
               focused={this.state.focused} // PropTypes.bool
               onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
               id="datePicker" // PropTypes.string.isRequired,
               numberOfMonths={1}
               isOutsideRange={() => false}
+              displayFormat="DD MMM YYYY"
             />
           </div>
           <div className="notes">

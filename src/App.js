@@ -3,10 +3,13 @@ import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
 import LoadingPage from './components/LoadingPage';
+import moment from 'moment';
 
 import './App.css';
 
 import { firebase } from './firebase';
+
+moment.locale('en-gb');
 
 class App extends Component {
   state = {
@@ -178,12 +181,14 @@ class App extends Component {
       <div className={`App ${this.state.light && 'light'}`}>
         {this.state.hasRendered ? 
           <div>
-            <button className="btn " onClick={this.handleNightMode}>Light Mode</button>
+            
             <Header
               title={'todoAF'}
               subtitle={'Prioritise tasks and get sh*t done.'}
               authUser={this.state.authUser}
               items={this.state.items}
+              light={this.state.light}
+              handleNightMode={this.handleNightMode}
             />
             <Body
               authUser={this.state.authUser}

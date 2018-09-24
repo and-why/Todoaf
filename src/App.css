@@ -695,6 +695,17 @@ footer a {
 }
 
 
+.CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__selected:hover {
+  background: #32b67a;
+  border: 1px solid #32b67a;
+}
+.DayPickerKeyboardShortcuts_show__bottomRight {
+  border-top: 26px solid transparent;
+  border-right: 33px solid #32b67a;
+  bottom: 0;
+  right: 0;
+}
+
 
 /* NIGHT MODE EDITS */
 #root, .App.light {
