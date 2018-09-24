@@ -293,7 +293,7 @@ button svg {
 }
 
 .btn-circle {
-  /* border-radius: 50%; */
+  border-radius: 50%;
   background: #111;
   color: white;
   padding: 10px;
