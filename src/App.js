@@ -51,18 +51,7 @@ class App extends Component {
 
     itemToRemoveRef.remove();
   };
-  handleNightMode = () => {
-    const uid = firebase.auth.currentUser.uid;
-    let light = this.state.light;
-    
-    light = !light
-    
-    console.log(light)
-    
-    this.setState({
-      light 
-    })
-  }
+ 
   handleEditItem = itemToEdit => {
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
 
@@ -133,6 +122,18 @@ class App extends Component {
 
     itemsToUpdate.update(obj);
   };
+  handleNightMode = () => {
+    let light = this.state.light;
+    
+    light = !light
+    document.querySelector('.app-header__light-icon').classList.toggle('light');
+    
+    console.log(light)
+    
+    this.setState({
+      light 
+    })
+  }
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {

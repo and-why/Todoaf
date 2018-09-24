@@ -83,18 +83,23 @@ ol {
 /* HEADER */
 .app-header {
   background-color: #111;
-  padding: 20px;
   color: white;
   text-align: center;
   min-width: 20em;
+  padding-top:20px;
 }
 
 .app-header__brandwrapper {
   display: flex;
   text-align: center;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 10px;
+}
+.app-header__logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .app-header__title {
@@ -121,10 +126,18 @@ ol {
   margin: 5px 0 0;
   color: #32b67a
 }
+.app-header__light-icon {
+  background:transparent;
+  color:white;
+
+  border-radius:50%;
+}
+.app-header__light-icon.light {
+  background:#333;
+
+}
 
 .auth {
-  position: absolute;
-  right: 20px;
   display: flex;
 }
 

@@ -84,6 +84,8 @@ class ItemForm extends Component {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         ...this.state,
+        error: null,
+        focused: null,
         dueDate: this.state.dueDate !== null ? this.state.dueDate.valueOf() : null,
       });
     }
