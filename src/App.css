@@ -718,7 +718,10 @@ footer a {
   bottom: 0;
   right: 0;
 }
-
+.CalendarDay__today  {
+	box-shadow: inset 0 0 2px 1px #32b67a;
+	font-weight: bold;
+}
 
 /* NIGHT MODE EDITS */
 #root, .App.light {
