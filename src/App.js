@@ -123,16 +123,22 @@ class App extends Component {
     itemsToUpdate.update(obj);
   };
   handleNightMode = () => {
+    const uid = firebase.auth.currentUser.uid;
     let light = this.state.light;
     
     light = !light
-    document.querySelector('.app-header__light-icon').classList.toggle('light');
     
     console.log(light)
     
     this.setState({
       light 
     })
+
+    firebase.database.ref(`users/${uid}`).update({
+      light
+    });
+    
+
   }
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
@@ -142,6 +148,8 @@ class App extends Component {
         const itemsRef = firebase.database.ref(`users/${uid}`);
         itemsRef.on('value', snapshot => {
           let items = snapshot.val();
+
+          let light = snapshot.val().light;
           let newState = [];
           for (let item in items) {
             newState.push({
@@ -159,6 +167,7 @@ class App extends Component {
             this.setState({
               items: newState,
               hasRendered: true,
+              light
             });
           }
         });
