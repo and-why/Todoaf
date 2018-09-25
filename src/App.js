@@ -3,14 +3,18 @@ import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
 import LoadingPage from './components/LoadingPage';
+import moment from 'moment';
 
 import './App.css';
 
 import { firebase } from './firebase';
 
+moment.locale('en-gb');
+
 class App extends Component {
   state = {
     items: [],
+    light:false,
     authUser: null,
     hasRendered: false,
   };
@@ -47,7 +51,7 @@ class App extends Component {
 
     itemToRemoveRef.remove();
   };
-
+ 
   handleEditItem = itemToEdit => {
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
 
@@ -118,6 +122,24 @@ class App extends Component {
 
     itemsToUpdate.update(obj);
   };
+  handleNightMode = () => {
+    const uid = firebase.auth.currentUser.uid;
+    let light = this.state.light;
+    
+    light = !light
+    
+    console.log(light)
+    
+    this.setState({
+      light 
+    })
+
+    firebase.database.ref(`users/${uid}`).update({
+      light
+    });
+    
+
+  }
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
@@ -126,6 +148,8 @@ class App extends Component {
         const itemsRef = firebase.database.ref(`users/${uid}`);
         itemsRef.on('value', snapshot => {
           let items = snapshot.val();
+
+          let light = snapshot.val().light;
           let newState = [];
           for (let item in items) {
             newState.push({
@@ -143,6 +167,7 @@ class App extends Component {
             this.setState({
               items: newState,
               hasRendered: true,
+              light
             });
           }
         });
@@ -163,14 +188,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={`App ${this.state.light && 'light'}`}>
         {this.state.hasRendered ? 
           <div>
+            
             <Header
               title={'todoAF'}
               subtitle={'Prioritise tasks and get sh*t done.'}
               authUser={this.state.authUser}
               items={this.state.items}
+              light={this.state.light}
+              handleNightMode={this.handleNightMode}
             />
             <Body
               authUser={this.state.authUser}
