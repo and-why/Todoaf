@@ -29,7 +29,7 @@ Date.prototype.addDays = function(days) {
 };
 
 let date = new Date();
-let dayLimit = 3;
+let dayLimit = 1;
 
 class Items extends Component {
   constructor(props) {
@@ -46,11 +46,14 @@ class Items extends Component {
     this.setState({
       search: e,
     });
-    let filteredItems = this.props.items.filter(item => item.text.toLowerCase().includes(e));
+    console.log(e, this.props.items)
+    let filteredItems = this.props.items.filter(item => item.text && item.text.toLowerCase().includes(e));
+    
     this.setState({
       filteredItems: filteredItems,
     });
   };
+
   handleShowMore = () => {
     this.setState({
       completedNumber:
@@ -129,7 +132,7 @@ class Items extends Component {
                 (item.dueDate === null || item.dueDate > date.addDays(dayLimit)),
             )
             .sort(function(a, b) {
-              return cmp(a.priority, b.priority) || cmpn(a.dueDate, b.dueDate);
+              return cmp(a.priority, b.priority) || cmpn(a.createDate, b.createDate);
             })
             .map(item => (
               <Item

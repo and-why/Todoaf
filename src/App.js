@@ -147,9 +147,8 @@ class App extends Component {
         const uid = firebase.auth.currentUser.uid;
         const itemsRef = firebase.database.ref(`users/${uid}`);
         itemsRef.on('value', snapshot => {
-          let items = snapshot.val();
-
           let light = snapshot.val().light;
+          let items = snapshot.val();
           let newState = [];
           for (let item in items) {
             newState.push({
