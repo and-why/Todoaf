@@ -24,7 +24,7 @@ class App extends Component {
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
     const createDate = Date.now();
-
+    
     const newItem = {
       ...item,
       createDate: createDate,

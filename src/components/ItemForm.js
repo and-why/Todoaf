@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import autosize from 'autosize';
+// import NotesEditor from './NotesEditor';
 
-// import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
@@ -10,7 +11,14 @@ moment.locale('en-gb');
 class ItemForm extends Component {
   constructor(props) {
     super(props);
+    this.onNotesChange = editorState => {
+      console.log(editorState)
+      this.setState({ notes: editorState});
+      // editorState.target.style.height = editorState.target.scrollHeight + 'px';
+    };
     // console.log('ItemForm form open', props.item);
+    const contentState = convertFromRaw(this.props.contentState);
+    
     this.state = {
       id: props.item ? props.item.id : '',
       text: props.item ? props.item.text : '',
@@ -23,6 +31,7 @@ class ItemForm extends Component {
       error: undefined,
       focused: undefined,
       form: props.form,
+      editorState: EditorState.createEmpty(),
     };
   }
   
@@ -34,6 +43,11 @@ class ItemForm extends Component {
     autosize(this.textarea);
     console.log('component did update edit', this.props.item);
   }
+  componentWillUnmount() {
+    const contentState = this.state.editorState.getCurrentContent();
+    // You can save contentState here or somewhere else.
+    // this.props.onSave(convertToRaw(contentState));
+  }
   onItemNameChange = e => {
     const text = e.target.value;
     console.log('ItemForm.js onItemNameChange: ', text);
@@ -44,10 +58,6 @@ class ItemForm extends Component {
     const priority = e.target.value;
     this.setState({ priority });
   };
-  // onNotesChange = editorState => {
-  //   console.log(editorState);
-  //   this.setState({ editorState });
-  // };
   onDateChange = dueDate => {
     if (dueDate) {
       this.setState(() => ({ dueDate }));
@@ -59,11 +69,17 @@ class ItemForm extends Component {
     e.preventDefault();
     this.props.handleEditItem({ ...this.props.item });
   };
-  onNotesChange = e => {
-    const notes = e.target.value;
-    this.setState({ notes });
-    e.target.style.height = e.target.scrollHeight + 'px';
+  
+  onNotesChange = editorState => {
+    console.log(editorState);
+    this.setState({ editorState });
   };
+  // onNotesChange = e => {
+  //   const notes = e.target.value;
+  //   this.setState({ notes });
+  //   e.target.style.height = e.target.scrollHeight + 'px';
+  // };
+
   onListChangePersonal = e => {
     this.setState({list: 'personal'})
   }
@@ -84,6 +100,7 @@ class ItemForm extends Component {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({
         ...this.state,
+        notes: null,
         error: null,
         focused: null,
         dueDate: this.state.dueDate !== null ? this.state.dueDate.valueOf() : null,
@@ -135,13 +152,19 @@ class ItemForm extends Component {
           <div className="notes">
             <label htmlFor="notes">Notes:</label>
             {/*<Editor editorState={this.state.editorState} onChange={this.onNotesChange} />*/}
-            <textarea
+            {/* <textarea
               ref={c => (this.textarea = c)}
               name="notes"
               id="notes"
               onChange={this.onNotesChange}
               value={this.state.notes}
               placeholder="Add notes..."
+            /> */}
+            <Editor 
+              // ref={c => (this.textarea = c)}
+              className="notes__editor"
+              onChange={this.onNotesChange}
+              editorState={this.state.editorState}
             />
           </div>
           <div className="list flex-start">

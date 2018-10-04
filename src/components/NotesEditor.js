@@ -5,7 +5,7 @@ class NotesEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorState: EditorState.createEmpty(),
+      editorState: this.props. EditorState.createEmpty(),
     };
     this.onChange = editorState => {
       this.setState({ editorState });
