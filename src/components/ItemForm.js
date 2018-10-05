@@ -140,7 +140,7 @@ class ItemForm extends Component {
             <label htmlFor="notes">Notes:</label>
             {/*<Editor editorState={this.state.editorState} onChange={this.onNotesChange} />*/}
             {/* Show old editor if there are old notes else new editor */}
-            {this.state.notes !== '' 
+            {this.state.notes === '' 
             ?
             <NotesEditor 
             className="notes__editor"
