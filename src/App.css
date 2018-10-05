@@ -46,7 +46,8 @@ ol {
 }
 #root, .App {
   color:white;
-    background:#111;
+    background:#1f201f;
+    min-height:100vh;
 }
 
 
@@ -82,7 +83,6 @@ ol {
 
 /* HEADER */
 .app-header {
-  background-color: #111;
   color: white;
   text-align: center;
   min-width: 20em;
@@ -443,6 +443,9 @@ form .btn {
   padding: 10px;
   border-bottom: #d0d0d0 1px solid;
 }
+.item__wrapper:hover {
+  background:#262725;
+}
 /* 
 .item__wrapper.hidden {
   background: #111;
@@ -515,7 +518,9 @@ form .btn {
   max-height: 220px;
   overflow-y: auto;
 }
-
+.notes__content p {
+  text-align: left;
+}
 .list {
   color: white;
 }
@@ -685,7 +690,6 @@ form .btn {
 }
 
 footer {
-  background: #111;
   text-align: center;
   padding: 20px;
   margin-top: 5rem;
@@ -695,6 +699,12 @@ footer {
 
 footer a {
   color: white;
+}
+.light footer {
+  color: #333;
+}
+.light footer a {
+  color: #333;
 }
 
 @keyframes fadein {
@@ -722,6 +732,75 @@ footer a {
 	box-shadow: inset 0 0 2px 1px #32b67a;
 	font-weight: bold;
 }
+/* RICH TEXT EDITOR */
+/* .DraftEditor-root {
+  background: white;
+  min-height: 80px;
+  padding:10px;
+} */
+.RichEditor-root {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  padding: 15px;
+}
+
+.RichEditor-editor {
+  border-top: 1px solid #ddd;
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
+  margin: 0 -15px -15px;
+  padding: 15px;
+}
+
+.RichEditor-editor .public-DraftEditor-content {
+  min-height: 100px;
+}
+
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+.RichEditor-editor .RichEditor-blockquote {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-family: 'Hoefler Text', 'Georgia', serif;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+}
+
+.RichEditor-editor .public-DraftStyleDefault-pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.RichEditor-controls {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.RichEditor-styleButton {
+  color: #999;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+.RichEditor-activeButton {
+  color: #5890ff;
+}
 
 /* NIGHT MODE EDITS */
 #root, .App.light {
@@ -742,4 +821,31 @@ footer a {
 .light .btn__showlists.active, .light .btn__showlists:hover {
     background-color: #333;
     color: white;
+}
+
+
+/* EDITOR */
+.editor {
+  background:white;
+}
+.editor__btns--wrapper {
+  display:flex;
+}
+.editor__btn {
+  min-width:20px;
+  height:20px;
+  text-align: center;
+  background:white;
+  padding:2px 5px;
+  margin-right:1px;
+  cursor: pointer;
+}
+.editor__btn:hover {
+  background:#868686;
+  color:#333;
+}
+.DraftEditor-root {
+  background: white;
+  padding:10px;
+  cursor: text;
 }

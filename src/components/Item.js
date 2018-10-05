@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import EditItem from './EditItem';
 import moment from 'moment';
 import Modal from 'react-modal';
+import { convertFromRaw } from 'draft-js';
+import  { stateToHTML } from 'draft-js-export-html';
 
 const customStyles = {
   overlay: {
@@ -60,6 +62,12 @@ class Item extends Component {
   }
 
   render() {
+    let notes = '';
+    if(this.props.notesAdv) {
+      const convertedState = convertFromRaw(JSON.parse(this.props.notesAdv))
+      notes = this.props.notesAdv ? stateToHTML(convertedState) : this.props.notes;
+    } 
+    
     return (
       <div
         className={`item__wrapper item__priority--${this.props.priority} ${this.props.id} hidden`}
@@ -116,7 +124,7 @@ class Item extends Component {
 
           {!this.props.editable && (
             <div className="notes">
-              <div className="notes__content">{this.props.notes}</div>
+              <div className="notes__content" dangerouslySetInnerHTML={{__html: notes}} />
             </div>
           )}
           <div className="button__wrapper">

@@ -90,6 +90,8 @@ class Items extends Component {
         <h3 className="capitalize">{this.state.listFilter} List:</h3>
         <Search handleSearchItem={this.handleSearchItem} />
         <div className="items-list">
+        <div className="items-list__due-today">
+        </div>
           {this.props.items.length === 0 && <p>Add an item to start</p>}
           {/* Items with due dates first */}
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
@@ -109,7 +111,7 @@ class Items extends Component {
                 key={item.id}
                 text={item.text}
                 dueDate={item.dueDate}
-                notes={item.notes}
+                notesAdv={item.notesAdv}
                 list={item.list}
                 priority={item.priority}
                 createDate={item.createDate}
@@ -140,7 +142,7 @@ class Items extends Component {
                 key={item.id}
                 text={item.text}
                 dueDate={item.dueDate}
-                notes={item.notes}
+                notesAdv={item.notesAdv}
                 list={item.list}
                 priority={item.priority}
                 createDate={item.createDate}
@@ -174,7 +176,7 @@ class Items extends Component {
                   text={item.text}
                   priority={item.priority}
                   dueDate={item.dueDate}
-                  notes={item.notes}
+                  notesAdv={item.notesAdv}
                   list={item.list}
                   createDate={item.createDate}
                   completed={item.completed}
