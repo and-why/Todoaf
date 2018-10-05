@@ -65,8 +65,10 @@ class Item extends Component {
     let notes = '';
     if(this.props.notesAdv) {
       const convertedState = convertFromRaw(JSON.parse(this.props.notesAdv))
-      notes = this.props.notesAdv ? stateToHTML(convertedState) : this.props.notes;
-    } 
+      notes = stateToHTML(convertedState);
+    } else {
+      notes = this.props.notes;
+    }
     
     return (
       <div
