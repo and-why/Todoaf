@@ -16,6 +16,7 @@ class ItemForm extends Component {
       text: props.item ? props.item.text : '',
       priority: props.item ? props.item.priority : '2',
       dueDate: props.item ? props.item.dueDate : null,
+      notes: props.item ? props.item.notes : '',
       notesAdv: props.item ? props.item.notesAdv : '',
       list: props.item ? props.item.list : 'personal',
       editable: props.item ? props.item.editable : false,
@@ -138,20 +139,24 @@ class ItemForm extends Component {
           <div className="notes">
             <label htmlFor="notes">Notes:</label>
             {/*<Editor editorState={this.state.editorState} onChange={this.onNotesChange} />*/}
-            {/* <textarea
+            {/* Show old editor if there are old notes else new editor */}
+            {this.state.notes !== '' 
+            ?
+            <NotesEditor 
+            className="notes__editor"
+            onNotesChange={this.onNotesChange}
+            notesAdv={this.state.notesAdv}
+            />
+            :
+            <textarea
               ref={c => (this.textarea = c)}
               name="notes"
               id="notes"
               onChange={this.onNotesChange}
               value={this.state.notes}
               placeholder="Add notes..."
-            /> */}
-            <NotesEditor 
-              // ref={c => (this.textarea = c)}
-              className="notes__editor"
-              onNotesChange={this.onNotesChange}
-              notesAdv={this.state.notesAdv}
-            />
+            /> 
+            }
           </div>
           <div className="list flex-start">
             <label htmlFor="list">List:</label>

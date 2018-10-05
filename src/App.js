@@ -72,6 +72,7 @@ class App extends Component {
       text: item.text,
       priority: item.priority,
       dueDate: item.dueDate,
+      notes: item.notes ? item.notes : '',
       notesAdv: item.notesAdv,
       list: item.list,
       completed: false,
