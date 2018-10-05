@@ -20,13 +20,14 @@ class App extends Component {
   };
 
   handleAddItem = item => {
-    console.log('app item:', item);
+    console.log('add item:', item);
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
     const createDate = Date.now();
     
     const newItem = {
       ...item,
+      editorState: null,
       createDate: createDate,
       completed: false,
       completeDate: null,
@@ -71,7 +72,7 @@ class App extends Component {
       text: item.text,
       priority: item.priority,
       dueDate: item.dueDate,
-      notes: item.notes,
+      notesAdv: item.notesAdv,
       list: item.list,
       completed: false,
       completeDate: null,
@@ -96,6 +97,7 @@ class App extends Component {
       createDate: itemToComplete.createDate,
       dueDate: itemToComplete.dueDate,
       notes: itemToComplete.notes ? itemToComplete.notes : '',
+      notesAdv: itemToComplete.notesAdv ? itemToComplete.notesAdv : '',
       list: itemToComplete.list ? itemToComplete.list : 'personal',
       editable: false,
       completed: true,
@@ -157,6 +159,7 @@ class App extends Component {
               createDate: items[item].createDate,
               dueDate: items[item].dueDate ? items[item].dueDate : null,
               notes: items[item].notes ? items[item].notes : '',
+              notesAdv: items[item].notesAdv ? items[item].notesAdv : '',
               list: items[item].list ? items[item].list : 'personal',
               priority: items[item].priority,
               completed: items[item].completed,

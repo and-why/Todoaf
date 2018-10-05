@@ -518,7 +518,9 @@ form .btn {
   max-height: 220px;
   overflow-y: auto;
 }
-
+.notes__content p {
+  text-align: left;
+}
 .list {
   color: white;
 }
@@ -819,4 +821,31 @@ footer a {
 .light .btn__showlists.active, .light .btn__showlists:hover {
     background-color: #333;
     color: white;
+}
+
+
+/* EDITOR */
+.editor {
+  background:white;
+}
+.editor__btns--wrapper {
+  display:flex;
+}
+.editor__btn {
+  min-width:20px;
+  height:20px;
+  text-align: center;
+  background:white;
+  padding:2px 5px;
+  margin-right:1px;
+  cursor: pointer;
+}
+.editor__btn:hover {
+  background:#868686;
+  color:#333;
+}
+.DraftEditor-root {
+  background: white;
+  padding:10px;
+  cursor: text;
 }
