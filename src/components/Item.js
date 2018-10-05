@@ -36,7 +36,6 @@ const handleExpand = e => {
   if (!element) {
   } else {
     document.querySelector(`.${element}`).classList.toggle('hidden');
-    document.querySelector(`.arrow-${element}`).classList.toggle('rotate');
   }
 };
 
@@ -62,6 +61,7 @@ class Item extends Component {
   }
 
   render() {
+    // render notes before inserting preserving old notes format...
     let notes = '';
     if(this.props.notesAdv) {
       const convertedState = convertFromRaw(JSON.parse(this.props.notesAdv))
