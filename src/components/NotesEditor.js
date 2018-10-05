@@ -48,6 +48,9 @@ class DraftEditor extends Component {
   onUnorderedList = () => {
      this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'unordered-list-item' ));
   }
+  onOrderedList = () => {
+     this.onChange(RichUtils.toggleBlockType(this.state.editorState, 'ordered-list-item' ));
+  }
 
 
   
@@ -63,6 +66,7 @@ class DraftEditor extends Component {
           <div className="editor__btn" onClick={this.onBoldClick}>B</div>
           <div className="editor__btn" onClick={this.onItalicClick}>I</div>
           <div className="editor__btn" onClick={this.onUnorderedList}>UL</div>
+          <div className="editor__btn" onClick={this.onOrderedList}>OL</div>
         </div>
           <Editor
             handleKeyCommand={this.handleKeyCommand}
