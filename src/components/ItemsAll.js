@@ -52,6 +52,7 @@ class ItemsAll extends Component {
     return (
       <div className="items">
         <Items
+          listFilter={this.props.listFilter}
           items={this.props.items}
           handleUndoItem={this.props.handleUndoItem}
           handleRemoveItem={this.props.handleRemoveItem}

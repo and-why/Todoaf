@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
 import ItemsAll from './ItemsAll';
+import ListChooser from './ListChooser';
 
 class Body extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listFilter: 'entire',
+    };
+  }
+
+  handleListChange = e => {
+    console.log('body: ', e)
+    this.setState({
+      listFilter: e,
+    });
+  };
   render() {
     return (
       <div className="Container">
         <div className="Items">
           {this.props.authUser ? (
             <div>
+              <ListChooser 
+                handleListChange={this.handleListChange} 
+                items={this.props.items}/>
               <ItemsAll
+                listFilter={this.state.listFilter}
                 authUser={this.props.authUser}
                 handleAddItem={this.props.handleAddItem}
                 items={this.props.items}

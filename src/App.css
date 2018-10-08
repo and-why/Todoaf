@@ -79,7 +79,11 @@ ol {
   z-index: 0;
   transform: translateY(-50%);
 }
-
+.cls-1{fill:none;}.cls-1,.cls-2{stroke:#d0d0d0;stroke-miterlimit:10;stroke-width:15px;}.cls-2{fill:none;}
+svg#Layer_1 {
+  height: 50px;
+  width: 50px;
+}
 
 /* HEADER */
 .app-header {
@@ -611,8 +615,14 @@ form .btn {
   transition: transform .2s ease-in-out;
 } */
 
-.hidden .item__downarrow {
+
+
+.item__downarrow {
   transform: rotate(180deg);
+  transition: transform .2s ease-in-out;
+}
+.hidden .item__downarrow {
+  transform: rotate(360deg);
   transition: transform .2s ease-in-out;
 }
 

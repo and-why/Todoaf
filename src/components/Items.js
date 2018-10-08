@@ -38,7 +38,7 @@ class Items extends Component {
       filteredItems: [],
       search: '',
       completedNumber: 10,
-      listFilter: 'entire',
+      listFilter: this.props.listFilter,
     };
   }
 
@@ -73,7 +73,7 @@ class Items extends Component {
   render() {
     return (
       <div>
-        {(this.props.items.find(item => item.list === 'work') ||
+        {/* {(this.props.items.find(item => item.list === 'work') ||
           this.state.listFilter === 'work') && (
           <div className="btn__showlist-wrapper">
             <button className={`btn btn__showlists ${this.state.listFilter === 'entire' && 'active'}`} onClick={this.handleListChange} value="entire">
@@ -86,7 +86,7 @@ class Items extends Component {
               Work List
             </button>
           </div>
-        )}
+        )} */}
         <h3 className="capitalize">{this.state.listFilter} List:</h3>
         <Search handleSearchItem={this.handleSearchItem} />
         <div className="items-list">
