@@ -29,7 +29,7 @@ Date.prototype.addDays = function(days) {
 };
 
 let date = new Date();
-let dayLimit = 3;
+let dayLimit = 1;
 
 class Items extends Component {
   constructor(props) {
@@ -46,11 +46,14 @@ class Items extends Component {
     this.setState({
       search: e,
     });
-    let filteredItems = this.props.items.filter(item => item.text.toLowerCase().includes(e));
+    console.log(e, this.props.items)
+    let filteredItems = this.props.items.filter(item => item.text && item.text.toLowerCase().includes(e));
+    
     this.setState({
       filteredItems: filteredItems,
     });
   };
+
   handleShowMore = () => {
     this.setState({
       completedNumber:
@@ -87,6 +90,8 @@ class Items extends Component {
         <h3 className="capitalize">{this.state.listFilter} List:</h3>
         <Search handleSearchItem={this.handleSearchItem} />
         <div className="items-list">
+        <div className="items-list__due-today">
+        </div>
           {this.props.items.length === 0 && <p>Add an item to start</p>}
           {/* Items with due dates first */}
           {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
@@ -107,6 +112,7 @@ class Items extends Component {
                 text={item.text}
                 dueDate={item.dueDate}
                 notes={item.notes}
+                notesAdv={item.notesAdv}
                 list={item.list}
                 priority={item.priority}
                 createDate={item.createDate}
@@ -129,7 +135,7 @@ class Items extends Component {
                 (item.dueDate === null || item.dueDate > date.addDays(dayLimit)),
             )
             .sort(function(a, b) {
-              return cmp(a.priority, b.priority) || cmpn(a.dueDate, b.dueDate);
+              return cmp(a.priority, b.priority) || cmpn(a.createDate, b.createDate);
             })
             .map(item => (
               <Item
@@ -138,6 +144,7 @@ class Items extends Component {
                 text={item.text}
                 dueDate={item.dueDate}
                 notes={item.notes}
+                notesAdv={item.notesAdv}
                 list={item.list}
                 priority={item.priority}
                 createDate={item.createDate}
@@ -172,6 +179,7 @@ class Items extends Component {
                   priority={item.priority}
                   dueDate={item.dueDate}
                   notes={item.notes}
+                  notesAdv={item.notesAdv}
                   list={item.list}
                   createDate={item.createDate}
                   completed={item.completed}

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import EditItem from './EditItem';
 import moment from 'moment';
 import Modal from 'react-modal';
+import { convertFromRaw } from 'draft-js';
+import  { stateToHTML } from 'draft-js-export-html';
 
 const customStyles = {
   overlay: {
@@ -34,7 +36,6 @@ const handleExpand = e => {
   if (!element) {
   } else {
     document.querySelector(`.${element}`).classList.toggle('hidden');
-    document.querySelector(`.arrow-${element}`).classList.toggle('rotate');
   }
 };
 
@@ -60,6 +61,15 @@ class Item extends Component {
   }
 
   render() {
+    // render notes before inserting preserving old notes format...
+    let notes = '';
+    if(this.props.notesAdv) {
+      const convertedState = convertFromRaw(JSON.parse(this.props.notesAdv))
+      notes = stateToHTML(convertedState);
+    } else {
+      notes = this.props.notes;
+    }
+    
     return (
       <div
         className={`item__wrapper item__priority--${this.props.priority} ${this.props.id} hidden`}
@@ -116,7 +126,7 @@ class Item extends Component {
 
           {!this.props.editable && (
             <div className="notes">
-              <div className="notes__content">{this.props.notes}</div>
+              <div className="notes__content" dangerouslySetInnerHTML={{__html: notes}} />
             </div>
           )}
           <div className="button__wrapper">

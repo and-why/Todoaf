@@ -5,6 +5,7 @@
   "dependencies": {
     "autosize": "^4.0.2",
     "draft-js": "^0.10.5",
+    "draft-js-export-html": "^1.2.0",
     "firebase": "^5.3.1",
     "moment": "^2.22.2",
     "react": "^16.4.1",
