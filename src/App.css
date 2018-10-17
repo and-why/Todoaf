@@ -39,8 +39,8 @@ ol {
   padding: 0;
 }
 
-.app-logo {
-  animation: App-logo-spin infinite 20s linear;
+.sway {
+  animation: App-logo-spin infinite 2s linear;
   height: 40px;
   z-index: 0;
 }
@@ -50,6 +50,23 @@ ol {
     min-height:100vh;
 }
 
+@keyframes App-logo-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(35deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-35deg);
+  }
+  100% {
+    transform: rotate(0deg)
+  }
+}
 
 
 .loading-page {
@@ -83,6 +100,11 @@ ol {
 svg#Layer_1 {
   height: 50px;
   width: 50px;
+}
+
+.loading-page svg#Layer_1 {
+  height:50%;
+  width:50%;
 }
 
 /* HEADER */
@@ -372,15 +394,7 @@ button svg {
   cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
 
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 /* ITEMS */
 /* FORM */
