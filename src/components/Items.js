@@ -49,9 +49,9 @@ class Items extends Component {
     console.log(e, this.props.items)
     let filteredItems = this.props.items.filter(item => item.text && item.text.toLowerCase().includes(e));
     
-    this.setState({
-      filteredItems: filteredItems,
-    });
+    // this.setState({
+    //   filteredItems: filteredItems,
+    // });
   };
 
   handleShowMore = () => {
@@ -62,13 +62,13 @@ class Items extends Component {
           : this.state.completedNumber + 10,
     });
   };
-  handleListChange = e => {
-    console.log(this.state.listFilter);
-    const value = e.target.value;
-    this.setState({
-      listFilter: value,
-    });
-  };
+  // handleListChange = e => {
+  //   console.log(e);
+    
+  //   this.setState({
+  //     listFilter: e,
+  //   });
+  // };
 
   render() {
     return (
@@ -101,6 +101,7 @@ class Items extends Component {
                 item.completed === false &&
                 (item.list === this.state.listFilter || this.state.listFilter === 'entire') &&
                 (item.dueDate !== null && item.dueDate < date.addDays(dayLimit)),
+                console.log(this.state.filteredItems)
             )
             .sort(function(a, b) {
               return cmpn(a.dueDate, b.dueDate) || cmp(a.priority, b.priority);
@@ -110,6 +111,7 @@ class Items extends Component {
                 date={date}
                 key={item.id}
                 text={item.text}
+                filteredItems={this.state.filteredItems}
                 dueDate={item.dueDate}
                 notes={item.notes}
                 notesAdv={item.notesAdv}
@@ -142,6 +144,7 @@ class Items extends Component {
                 date={date}
                 key={item.id}
                 text={item.text}
+                filteredItems={this.state.filteredItems}
                 dueDate={item.dueDate}
                 notes={item.notes}
                 notesAdv={item.notesAdv}
@@ -176,6 +179,7 @@ class Items extends Component {
               <div className="completed-item" key={item.id}>
                 <Item
                   text={item.text}
+                  filteredItems={this.state.filteredItems}
                   priority={item.priority}
                   dueDate={item.dueDate}
                   notes={item.notes}

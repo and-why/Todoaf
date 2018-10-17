@@ -26,8 +26,8 @@ const customStyles = {
 };
 
 class ItemsAll extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modalIsOpen: false,
     };
@@ -72,7 +72,6 @@ class ItemsAll extends Component {
           <button onClick={this.closeModal} className="modal__button-exit">
             x
           </button>
-
           <AddItem handleAddItem={this.props.handleAddItem} onRequestClose={this.closeModal} />
         </Modal>
       </div>

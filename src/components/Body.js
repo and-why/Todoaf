@@ -8,10 +8,11 @@ class Body extends Component {
     this.state = {
       listFilter: 'entire',
     };
+    this.handleListChange = this.handleListChange.bind(this.handleListChange)
   }
 
   handleListChange = e => {
-    console.log('body: ', e)
+    console.log('Body.j: ', e)
     this.setState({
       listFilter: e,
     });
