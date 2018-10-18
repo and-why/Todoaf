@@ -56,7 +56,7 @@ class Header extends Component {
     // this.subtitle.style.color = '#f00';
   }
   stopSway() {
-    document.querySelector('.app-logo').classList.toggle('sway')
+    document.querySelector('.app-logo').classList.toggle('sway');
   }
   closeModal() {
     this.setState({ modalIsOpen: false });
