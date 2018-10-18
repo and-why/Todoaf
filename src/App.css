@@ -74,10 +74,9 @@ ol {
   color:#d0d0d0;
   font-size:1em;
 }
-.app-logo-loading {
-  animation: App-logo-spin infinite 20s linear;
-  z-index: 0;
-  transform: translateY(-50%);
+.loading-page .app-logo {
+  height:auto;
+  width:50%;
 }
 
 
@@ -368,14 +367,42 @@ button svg {
   cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.sway {
+  -webkit-animation: App-logo-sway infinite 2s linear;
+  animation: App-logo-sway infinite 2s linear;
+  z-index: 0;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.cls-2, .cls-1 {
+  fill: none;
+}
+.cls-1, .cls-2 {
+  stroke: #d0d0d0;
+  stroke-miterlimit: 10;
+  stroke-width: 15px;
+}
+
+@keyframes App-logo-sway {
+0% {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+25% {
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+50% {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+75% {
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
+100% {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
 }
 
 /* ITEMS */
@@ -445,6 +472,10 @@ form .btn {
 }
 .item__wrapper:hover {
   background:#262725;
+}
+
+.light .item__wrapper:hover {
+  background: #e2e2e2;
 }
 /* 
 .item__wrapper.hidden {
@@ -810,6 +841,8 @@ footer a {
   color: #5890ff;
 }
 
+
+
 /* NIGHT MODE EDITS */
 #root, .App.light {
   color:#333;
@@ -840,7 +873,7 @@ footer a {
   display:flex;
 }
 .editor__btn {
-  min-width:20px;
+  min-width:25px;
   height:20px;
   text-align: center;
   background:white;
@@ -851,6 +884,25 @@ footer a {
 .editor__btn:hover {
   background:#868686;
   color:#333;
+}
+
+.editor__btn--bold {
+  font-weight:bold;
+}
+
+.editor__btn--italic {
+  font-style: italic;
+  padding: 2px 7px 2px 3px;
+}
+
+.editor__btn--underline {
+  text-decoration: underline;
+}
+.editor__btn.editor__btn--unorderedlist {
+  padding: 5px;
+}
+.editor__btn.editor__btn--orderedlist {
+  padding: 5px;
 }
 .DraftEditor-root {
   background: white;
