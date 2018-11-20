@@ -84,6 +84,7 @@ class Item extends Component {
 
     return (
       <div
+        style={{ height: "61px" }}
         className={`item__wrapper item__priority--${this.props.priority} ${
           this.props.id
         } hidden`}
