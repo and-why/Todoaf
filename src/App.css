@@ -79,6 +79,12 @@ ol {
   width:50%;
 }
 
+/* LOGIN */
+.firebaseui-idp-password, .firebaseui-idp-password:hover, .mdl-button.firebaseui-idp-password:active, .mdl-button.firebaseui-idp-password:focus {
+  background-color: none;
+  border: 2px solid #db4437;
+}
+
 
 /* HEADER */
 .app-header {
