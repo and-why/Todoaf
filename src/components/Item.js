@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import EditItem from './EditItem';
-import moment from 'moment';
-import Modal from 'react-modal';
-import { convertFromRaw } from 'draft-js';
-import  { stateToHTML } from 'draft-js-export-html';
+import React, { Component } from "react";
+import EditItem from "./EditItem";
+import moment from "moment";
+import Modal from "react-modal";
+import { convertFromRaw } from "draft-js";
+import { stateToHTML } from "draft-js-export-html";
 
 const customStyles = {
   overlay: {
-    background: 'rgba(255, 255, 255, 0.75)',
+    background: "rgba(255, 255, 255, 0.75)"
   },
   content: {
-    width: '90%',
-    maxWidth: '320px',
-    overflow: 'display',
-    top: '20%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -20%)',
+    width: "90%",
+    maxWidth: "320px",
+    overflow: "display",
+    top: "20%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -20%)",
     border: 0,
-    borderRadius: '5px',
-    padding: '0',
-    background: '#333',
-    boxShadow: '0 0 15px 4px rgba(0,0,0,.3)',
-  },
+    borderRadius: "5px",
+    padding: "0",
+    background: "#333",
+    boxShadow: "0 0 15px 4px rgba(0,0,0,.3)"
+  }
 };
 
 const handleExpand = e => {
@@ -35,7 +35,19 @@ const handleExpand = e => {
 
   if (!element) {
   } else {
-    document.querySelector(`.${element}`).classList.toggle('hidden');
+    document.querySelector(`.${element}`).classList.toggle("hidden");
+    const height = document.querySelector(`.${element}`).offsetHeight;
+
+    if (height > 61) {
+      console.log("hide now");
+      document.querySelector(`.${element}`).style.height = "61px";
+    } else {
+      const otherheight = document.querySelector(
+        `.${element} .item__bottomline`
+      ).offsetHeight;
+      document.querySelector(`.${element}`).style.height =
+        height + otherheight + "px";
+    }
   }
 };
 
@@ -43,7 +55,7 @@ class Item extends Component {
   constructor() {
     super();
     this.state = {
-      modalIsOpen: false,
+      modalIsOpen: false
     };
     this.openRemoveModal = this.openRemoveModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -62,20 +74,26 @@ class Item extends Component {
 
   render() {
     // render notes before inserting preserving old notes format...
-    let notes = '';
-    if(this.props.notesAdv) {
-      const convertedState = convertFromRaw(JSON.parse(this.props.notesAdv))
+    let notes = "";
+    if (this.props.notesAdv) {
+      const convertedState = convertFromRaw(JSON.parse(this.props.notesAdv));
       notes = stateToHTML(convertedState);
     } else {
       notes = this.props.notes;
     }
-    
+
     return (
       <div
-        className={`item__wrapper item__priority--${this.props.priority} ${this.props.id} hidden`}
+        className={`item__wrapper item__priority--${this.props.priority} ${
+          this.props.id
+        } hidden`}
       >
         {!this.props.editable && (
-          <div className={`item__topline`} onClick={handleExpand} id={this.props.id}>
+          <div
+            className={`item__topline`}
+            onClick={handleExpand}
+            id={this.props.id}
+          >
             {!this.props.editable &&
               (this.props.handleCompleteItem && (
                 <button
@@ -99,15 +117,18 @@ class Item extends Component {
               this.props.dueDate && (
                 <div
                   className={`item__due-date ${
-                    this.props.dueDate < this.props.date ? 'overdue' : 'due'
+                    this.props.dueDate < this.props.date ? "overdue" : "due"
                   }`}
                 >
-                  Due: {moment(this.props.dueDate).format('Do MMM YYYY')}
+                  Due: {moment(this.props.dueDate).format("Do MMM YYYY")}
                 </div>
               )
             )}
 
-            <svg className={`item__downarrow arrow-${this.props.id}`} viewBox="0 0 320 512">
+            <svg
+              className={`item__downarrow arrow-${this.props.id}`}
+              viewBox="0 0 320 512"
+            >
               <path
                 fill="currentColor"
                 d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
@@ -126,7 +147,10 @@ class Item extends Component {
 
           {!this.props.editable && (
             <div className="notes">
-              <div className="notes__content" dangerouslySetInnerHTML={{__html: notes}} />
+              <div
+                className="notes__content"
+                dangerouslySetInnerHTML={{ __html: notes }}
+              />
             </div>
           )}
           <div className="button__wrapper">
@@ -163,8 +187,6 @@ class Item extends Component {
                 </button>
               ))}
 
-            
-
             {!this.props.editable && (
               <button
                 className="btn btn-circle btn-red item__remove"
@@ -198,7 +220,10 @@ class Item extends Component {
                 >
                   Yes
                 </button>
-                <button className="btn modal__button--cancel" onClick={this.closeModal}>
+                <button
+                  className="btn modal__button--cancel"
+                  onClick={this.closeModal}
+                >
                   Cancel
                 </button>
               </div>
