@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
-import autosize from 'autosize';
-import NotesEditor from './NotesEditor';
+import React, { Component } from "react";
+import autosize from "autosize";
+import NotesEditor from "./NotesEditor";
 
+import moment from "moment";
+import { SingleDatePicker } from "react-dates";
 
-import moment from 'moment';
-import { SingleDatePicker } from 'react-dates';
-
-moment.locale('en-gb');
+moment.locale("en-gb");
 
 class ItemForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.item ? props.item.id : '',
-      text: props.item ? props.item.text : '',
-      priority: props.item ? props.item.priority : '2',
+      id: props.item ? props.item.id : "",
+      text: props.item ? props.item.text : "",
+      priority: props.item ? props.item.priority : "2",
       dueDate: props.item ? props.item.dueDate : null,
-      notes: props.item ? props.item.notes : '',
-      notesAdv: props.item ? props.item.notesAdv : '',
-      list: props.item ? props.item.list : 'personal',
+      notes: props.item ? props.item.notes : "",
+      notesAdv: props.item ? props.item.notesAdv : "",
+      list: props.item ? props.item.list : "personal",
       editable: props.item ? props.item.editable : false,
       // editorState: EditorState.createEmpty(),
       error: undefined,
@@ -26,19 +25,19 @@ class ItemForm extends Component {
       form: props.form
     };
   }
-  
+
   componentDidMount() {
     autosize(this.textarea);
-    console.log('component did mount edit', this.props.item);
+    console.log("component did mount edit", this.props.item);
   }
   componentDidUpdate() {
     autosize(this.textarea);
-    console.log('component did update edit', this.props.item);
+    console.log("component did update edit", this.props.item);
   }
 
   onItemNameChange = e => {
     const text = e.target.value;
-    console.log('ItemForm.js onItemNameChange: ', text);
+    console.log("ItemForm.js onItemNameChange: ", text);
     this.setState({ text });
   };
   onPirorityChange = e => {
@@ -57,7 +56,7 @@ class ItemForm extends Component {
     e.preventDefault();
     this.props.handleEditItem({ ...this.props.item });
   };
-  
+
   onNotesChange = notesAdv => {
     console.log(notesAdv);
     this.setState({ notesAdv });
@@ -69,28 +68,29 @@ class ItemForm extends Component {
   // };
 
   onListChangePersonal = e => {
-    this.setState({list: 'personal'})
-  }
+    this.setState({ list: "personal" });
+  };
   onListChangeWork = e => {
-    this.setState({list: 'work'})
-  }
+    this.setState({ list: "work" });
+  };
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
   onSubmit = e => {
     e.preventDefault();
     console.log(this.state);
-    if (this.state.text === '') {
+    if (this.state.text === "") {
       this.setState(() => ({
-        error: 'Please provide an item title.',
+        error: "Please provide an item title."
       }));
     } else {
-      this.setState(() => ({ error: '' }));
+      this.setState(() => ({ error: "" }));
       this.props.onSubmit({
         ...this.state,
         error: null,
         focused: null,
-        dueDate: this.state.dueDate !== null ? this.state.dueDate.valueOf() : null,
+        dueDate:
+          this.state.dueDate !== null ? this.state.dueDate.valueOf() : null
       });
     }
   };
@@ -108,14 +108,16 @@ class ItemForm extends Component {
               value={this.state.text}
               onChange={this.onItemNameChange}
             />
-            {this.state.error && <p className="error-message">{this.state.error}</p>}
+            {this.state.error && (
+              <p className="error-message">{this.state.error}</p>
+            )}
           </div>
           <div className="form-additem__priority">
             <label htmlFor="itemPriority">Priority:</label>
             <select
               name="itemPriority"
               id="priority"
-              defaultValue={this.state.priority ? this.state.priority : '2'}
+              defaultValue={this.state.priority ? this.state.priority : "2"}
               onChange={this.onPirorityChange}
             >
               <option value="1">High</option>
@@ -126,7 +128,9 @@ class ItemForm extends Component {
           <div className="form-additem__duedate">
             <label htmlFor="datePicker">Due Date:</label>
             <SingleDatePicker
-              date={this.state.dueDate !== null ? moment(this.state.dueDate) : null} // momentPropTypes.momentObj or null
+              date={
+                this.state.dueDate !== null ? moment(this.state.dueDate) : null
+              } // momentPropTypes.momentObj or null
               onDateChange={this.onDateChange} // PropTypes.func.isRequired
               focused={this.state.focused} // PropTypes.bool
               onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
@@ -140,50 +144,52 @@ class ItemForm extends Component {
             <label htmlFor="notes">Notes:</label>
             {/*<Editor editorState={this.state.editorState} onChange={this.onNotesChange} />*/}
             {/* Show old editor if there are old notes else new editor */}
-            {this.state.notes === '' 
-            ?
-            <NotesEditor 
-            className="notes__editor"
-            onNotesChange={this.onNotesChange}
-            notesAdv={this.state.notesAdv}
-            />
-            :
-            <textarea
-              ref={c => (this.textarea = c)}
-              name="notes"
-              id="notes"
-              onChange={this.onNotesChange}
-              value={this.state.notes}
-              placeholder="Add notes..."
-            /> 
-            }
+            {this.state.notes === "" ? (
+              <NotesEditor
+                className="notes__editor"
+                onNotesChange={this.onNotesChange}
+                notesAdv={this.state.notesAdv}
+              />
+            ) : (
+              <textarea
+                ref={c => (this.textarea = c)}
+                name="notes"
+                id="notes"
+                onChange={this.onNotesChange}
+                value={this.state.notes}
+                placeholder="Add notes..."
+              />
+            )}
           </div>
           <div className="list flex-start">
             <label htmlFor="list">List:</label>
-            Personal{' '}
+            Personal{" "}
             <input
               type="radio"
               name="list"
               id="list"
               onChange={this.onListChangePersonal}
-              defaultChecked={this.state.list === 'personal'}
+              defaultChecked={this.state.list === "personal"}
             />
-            Work{' '}
+            Work{" "}
             <input
               type="radio"
               name="list"
               id="list"
               onChange={this.onListChangeWork}
-              defaultChecked={this.state.list === 'work'}
+              defaultChecked={this.state.list === "work"}
             />
           </div>
         </div>
-        {this.state.form === 'add' ? (
+        {this.state.form === "add" ? (
           <button className="btn btn-add form-additem__btn">Add</button>
         ) : (
           <div className="flex">
             <button className="btn btn-add form-additem__btn mr1">Save</button>
-            <button onClick={this.cancel} className="btn btn-cancel form-additem__btn">
+            <button
+              onClick={this.cancel}
+              className="btn btn-cancel form-additem__btn"
+            >
               Cancel
             </button>
           </div>

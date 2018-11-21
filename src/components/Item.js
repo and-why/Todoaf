@@ -36,8 +36,9 @@ const handleExpand = e => {
   if (!element) {
   } else {
     document.querySelector(`.${element}`).classList.toggle("hidden");
-    const height = document.querySelector(`.${element}`).offsetHeight;
 
+    //Work out height for animation of  dropdown.
+    const height = document.querySelector(`.${element}`).offsetHeight;
     if (height > 61) {
       console.log("hide now");
       document.querySelector(`.${element}`).style.height = "61px";
@@ -158,7 +159,7 @@ class Item extends Component {
             {this.props.handleUndoItem && (
               <button
                 className="btn btn-blue btn-circle item__undo"
-                onClick={e => {
+                onClick={() => {
                   this.props.handleUndoItem(this.props);
                 }}
               >
@@ -175,7 +176,7 @@ class Item extends Component {
               (this.props.handleEditItem && (
                 <button
                   className="btn btn-circle btn-blue item__complete"
-                  onClick={e => {
+                  onClick={() => {
                     this.props.handleEditItem(this.props);
                   }}
                 >

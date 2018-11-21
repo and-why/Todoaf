@@ -421,6 +421,13 @@ button svg {
 .form-edititem {
   flex: 1;
   width: 100%;
+  opacity:1;
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .form-edititem>* {
@@ -475,11 +482,12 @@ form .btn {
   margin-bottom: 1px;
   padding: 10px;
   border-bottom: #d0d0d05c 1px solid;
-  /* display:flex; */
-  flex-direction:column;
   transition: all 0.2s ease-in-out;
   overflow:hidden;
+  animation: fadein 0.5s;
 }
+
+
 .item__wrapper:hover {
   background:#262725;
 }
@@ -498,7 +506,6 @@ form .btn {
 .item__bottomline {
   flex-direction: column;
   overflow-y: auto;
-  display: block;
   transition: all 0.2s ease-in-out;
 }
 
