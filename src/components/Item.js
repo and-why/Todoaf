@@ -98,9 +98,11 @@ class Item extends Component {
 
     return (
       <div
-        style={{
-          height: this.state.topHeight + 20
-        }}
+        style={
+          {
+            // height: document.querySelector(`.item__topline`).offsetHeight
+          }
+        }
         className={`item__wrapper item__priority--${this.props.priority} ${
           this.props.id
         } hidden`}
