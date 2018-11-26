@@ -142,12 +142,7 @@ class Header extends Component {
         </div>
         <p className="app-header__subtitle">{this.props.subtitle}</p>
         <p className="app-header__date">
-          Good{" "}
-          {+ampm < 12
-            ? "morning"
-            : +ampm < 18
-            ? "afternoon fucker!"
-            : "evening"}
+          Good {+ampm < 12 ? "morning" : +ampm < 18 ? "afternoon" : "evening"}
           , today is
           <br />
           {moment().format("dddd MMMM Do YYYY")}
