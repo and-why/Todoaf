@@ -1,70 +1,75 @@
-import React, { Component } from 'react';
-import Header from './components/Header';
-import Body from './components/Body';
-import Footer from './components/Footer';
-import LoadingPage from './components/LoadingPage';
-import moment from 'moment';
+import React, { Component } from "react";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import Footer from "./components/Footer";
+import LoadingPage from "./components/LoadingPage";
+import moment from "moment";
 
-import './App.css';
+import "./App.css";
 
-import { firebase } from './firebase';
+import { firebase } from "./firebase";
 
-moment.locale('en-gb');
+moment.locale("en-gb");
 
 class App extends Component {
   state = {
     items: [],
-    light:false,
+    light: false,
     authUser: null,
-    hasRendered: false,
+    hasRendered: false
   };
 
   handleAddItem = item => {
-    console.log('add item:', item);
+    console.log("add item:", item);
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
     const createDate = Date.now();
-    
+
     const newItem = {
       ...item,
       editorState: null,
       createDate: createDate,
       completed: false,
       completeDate: null,
-      editable: false,
+      editable: false
     };
-    if (item === '') {
+    if (item === "") {
       // do nothing
     } else {
       this.setState(prevState => ({
-        items: prevState.items.concat(newItem),
+        items: prevState.items.concat(newItem)
       }));
       itemsRef.push(newItem);
     }
-    console.log('new item:', newItem);
+    console.log("new item:", newItem);
   };
   handleRemoveItem = itemToRemove => {
     const uid = firebase.auth.currentUser.uid;
-    const itemToRemoveRef = firebase.database.ref(`users/${uid}/${itemToRemove.id}`);
+    const itemToRemoveRef = firebase.database.ref(
+      `users/${uid}/${itemToRemove.id}`
+    );
+
     this.setState(prevState => ({
-      items: prevState.items.filter(item => itemToRemove.id !== item.id),
+      items: prevState.items.filter(item => itemToRemove.id !== item.id)
     }));
 
     itemToRemoveRef.remove();
   };
- 
+
   handleEditItem = itemToEdit => {
     let obj = this.state.items.find(obj => obj.id === itemToEdit.id);
 
     obj.editable = !obj.editable;
 
+    document.querySelector(`.${itemToEdit.id}`).style.height = "auto";
+
     this.setState(prevState => ({
-      items: prevState.items.filter(() => obj),
+      items: prevState.items.filter(() => obj)
     }));
   };
 
   handleEditItemReturn = item => {
-    console.log('app.js handleEditItemReturn: ', item);
+    console.log("app.js handleEditItemReturn: ", item);
     const uid = firebase.auth.currentUser.uid;
     const itemsToUpdate = firebase.database.ref(`users/${uid}/${item.id}`);
     const editedItem = {
@@ -72,16 +77,18 @@ class App extends Component {
       text: item.text,
       priority: item.priority,
       dueDate: item.dueDate,
-      notes: item.notes ? item.notes : '',
+      notes: item.notes ? item.notes : "",
       notesAdv: item.notesAdv,
       list: item.list,
       completed: false,
       completeDate: null,
-      editable: false,
+      editable: false
     };
 
     this.setState(prevState => ({
-      items: prevState.items.filter(obj => obj.id !== editedItem.id).concat(editedItem),
+      items: prevState.items
+        .filter(obj => obj.id !== editedItem.id)
+        .concat(editedItem)
     }));
     itemsToUpdate.update(editedItem);
   };
@@ -97,15 +104,17 @@ class App extends Component {
       priority: itemToComplete.priority,
       createDate: itemToComplete.createDate,
       dueDate: itemToComplete.dueDate,
-      notes: itemToComplete.notes ? itemToComplete.notes : '',
-      notesAdv: itemToComplete.notesAdv ? itemToComplete.notesAdv : '',
-      list: itemToComplete.list ? itemToComplete.list : 'personal',
+      notes: itemToComplete.notes ? itemToComplete.notes : "",
+      notesAdv: itemToComplete.notesAdv ? itemToComplete.notesAdv : "",
+      list: itemToComplete.list ? itemToComplete.list : "personal",
       editable: false,
       completed: true,
-      completeDate: Date.now(),
+      completeDate: Date.now()
     };
     this.setState(prevState => ({
-      items: prevState.items.filter(obj => obj.id !== completedItem.id).concat(completedItem),
+      items: prevState.items
+        .filter(obj => obj.id !== completedItem.id)
+        .concat(completedItem)
     }));
     itemsToUpdate.update(completedItem);
   };
@@ -120,7 +129,7 @@ class App extends Component {
     obj.completed = false;
 
     this.setState(prevState => ({
-      items: prevState.items.filter(() => obj),
+      items: prevState.items.filter(() => obj)
     }));
 
     itemsToUpdate.update(obj);
@@ -128,28 +137,26 @@ class App extends Component {
   handleNightMode = () => {
     const uid = firebase.auth.currentUser.uid;
     let light = this.state.light;
-    
-    light = !light
-    
-    console.log(light)
-    
+
+    light = !light;
+
+    console.log(light);
+
     this.setState({
-      light 
-    })
+      light
+    });
 
     firebase.database.ref(`users/${uid}`).update({
       light
     });
-    
-
-  }
+  };
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.setState({ authUser });
         const uid = firebase.auth.currentUser.uid;
         const itemsRef = firebase.database.ref(`users/${uid}`);
-        itemsRef.on('value', snapshot => {
+        itemsRef.on("value", snapshot => {
           let light = snapshot.val().light;
           let items = snapshot.val();
           let newState = [];
@@ -159,13 +166,13 @@ class App extends Component {
               text: items[item].text,
               createDate: items[item].createDate,
               dueDate: items[item].dueDate ? items[item].dueDate : null,
-              notes: items[item].notes ? items[item].notes : '',
-              notesAdv: items[item].notesAdv ? items[item].notesAdv : '',
-              list: items[item].list ? items[item].list : 'personal',
+              notes: items[item].notes ? items[item].notes : "",
+              notesAdv: items[item].notesAdv ? items[item].notesAdv : "",
+              list: items[item].list ? items[item].list : "personal",
               priority: items[item].priority,
               completed: items[item].completed,
               completeDate: items[item].completeDate,
-              editable: items[item].editable,
+              editable: items[item].editable
             });
             this.setState({
               items: newState,
@@ -175,29 +182,27 @@ class App extends Component {
           }
         });
       } else {
-        this.setState({ 
+        this.setState({
           authUser: null,
-          hasRendered: true,
+          hasRendered: true
         });
-
       }
     });
   }
   componentDidUpdate(prevProps, prevState) {}
 
   componentWillUnmount() {
-    console.log('componentWillUnmount');
+    console.log("componentWillUnmount");
   }
 
   render() {
     return (
-      <div className={`App ${this.state.light && 'light'}`}>
-        {this.state.hasRendered ? 
+      <div className={`App ${this.state.light && "light"}`}>
+        {this.state.hasRendered ? (
           <div>
-            
             <Header
-              title={'todoAF'}
-              subtitle={'Prioritise tasks and get sh*t done.'}
+              title={"todoAF"}
+              subtitle={"Prioritise tasks and get sh*t done."}
               authUser={this.state.authUser}
               items={this.state.items}
               light={this.state.light}
@@ -215,10 +220,9 @@ class App extends Component {
             />
             <Footer />
           </div>
-      :
-        <LoadingPage />
-      
-      }
+        ) : (
+          <LoadingPage />
+        )}
       </div>
     );
   }
