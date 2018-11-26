@@ -511,6 +511,7 @@ form .btn {
   flex-direction: column;
   overflow-y: auto;
   transition: all 0.2s ease-in-out;
+  animation: fadein 0.5s;
 }
 
 .hidden>.item__bottomline {

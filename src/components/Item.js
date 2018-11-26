@@ -31,9 +31,7 @@ class Item extends Component {
   constructor() {
     super();
     this.state = {
-      modalIsOpen: false,
-      topHeight: 61,
-      bottomHeight: 0
+      modalIsOpen: false
     };
     this.openRemoveModal = this.openRemoveModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -50,12 +48,6 @@ class Item extends Component {
     //reference are now sync'd and can be assessed
   }
 
-  componentDidMount() {
-    this.state.topHeight = document.querySelector(
-      `.item__topline`
-    ).offsetHeight;
-  }
-
   handleExpand = e => {
     e.stopPropagation();
     e.preventDefault();
@@ -65,24 +57,6 @@ class Item extends Component {
     if (!element) {
     } else {
       document.querySelector(`.${element}`).classList.toggle("hidden");
-      document.querySelector(`.${element}`).classList.toggle("shown");
-
-      const topHeight = document.querySelector(`#${element} .item__topline`)
-        .offsetHeight;
-      const bottomHeight = document.querySelector(
-        `#${element} .item__bottomline`
-      ).offsetHeight;
-
-      //Work out height for animation of  dropdown.
-      this.setState({
-        topHeight
-      });
-      this.setState({
-        bottomHeight
-      });
-
-      document.querySelector(`.${element}`).style.height =
-        topHeight + bottomHeight + 20 + "px";
     }
   };
 
@@ -98,11 +72,6 @@ class Item extends Component {
 
     return (
       <div
-        style={
-          {
-            // height: document.querySelector(`.item__topline`).offsetHeight
-          }
-        }
         className={`item__wrapper item__priority--${this.props.priority} ${
           this.props.id
         } hidden`}
