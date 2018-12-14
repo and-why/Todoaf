@@ -28,20 +28,20 @@ class ItemForm extends Component {
 
   componentDidMount() {
     autosize(this.textarea);
-    console.log("component did mount edit", this.props.item);
+    // console.log("component did mount edit", this.props.item);
   }
   componentDidUpdate() {
     autosize(this.textarea);
-    console.log("component did update edit", this.props.item);
+    // console.log("component did update edit", this.props.item);
   }
 
   onItemNameChange = e => {
     const text = e.target.value;
-    console.log("ItemForm.js onItemNameChange: ", text);
+    // console.log("ItemForm.js onItemNameChange: ", text);
     this.setState({ text });
   };
   onPirorityChange = e => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const priority = e.target.value;
     this.setState({ priority });
   };
@@ -58,14 +58,9 @@ class ItemForm extends Component {
   };
 
   onNotesChange = notesAdv => {
-    console.log(notesAdv);
+    // console.log(notesAdv);
     this.setState({ notesAdv });
   };
-  // onNotesChange = e => {
-  //   const notes = e.target.value;
-  //   this.setState({ notes });
-  //   e.target.style.height = e.target.scrollHeight + 'px';
-  // };
 
   onListChangePersonal = e => {
     this.setState({ list: "personal" });
@@ -78,7 +73,7 @@ class ItemForm extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     if (this.state.text === "") {
       this.setState(() => ({
         error: "Please provide an item title."

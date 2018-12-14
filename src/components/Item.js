@@ -52,7 +52,7 @@ class Item extends Component {
     e.stopPropagation();
     e.preventDefault();
     let element = e.target.id;
-    console.log(element);
+    // console.log(element);
 
     if (!element) {
     } else {

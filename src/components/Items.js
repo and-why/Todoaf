@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Item from './Item';
-import Search from './Search';
+import React, { Component } from "react";
+import Item from "./Item";
+import Search from "./Search";
 
 const cmp = function(a, b) {
   if (a > b) return +1;
@@ -36,21 +36,23 @@ class Items extends Component {
     super(props);
     this.state = {
       filteredItems: [],
-      search: '',
+      search: "",
       completedNumber: 10,
-      listFilter: 'entire',
+      listFilter: "entire"
     };
   }
 
   handleSearchItem = e => {
     this.setState({
-      search: e,
+      search: e
     });
-    console.log(e, this.props.items)
-    let filteredItems = this.props.items.filter(item => item.text && item.text.toLowerCase().includes(e));
-    
+    // console.log(e, this.props.items)
+    let filteredItems = this.props.items.filter(
+      item => item.text && item.text.toLowerCase().includes(e)
+    );
+
     this.setState({
-      filteredItems: filteredItems,
+      filteredItems: filteredItems
     });
   };
 
@@ -59,30 +61,45 @@ class Items extends Component {
       completedNumber:
         this.state.completedNumber >= this.props.items.length
           ? this.props.items.length
-          : this.state.completedNumber + 10,
+          : this.state.completedNumber + 10
     });
   };
   handleListChange = e => {
-    console.log(this.state.listFilter);
+    // console.log(this.state.listFilter);
     const value = e.target.value;
     this.setState({
-      listFilter: value,
+      listFilter: value
     });
   };
 
   render() {
     return (
       <div>
-        {(this.props.items.find(item => item.list === 'work') ||
-          this.state.listFilter === 'work') && (
+        {(this.props.items.find(item => item.list === "work") ||
+          this.state.listFilter === "work") && (
           <div className="btn__showlist-wrapper">
-            <button className={`btn btn__showlists ${this.state.listFilter === 'entire' && 'active'}`} onClick={this.handleListChange} value="entire">
+            <button
+              className={`btn btn__showlists ${this.state.listFilter ===
+                "entire" && "active"}`}
+              onClick={this.handleListChange}
+              value="entire"
+            >
               Entire List
             </button>
-            <button className={`btn btn__showlists ${this.state.listFilter === 'personal' && 'active'}`} onClick={this.handleListChange} value="personal">
+            <button
+              className={`btn btn__showlists ${this.state.listFilter ===
+                "personal" && "active"}`}
+              onClick={this.handleListChange}
+              value="personal"
+            >
               Personal List
             </button>
-            <button className={`btn btn__showlists ${this.state.listFilter === 'work' && 'active'}`} onClick={this.handleListChange} value="work">
+            <button
+              className={`btn btn__showlists ${this.state.listFilter ===
+                "work" && "active"}`}
+              onClick={this.handleListChange}
+              value="work"
+            >
               Work List
             </button>
           </div>
@@ -90,17 +107,20 @@ class Items extends Component {
         <h3 className="capitalize">{this.state.listFilter} List:</h3>
         <Search handleSearchItem={this.handleSearchItem} />
         <div className="items-list">
-        <div className="items-list__due-today">
-        </div>
+          <div className="items-list__due-today" />
           {this.props.items.length === 0 && <p>Add an item to start</p>}
           {/* Items with due dates first */}
-          {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
+          {(this.state.search !== ""
+            ? this.state.filteredItems
+            : this.props.items
+          )
             .map(item => item)
             .filter(
               item =>
                 item.completed === false &&
-                (item.list === this.state.listFilter || this.state.listFilter === 'entire') &&
-                (item.dueDate !== null && item.dueDate < date.addDays(dayLimit)),
+                (item.list === this.state.listFilter ||
+                  this.state.listFilter === "entire") &&
+                (item.dueDate !== null && item.dueDate < date.addDays(dayLimit))
             )
             .sort(function(a, b) {
               return cmpn(a.dueDate, b.dueDate) || cmp(a.priority, b.priority);
@@ -127,15 +147,21 @@ class Items extends Component {
               />
             ))}
           {/* Items with no due dates next */}
-          {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
+          {(this.state.search !== ""
+            ? this.state.filteredItems
+            : this.props.items
+          )
             .filter(
               item =>
                 item.completed === false &&
-                (item.list === this.state.listFilter || this.state.listFilter === 'entire') &&
-                (item.dueDate === null || item.dueDate > date.addDays(dayLimit)),
+                (item.list === this.state.listFilter ||
+                  this.state.listFilter === "entire") &&
+                (item.dueDate === null || item.dueDate > date.addDays(dayLimit))
             )
             .sort(function(a, b) {
-              return cmp(a.priority, b.priority) || cmpn(a.createDate, b.createDate);
+              return (
+                cmp(a.priority, b.priority) || cmpn(a.createDate, b.createDate)
+              );
             })
             .map(item => (
               <Item
@@ -162,11 +188,15 @@ class Items extends Component {
           {this.props.items.find(item => item.completed) && (
             <h4 className="items__complete">COMPLETED</h4>
           )}
-          {(this.state.search !== '' ? this.state.filteredItems : this.props.items)
+          {(this.state.search !== ""
+            ? this.state.filteredItems
+            : this.props.items
+          )
             .filter(
               item =>
                 item.completed !== false &&
-                (item.list === this.state.listFilter || this.state.listFilter === 'entire'),
+                (item.list === this.state.listFilter ||
+                  this.state.listFilter === "entire")
             )
             .sort(function(a, b) {
               return cmp(b.completeDate, a.completeDate);
