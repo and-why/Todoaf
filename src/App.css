@@ -268,7 +268,7 @@ label {
   border: none;
   color: white;
   font-size: 1em;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -351,8 +351,7 @@ button svg {
 .btn__showlists {
   margin-right: 10px;
   width: 100%;
-  background: none;
-  border: 1px solid #868686;
+  background: #262725;
   color: #868686;
   font-size: 1em;
 }
@@ -659,7 +658,7 @@ form .btn {
 }
 
 .items__search input {
-  padding: 11px 8px;
+  padding: 12px;
 }
 
 
@@ -890,8 +889,9 @@ footer a {
     background-color: #333;
     color: white;
 }
-
-
+.light .btn__showlists {
+ background: #e2e2e2;
+}
 /* EDITOR */
 .editor {
   background:white;
