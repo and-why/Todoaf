@@ -208,7 +208,8 @@ button {
 /* MAIN */
 .Container {
   max-width: 60em;
-  width: 90%;
+  width: 100%;
+  padding: 10px;
   margin: auto;
 }
 
@@ -484,19 +485,23 @@ form .btn {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1px;
-  padding: 10px;
-  border-bottom: #d0d0d05c 1px solid;
+  padding: 20px 20px;
   transition: all 0.2s ease-in-out;
   overflow:hidden;
   animation: fadein 0.5s;
-}
-
-
-.item__wrapper:hover {
   background:#262725;
 }
+.item__wrapper.hidden { 
+  background: transparent;
+}
 
-.light .item__wrapper:hover {
+.item__wrapper.hidden:hover {
+  background:#262725;
+}
+.light .item__wrapper.hidden { 
+  background: transparent;
+}
+.light .item__wrapper, .light .item__wrapper:hover {
   background: #e2e2e2;
 }
 
@@ -577,6 +582,7 @@ form .btn {
   width: 65%;
   height: 100%;
   overflow-wrap: break-word;
+  padding: 0 5px;
 }
 
 .item__priority {
