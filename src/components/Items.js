@@ -185,9 +185,9 @@ class Items extends Component {
               />
             ))}
           {/* Completed items last */}
-          {this.props.items.find(item => item.completed) && (
+          {/*this.props.items.find(item => item.completed) && (
             <h4 className="items__complete">COMPLETED</h4>
-          )}
+          )*/}
           {(this.state.search !== ""
             ? this.state.filteredItems
             : this.props.items

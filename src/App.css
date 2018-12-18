@@ -581,7 +581,7 @@ form .btn {
   width: 65%;
   height: 100%;
   overflow-wrap: break-word;
-  padding: 0 5px;
+  padding: 0 15px;
 }
 
 .item__priority {
