@@ -483,7 +483,6 @@ form .btn {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1px;
   padding: 20px 20px;
   transition: all 0.2s ease-in-out;
   overflow:hidden;
