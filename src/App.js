@@ -20,7 +20,7 @@ class App extends Component {
   };
 
   handleAddItem = item => {
-    console.log("add item:", item);
+    // console.log("add item:", item);
     const uid = firebase.auth.currentUser.uid;
     const itemsRef = firebase.database.ref(`users/${uid}`);
     const createDate = Date.now();
@@ -41,7 +41,7 @@ class App extends Component {
       }));
       itemsRef.push(newItem);
     }
-    console.log("new item:", newItem);
+    // console.log("new item:", newItem);
   };
   handleRemoveItem = itemToRemove => {
     const uid = firebase.auth.currentUser.uid;
@@ -69,7 +69,7 @@ class App extends Component {
   };
 
   handleEditItemReturn = item => {
-    console.log("app.js handleEditItemReturn: ", item);
+    // console.log("app.js handleEditItemReturn: ", item);
     const uid = firebase.auth.currentUser.uid;
     const itemsToUpdate = firebase.database.ref(`users/${uid}/${item.id}`);
     const editedItem = {
@@ -140,7 +140,7 @@ class App extends Component {
 
     light = !light;
 
-    console.log(light);
+    // console.log(light);
 
     this.setState({
       light
@@ -192,7 +192,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {}
 
   componentWillUnmount() {
-    console.log("componentWillUnmount");
+    // console.log("componentWillUnmount");
   }
 
   render() {
