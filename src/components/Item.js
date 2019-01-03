@@ -109,7 +109,9 @@ class Item extends Component {
                     this.props.dueDate < this.props.date ? "overdue" : "due"
                   }`}
                 >
-                  Due: {moment(this.props.dueDate).format("Do MMM YYYY")}
+                  Due:
+                  <br />
+                  {moment(this.props.dueDate).format("Do MMM YYYY")}
                 </div>
               )
             )}
