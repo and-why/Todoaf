@@ -2,7 +2,6 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/build",
   "dependencies": {
     "autosize": "^4.0.2",
     "draft-js": "^0.10.5",
