@@ -6,5 +6,8 @@ View and sign up here: [TodoAF](https://todoaf.com)
 
 Learning outcomes
  - React
+ - Create-react-app
  - Firebase
+ - Moment
+ - Draft.js
  - Netlify
