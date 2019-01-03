@@ -154,7 +154,6 @@ ol {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: 20px;
   }
 }
 button {
@@ -163,14 +162,15 @@ button {
   border-radius: 5px;
 }
 .auth__button {
-  border: 2px solid #868686;
   text-transform: uppercase;
   text-align: center;
-  height: 70px;
-  width: 70px;
-  background: none;
+  /* height: 70px;
+  width: 70px; */
+  padding: 11px;
+  background: #262725;
   color: #868686;
-  border-radius: 50%;
+  border-radius: 5px;
+  border: none;
   margin-left: 2px;
 }
 .auth__button:hover {
@@ -338,7 +338,7 @@ button svg {
 .btn__showmore {
   width: 100%;
   background: none;
-  border: 1px solid #868686;
+  background: #262725;
   color: #868686;
   font-size: 1em;
 }
@@ -353,7 +353,7 @@ button svg {
   width: 100%;
   background: #262725;
   color: #868686;
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
 .btn__showlists:last-child {
@@ -459,6 +459,7 @@ form .btn {
 .item__due-date {
   font-size: 0.6em;
   margin-right: 1rem;
+  text-align:right;
   color: #868686;
 }
 
@@ -483,8 +484,7 @@ form .btn {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1px;
-  padding: 20px 20px;
+  padding: 20px 5px;
   transition: all 0.2s ease-in-out;
   overflow:hidden;
   animation: fadein 0.5s;
@@ -891,6 +891,10 @@ footer a {
 }
 .light .btn__showlists {
  background: #e2e2e2;
+}
+
+.light .auth__button {
+  background:#e2e2e2; 
 }
 /* EDITOR */
 .editor {
