@@ -134,16 +134,17 @@ ol {
 .app-header__light-icon {
   background:transparent;
   color:white;
-
-  border-radius:50%;
+  border-radius:5px;
+  min-width:152px;
 }
 .app-header__light-icon.light {
   background:#333;
-
 }
 
 .auth {
   display: flex;
+  min-width: 152px;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 35rem) {
@@ -171,6 +172,7 @@ button {
   color: #868686;
   border-radius: 5px;
   border: none;
+  width:100%;
   margin-left: 2px;
 }
 .auth__button:hover {
