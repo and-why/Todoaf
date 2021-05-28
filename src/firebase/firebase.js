@@ -1,23 +1,23 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/database'
+import 'firebase/database';
 
 const prodConfig = {
-  apiKey: "AIzaSyAt8YVD706Uab1qhEAw8TUxIi2EsXIMv6M",
-  authDomain: "priorities-to-do-app.firebaseapp.com",
-  databaseURL: "https://priorities-to-do-app.firebaseio.com",
-  projectId: "priorities-to-do-app",
-  storageBucket: "",
-  messagingSenderId: "875426345623"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: 'https://priorities-to-do-app.firebaseio.com',
+  projectId: 'priorities-to-do-app',
+  storageBucket: '',
+  messagingSenderId: '875426345623',
 };
 
 const devConfig = {
-  apiKey: "AIzaSyDaUozIxggyD5xKOEsJjnv3e7W3Lnx-frA",
-  authDomain: "priorities-to-do-app-dev.firebaseapp.com",
-  databaseURL: "https://priorities-to-do-app-dev.firebaseio.com",
-  projectId: "priorities-to-do-app-dev",
-  storageBucket: "",
-  messagingSenderId: "3010514295"
+  apiKey: process.env.FIREBASE_API_KEY_DEV,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN_DEV,
+  databaseURL: 'https://priorities-to-do-app-dev.firebaseio.com',
+  projectId: 'priorities-to-do-app-dev',
+  storageBucket: '',
+  messagingSenderId: '3010514295',
 };
 
 const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
